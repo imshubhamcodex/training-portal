@@ -32,10 +32,7 @@ function isActive(href: string): boolean {
           <BookOpen class="w-5 h-5 text-[#00d4a4]" />
         </div>
         <div class="flex flex-col">
-          <div class="flex items-center gap-2">
-            <span class="font-bold text-[17px] tracking-tight text-[#0a0a0a]">ITI Resource Hub</span>
-            <span class="hidden md:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-[#7cebcb]/25 text-[#00b48a] rounded border border-[#00d4a4]/30 uppercase tracking-wider">CTS Portal</span>
-          </div>
+          <span class="font-bold text-[17px] tracking-tight text-[#0a0a0a]">ITI Resource Hub</span>
           <span class="text-[11px] text-[#888888] font-normal leading-none hidden sm:block">Vocational Training Library</span>
         </div>
       </a>
@@ -60,20 +57,8 @@ function isActive(href: string): boolean {
         })}
       </nav>
 
-      <!-- Search Trigger and Actions -->
+      <!-- Right Actions -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <!-- Quick Search Pill Bar -->
-        <a
-          href="/library"
-          class="flex items-center gap-2 px-3 py-1.5 bg-[#f7f7f7] hover:bg-[#ededed] border border-[#e5e5e5] rounded-full text-xs sm:text-sm text-[#5a5a5c] hover:text-[#0a0a0a] transition-all group focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
-          aria-label="Open global search"
-        >
-          <Search class="w-4 h-4 text-[#888888] group-hover:text-[#0a0a0a]" />
-          <span class="hidden md:inline">Search lesson plans, lab manuals...</span>
-          <span class="md:hidden">Search</span>
-          <kbd class="hidden md:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white border border-[#e5e5e5] rounded text-[#888888]">⌘K</kbd>
-        </a>
-
         <!-- Admin Portal Access -->
         <a
           href="/admin"
@@ -120,13 +105,6 @@ function isActive(href: string): boolean {
       })}
       
       <div class="pt-4 mt-2 border-t border-[#ededed] flex flex-col gap-2">
-        <a
-          href="/library"
-          class="flex items-center justify-center gap-2 w-full py-2.5 bg-[#0a0a0a] text-white rounded-full text-sm font-medium hover:bg-[#1c1c1e] transition-colors"
-        >
-          <Search class="w-4 h-4 text-[#00d4a4]" />
-          <span>Browse Resource Library</span>
-        </a>
         <a
           href="/admin"
           class="flex items-center justify-center gap-2 w-full py-2 bg-[#f7f7f7] text-[#1c1c1e] border border-[#e5e5e5] rounded-full text-sm font-medium hover:bg-[#ededed] transition-colors"

@@ -1,18 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ResourceCard from '../components/resources/ResourceCard.astro';
 import NoticeCard from '../components/notices/NoticeCard.astro';
-import Badge from '../ui/Badge.astro';
-import { getFeaturedResources, getRecentResources, getAllResources } from '../lib/data/resources';
+import SearchBox from '../components/ui/SearchBox.astro';
+import { getAllResources } from '../lib/data/resources';
 import { getActiveTrades } from '../lib/data/trades';
 import { getActiveNotices } from '../lib/data/notices';
 import { RESOURCE_CATEGORIES } from '../lib/data/categories';
 import {
-  Search,
   BookOpen,
   ArrowRight,
-  Sparkles,
-  Layers,
   FileText,
   Presentation,
   Wrench,
@@ -22,12 +18,8 @@ import {
   Zap,
   Terminal,
   CheckCircle2,
-  Download,
-  FolderOpen,
 } from 'lucide-astro';
 
-const featuredResources = getFeaturedResources();
-const recentResources = getRecentResources(6);
 const activeTrades = getActiveTrades();
 const activeNotices = getActiveNotices().slice(0, 3);
 const allPublished = getAllResources();
@@ -84,25 +76,14 @@ const tradeIconMap: Record<string, any> = {
           Find lesson plans, practical guides, laboratory manuals, notes, and technical resources in one place. Standardized for instructors and trainees across India.
         </p>
 
-        <!-- Prominent Global Search Form -->
+        <!-- Prominent Global Search Form with Live Autocomplete -->
         <div class="pt-4 max-w-2xl mx-auto">
-          <form action="/library" method="GET" class="relative flex items-center">
-            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#888888]">
-              <Search class="w-5 h-5" />
-            </div>
-            <input
-              type="text"
-              name="q"
-              placeholder="Search lesson plans, lab manuals, subjects, or topics..."
-              class="w-full pl-12 pr-32 py-3.5 sm:py-4 bg-white rounded-full border border-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#00d4a4] focus:border-transparent text-sm sm:text-base text-[#0a0a0a] shadow-sm transition-all"
-            />
-            <button
-              type="submit"
-              class="absolute right-1.5 sm:right-2 top-1.5 bottom-1.5 px-4 sm:px-6 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs sm:text-sm font-medium transition-colors flex items-center gap-1.5"
-            >
-              <span>Search</span>
-            </button>
-          </form>
+          <SearchBox
+            id="hero-search"
+            placeholder="Search lesson plans, lab manuals, subjects, or topics..."
+            size="large"
+            action="/library"
+          />
         </div>
 
         <!-- Hero Actions -->
@@ -282,68 +263,21 @@ const tradeIconMap: Record<string, any> = {
     </div>
   </section>
 
-  <!-- F. FEATURED RESOURCES SECTION -->
-  {featuredResources.length > 0 && (
-    <section class="py-14 sm:py-20 bg-white border-b border-[#e5e5e5]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-[#00d4a4]"></span>
-              <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Handpicked by Instructors</span>
-            </div>
-            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0a0a0a] mt-1">Featured Resources</h2>
-            <p class="text-sm text-[#5a5a5c] mt-1">High-quality lesson plans and lab guides verified for instructional accuracy.</p>
-          </div>
-          <a href="/library" class="text-sm font-medium text-[#0a0a0a] hover:text-[#00b48a] flex items-center gap-1 group">
-            <span>Explore all featured</span>
-            <ArrowRight class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredResources.slice(0, 3).map((res) => (
-            <ResourceCard resource={res} />
-          ))}
-        </div>
-
-      </div>
-    </section>
-  )}
-
-  <!-- E. RECENTLY ADDED RESOURCES SECTION -->
+  <!-- F. CALL TO ACTION: Browse Library -->
   <section class="py-14 sm:py-20 bg-[#fafafa] border-b border-[#e5e5e5]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-        <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Freshly Published</span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0a0a0a] mt-1">Recently Added Resources</h2>
-          <p class="text-sm text-[#5a5a5c] mt-1">The latest uploads from instructors, master trainers, and educational contributors.</p>
-        </div>
-        <a href="/library?sort=newest" class="text-sm font-medium text-[#0a0a0a] hover:text-[#00b48a] flex items-center gap-1 group">
-          <span>View newest arrivals</span>
-          <ArrowRight class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {recentResources.map((res) => (
-          <ResourceCard resource={res} />
-        ))}
-      </div>
-
-      <div class="mt-12 text-center">
-        <a
-          href="/library"
-          class="inline-flex items-center gap-2 px-8 py-3 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-sm font-medium transition-all shadow-sm"
-        >
-          <BookOpen class="w-4 h-4 text-[#00d4a4]" />
-          <span>Access All Resources in Catalog</span>
-        </a>
-      </div>
-
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Full Collection</span>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0a0a0a] mt-2 mb-3">Browse the Complete Resource Library</h2>
+      <p class="text-sm text-[#5a5a5c] mb-8 max-w-lg mx-auto">
+        Access all verified teaching and practical resources. Filter by trade, year, category, and file format.
+      </p>
+      <a
+        href="/library"
+        class="inline-flex items-center gap-2 px-8 py-3 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-sm font-medium transition-all shadow-sm"
+      >
+        <BookOpen class="w-4 h-4 text-[#00d4a4]" />
+        <span>Access All Resources in Catalog</span>
+      </a>
     </div>
   </section>
 

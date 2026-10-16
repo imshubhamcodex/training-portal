@@ -2,13 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import ResourceCard from '../components/resources/ResourceCard.astro';
 import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import SearchBox from '../components/ui/SearchBox.astro';
 import { searchResources } from '../lib/data/resources';
 import { getActiveTrades } from '../lib/data/trades';
 import { getAllSubjects } from '../lib/data/subjects';
 import { RESOURCE_CATEGORIES } from '../lib/data/categories';
 import {
-  Search,
-  Filter,
   X,
   SlidersHorizontal,
   ChevronLeft,
@@ -99,33 +98,15 @@ const hasActiveFilters = Boolean(
         </div>
       </div>
 
-      <!-- Main Search Box -->
-      <form action="/library" method="GET" class="relative flex items-center">
-        <!-- Preserve existing filters -->
-        {trade !== 'all' && <input type="hidden" name="trade" value={trade} />}
-        {subject !== 'all' && <input type="hidden" name="subject" value={subject} />}
-        {resourceType !== 'all' && <input type="hidden" name="type" value={resourceType} />}
-        {year !== 'all' && <input type="hidden" name="year" value={year} />}
-        {format !== 'all' && <input type="hidden" name="format" value={format} />}
-        {sort !== 'relevance' && <input type="hidden" name="sort" value={sort} />}
-
-        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[#888888]">
-          <Search class="w-5 h-5" />
-        </div>
-        <input
-          type="text"
-          name="q"
-          value={query}
-          placeholder="Search by topic, keyword, syllabus title, or author (e.g. Subnetting, Motherboard, Fiber, Cat6)..."
-          class="w-full pl-12 pr-28 py-3.5 bg-white rounded-xl border border-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#00d4a4] focus:border-transparent text-sm text-[#0a0a0a] shadow-sm"
-        />
-        <button
-          type="submit"
-          class="absolute right-2 top-2 bottom-2 px-5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-lg text-xs font-medium transition-colors"
-        >
-          Search
-        </button>
-      </form>
+      <!-- Main Search Box with Live Autocomplete -->
+      <SearchBox
+        id="library-search"
+        defaultValue={query}
+        placeholder="Search by topic, keyword, syllabus title, or author (e.g. Subnetting, Motherboard, Fiber, Cat6)..."
+        action="/library"
+        size="default"
+        preserveParams={{ trade, subject, type: resourceType, year, format, sort }}
+      />
     </div>
 
     <!-- Active Filter Chips Bar -->

@@ -75,6 +75,7 @@ export interface Resource {
   difficulty_level?: 'beginner' | 'intermediate' | 'advanced';
   is_featured: boolean;
   sort_order: number;
+  job_number?: string;
   version_label: string;
   supersedes_resource_id?: string;
   created_by?: string;

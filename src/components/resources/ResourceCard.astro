@@ -1,7 +1,6 @@
 ---
 import type { Resource } from '../../types';
-import Badge from '../ui/Badge.astro';
-import { FileText, Download, Eye, Calendar, Sparkles, Cpu, Layers } from 'lucide-astro';
+import { Download, Eye, Sparkles, Layers } from 'lucide-astro';
 
 export interface Props {
   resource: Resource;
@@ -10,44 +9,66 @@ export interface Props {
 
 const { resource, compact = false } = Astro.props;
 
-// Type labels and badge colors
-const typeBadgeMap: Record<string, { label: string; variant: 'mint' | 'tag-blue' | 'warn' | 'surface' | 'neutral' }> = {
-  'lesson-plan': { label: 'Lesson Plan', variant: 'mint' },
-  'demonstration-plan': { label: 'Demo Plan', variant: 'tag-blue' },
-  'lab-manual': { label: 'Lab Manual', variant: 'surface' },
-  'notes': { label: 'Subject Notes', variant: 'neutral' },
-  'diagram': { label: 'Technical Diagram', variant: 'warn' },
-  'video': { label: 'Demonstration Video', variant: 'tag-blue' },
-  'question-bank': { label: 'Question Bank', variant: 'neutral' },
-  'reference': { label: 'Reference Guide', variant: 'surface' },
+// Specific vibrant colors for different resource types
+const typeBadgeConfig: Record<string, { label: string; badgeClass: string }> = {
+  'lesson-plan': {
+    label: 'Lesson Plan',
+    badgeClass: 'bg-emerald-50 text-emerald-800 border-emerald-200/80',
+  },
+  'demonstration-plan': {
+    label: 'Demonstration Plan',
+    badgeClass: 'bg-blue-50 text-blue-800 border-blue-200/80',
+  },
+  'lab-manual': {
+    label: 'Lab Manual',
+    badgeClass: 'bg-purple-50 text-purple-800 border-purple-200/80',
+  },
+  'notes': {
+    label: 'Subject Notes',
+    badgeClass: 'bg-amber-50 text-amber-800 border-amber-200/80',
+  },
+  'diagram': {
+    label: 'Technical Diagram',
+    badgeClass: 'bg-rose-50 text-rose-800 border-rose-200/80',
+  },
+  'video': {
+    label: 'Demonstration Video',
+    badgeClass: 'bg-indigo-50 text-indigo-800 border-indigo-200/80',
+  },
+  'question-bank': {
+    label: 'Question Bank',
+    badgeClass: 'bg-teal-50 text-teal-800 border-teal-200/80',
+  },
+  'reference': {
+    label: 'Reference Guide',
+    badgeClass: 'bg-slate-100 text-slate-800 border-slate-300',
+  },
 };
 
-const badgeInfo = typeBadgeMap[resource.resource_type] || { label: resource.resource_type, variant: 'neutral' };
+const badgeInfo = typeBadgeConfig[resource.resource_type] || {
+  label: resource.resource_type,
+  badgeClass: 'bg-gray-100 text-gray-800 border-gray-300',
+};
 
 const primaryFile = resource.files.find((f) => f.is_primary) || resource.files[0];
 const fileExt = primaryFile ? primaryFile.original_filename.split('.').pop()?.toUpperCase() : 'PDF';
-const fileSizeKB = primaryFile ? Math.round(primaryFile.file_size_bytes / 1024) : 0;
 
-const formattedDate = new Date(resource.published_at || resource.created_at).toLocaleDateString('en-IN', {
-  day: 'numeric',
-  month: 'short',
-  year: 'numeric',
-});
+// Training year formatted as 1st Year or 2nd Year
+const yearText = resource.training_year === 1 ? '1st Year' : `${resource.training_year}nd Year`;
+const jobNumberText = resource.job_number || `Job #${resource.sort_order || 1}`;
 ---
 
-<article class="group relative flex flex-col justify-between bg-white rounded-xl border border-[#e5e5e5] p-5 hover:border-[#b3b3b3] hover:shadow-sm transition-all">
+<article class="group relative flex flex-col justify-between bg-white rounded-xl border border-[#e5e5e5] p-5 hover:border-[#b3b3b3] hover:shadow-md transition-all">
   <div>
     <!-- Top Row: Type Badge, Trade & Featured Pill -->
     <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
       <div class="flex items-center gap-1.5 flex-wrap">
-        <Badge variant={badgeInfo.variant} size="sm">
+        <!-- Badge with distinct color per resource type -->
+        <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${badgeInfo.badgeClass}`}>
           {badgeInfo.label}
-        </Badge>
+        </span>
         <span class="inline-flex items-center px-2 py-0.5 text-[11px] font-medium bg-[#f7f7f7] text-[#5a5a5c] rounded border border-[#e5e5e5]">
           {resource.trade_name}
-        </span>
-        <span class="text-[11px] text-[#888888] font-mono">
-          Yr {resource.training_year}
         </span>
       </div>
 
@@ -91,41 +112,47 @@ const formattedDate = new Date(resource.published_at || resource.created_at).toL
     )}
   </div>
 
-  <!-- Bottom Row: Metadata & Actions -->
-  <div class="pt-3 border-t border-[#ededed] flex items-center justify-between gap-3 text-xs text-[#888888]">
-    <!-- File Format & Date -->
-    <div class="flex items-center gap-2">
+  <!-- Bottom Row / Footer: Year, Job Number, Format, and Icon-only Action Buttons -->
+  <div class="pt-3 border-t border-[#ededed] flex items-center justify-between gap-2 text-xs">
+    
+    <!-- Left Metadata: Format, 1st/2nd Year, Job Number (File size removed) -->
+    <div class="flex items-center gap-1.5 flex-wrap">
       <span class="font-mono px-1.5 py-0.5 bg-[#f7f7f7] border border-[#e5e5e5] rounded text-[10px] font-medium text-[#0a0a0a]">
-        {fileExt} {fileSizeKB > 0 ? `(${fileSizeKB} KB)` : ''}
+        {fileExt}
       </span>
-      <span class="hidden sm:inline flex items-center gap-1 text-[11px]">
-        <Calendar class="w-3 h-3" />
-        {formattedDate}
+      <span class="px-2 py-0.5 bg-[#f7f7f7] text-[#1c1c1e] border border-[#e5e5e5] rounded text-[11px] font-medium">
+        {yearText}
+      </span>
+      <span class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200/70 rounded text-[11px] font-mono font-medium">
+        {jobNumberText}
       </span>
     </div>
 
-    <!-- Actions -->
-    <div class="flex items-center gap-1.5">
+    <!-- Right Actions: Icon-only buttons with tooltips / aria-labels (text removed) -->
+    <div class="flex items-center gap-1.5 flex-shrink-0">
       <a
         href={`/resources/${resource.slug}`}
-        class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-[#1c1c1e] bg-[#f7f7f7] hover:bg-[#ededed] rounded-full transition-colors"
-        title="View details and document preview"
+        class="inline-flex items-center justify-center p-2 rounded-full text-[#1c1c1e] bg-[#f7f7f7] hover:bg-[#e5e5e5] transition-colors focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+        title="Preview Document"
+        aria-label="Preview Document"
       >
-        <Eye class="w-3.5 h-3.5" />
-        <span>Preview</span>
+        <Eye class="w-4 h-4" />
+        <span class="sr-only">Preview Document</span>
       </a>
 
       {primaryFile && (
         <a
           href={primaryFile.download_url}
           download={primaryFile.original_filename}
-          class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-white bg-[#0a0a0a] hover:bg-[#1c1c1e] rounded-full transition-colors"
-          title="Download original document"
+          class="inline-flex items-center justify-center p-2 rounded-full text-white bg-[#0a0a0a] hover:bg-[#1c1c1e] transition-colors focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          title="Download File"
+          aria-label="Download File"
         >
-          <Download class="w-3.5 h-3.5 text-[#00d4a4]" />
-          <span>Download</span>
+          <Download class="w-4 h-4 text-[#00d4a4]" />
+          <span class="sr-only">Download File</span>
         </a>
       )}
     </div>
+
   </div>
 </article>
