@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { Mail, MessageSquare, AlertTriangle, Send, CheckCircle2 } from 'lucide-astro';
+---
+
+<Layout
+  title="Contact & Content Correction Requests - ITI Resource Hub"
+  description="Submit inquiries, feedback, or report discrepancies in lesson plans or practical training guides."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs items={[{ label: 'Contact & Corrections' }]} />
+
+    <div class="mt-4 mb-10">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Feedback &amp; Quality Assurance</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">Contact &amp; Content Correction</h1>
+      <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+        We strive for technical and pedagogical accuracy. If you notice an error in a lesson plan, an outdated diagram, or wish to contribute vocational resources, please reach out below.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Contact Information Cards -->
+      <div class="space-y-4">
+        <div class="p-5 rounded-xl border border-[#e5e5e5] bg-white space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] flex items-center justify-center text-[#0a0a0a]">
+            <AlertTriangle class="w-4 h-4 text-[#c37d0d]" />
+          </div>
+          <h3 class="text-sm font-semibold text-[#0a0a0a]">Content Correction Procedure</h3>
+          <p class="text-xs text-[#5a5a5c] leading-relaxed">
+            Please include the <strong>Resource Title</strong> or <strong>URL</strong>, the specific paragraph or diagram step, and the recommended factual correction.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl border border-[#e5e5e5] bg-[#fafafa] space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#0a0a0a] border border-[#e5e5e5]">
+            <Mail class="w-4 h-4 text-[#00b48a]" />
+          </div>
+          <h3 class="text-sm font-semibold text-[#0a0a0a]">Direct Inquiries</h3>
+          <p class="text-xs text-[#5a5a5c]">
+            Editorial desk review time: typically 1-2 working days for published resource corrections.
+          </p>
+          <span class="text-xs font-mono text-[#0a0a0a] block pt-1">
+            editorial@iti-resource-hub.local
+          </span>
+        </div>
+      </div>
+
+      <!-- Interactive Correction Form -->
+      <div class="md:col-span-2">
+        <form
+          id="contact-form"
+          class="p-6 sm:p-8 rounded-2xl bg-white border border-[#e5e5e5] space-y-4 shadow-xs"
+        >
+          <div id="form-success" class="hidden p-4 rounded-xl bg-[#00d4a4]/10 border border-[#00d4a4]/30 text-[#00b48a] text-xs font-medium flex items-center gap-2">
+            <CheckCircle2 class="w-5 h-5 flex-shrink-0" />
+            <span>Thank you. Your request has been recorded and submitted for technical review.</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <label for="name" class="text-xs font-semibold text-[#0a0a0a]">Your Full Name *</label>
+              <input
+                type="text"
+                id="name"
+                required
+                placeholder="e.g. R. K. Sharma (Instructor)"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+              />
+            </div>
+            <div class="space-y-1">
+              <label for="email" class="text-xs font-semibold text-[#0a0a0a]">Email Address *</label>
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="your.email@institution.in"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+              />
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <label for="request-type" class="text-xs font-semibold text-[#0a0a0a]">Subject / Request Category *</label>
+            <select
+              id="request-type"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            >
+              <option value="correction">Report Error in Lesson / Demonstration Plan</option>
+              <option value="diagram">Discrepancy in Technical Schematic / Wiring Diagram</option>
+              <option value="contribution">Offer Resource Contribution (Instructor)</option>
+              <option value="general">General Portal Feedback or Question</option>
+            </select>
+          </div>
+
+          <div class="space-y-1">
+            <label for="resource-url" class="text-xs font-semibold text-[#0a0a0a]">Resource Slug or URL (if applicable)</label>
+            <input
+              type="text"
+              id="resource-url"
+              placeholder="e.g. /resources/lp-motherboard-troubleshooting"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <label for="message" class="text-xs font-semibold text-[#0a0a0a]">Description of Discrepancy or Feedback *</label>
+            <textarea
+              id="message"
+              rows="4"
+              required
+              placeholder="Explain the technical discrepancy, page number, and correct reference standard..."
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full sm:w-auto px-6 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex items-center justify-center gap-2"
+          >
+            <Send class="w-3.5 h-3.5 text-[#00d4a4]" />
+            <span>Submit Correction Request</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const successBox = document.getElementById('form-success');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (successBox) {
+      successBox.classList.remove('hidden');
+      form.reset();
+      window.scrollTo({ top: successBox.offsetTop - 100, behavior: 'smooth' });
+    }
+  });
+</script>

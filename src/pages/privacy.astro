@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { ShieldCheck, EyeOff, Lock, Server } from 'lucide-astro';
+---
+
+<Layout
+  title="Privacy Policy - ITI Resource Hub"
+  description="Privacy practices for public educational resource access and download on ITI Resource Hub."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs items={[{ label: 'Privacy Policy' }]} />
+
+    <div class="mt-4 mb-10">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Data Protection &amp; Confidentiality</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">Privacy Policy</h1>
+      <p class="text-sm text-[#5a5a5c] mt-2">Effective Date: October 2026</p>
+    </div>
+
+    <div class="space-y-8 text-sm text-[#3a3a3c] leading-relaxed">
+      
+      <section class="p-6 rounded-2xl bg-[#fafafa] border border-[#e5e5e5] space-y-3">
+        <h2 class="text-base font-bold text-[#0a0a0a] flex items-center gap-2">
+          <EyeOff class="w-5 h-5 text-[#00b48a]" />
+          <span>Anonymous Public Access Policy</span>
+        </h2>
+        <p>
+          ITI Resource Hub is designed as an open educational public portal. <strong>Visitors are not required to create an account, register, or disclose personal identifying information</strong> to search the library, preview documents, or download lesson plans and lab manuals.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">1. Information We Do Not Collect</h2>
+        <p>
+          We do not collect names, telephone numbers, Aadhaar numbers, biometric data, student identification cards, or financial details from public visitors.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">2. Technical &amp; Operational Logs</h2>
+        <p>
+          Standard HTTP web server request headers (such as anonymized IP address, user-agent string, page URL, and download timestamp) may be logged transiently for the sole purpose of DDoS prevention, bandwidth quota management, and ensuring server availability. These technical logs are purged periodically.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">3. Cookies and Local Storage</h2>
+        <p>
+          The public portal operates without tracking cookies or third-party advertising trackers. Standard browser local storage may be utilized solely for preserving client-side search preferences and UI filter states.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">4. Administrative Accounts</h2>
+        <p>
+          Authorized institutional administrators authenticate via cryptographic token exchange. Administrative credentials are protected by strict Supabase authentication protocols with Row Level Security (RLS) enforcement.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">5. Inquiries Regarding Data Privacy</h2>
+        <p>
+          For questions regarding data protection or the operation of this educational platform, please use the <a href="/contact" class="text-[#00b48a] font-medium underline">contact page</a>.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</Layout>

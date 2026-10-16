@@ -1,0 +1,119 @@
+---
+import AdminLayout from '../../components/admin/AdminLayout.astro';
+import { isSupabaseConfigured, getDataSourceMode } from '../../lib/supabase/client';
+import { Database, Shield, HardDrive, Key, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-astro';
+
+const mode = getDataSourceMode();
+---
+
+<AdminLayout title="Portal Settings" activeNav="settings">
+  
+  <div class="pb-4 border-b border-[#e5e5e5] mb-6">
+    <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a]">Portal Settings &amp; Infrastructure</h1>
+    <p class="text-xs text-[#5a5a5c] mt-0.5">Database connectivity, storage buckets, security configuration, and backup guides.</p>
+  </div>
+
+  <div class="space-y-6">
+    
+    <!-- Database Connection Status Card -->
+    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
+      <div class="flex items-center justify-between pb-3 border-b border-[#ededed]">
+        <div class="flex items-center gap-2">
+          <Database class="w-5 h-5 text-[#00b48a]" />
+          <h2 class="text-sm font-bold text-[#0a0a0a]">Supabase PostgreSQL Connection</h2>
+        </div>
+        <span class={`px-2.5 py-0.5 rounded-full text-xs font-semibold ${
+          isSupabaseConfigured
+            ? 'bg-[#00d4a4]/15 text-[#00b48a]'
+            : 'bg-blue-100 text-blue-800'
+        }`}>
+          {isSupabaseConfigured ? 'LIVE SUPABASE CONNECTED' : 'LOCAL BUILT-IN DEMO REPOSITORY'}
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-3 bg-[#fafafa] rounded-lg border border-[#ededed] space-y-1">
+          <span class="text-[#888888] block text-[10px] uppercase font-semibold">Current Operating Mode</span>
+          <span class="font-bold text-[#0a0a0a] uppercase font-mono">{mode}</span>
+          <p class="text-[11px] text-[#5a5a5c]">
+            {isSupabaseConfigured
+              ? 'Real-time database queries through Supabase client.'
+              : 'Local high-performance mock database loaded with full ICTSM and CTS vocational data.'}
+          </p>
+        </div>
+
+        <div class="p-3 bg-[#fafafa] rounded-lg border border-[#ededed] space-y-1">
+          <span class="text-[#888888] block text-[10px] uppercase font-semibold">Schema Migrations</span>
+          <span class="font-bold text-[#0a0a0a] font-mono">20261016_initial_schema.sql</span>
+          <p class="text-[11px] text-[#5a5a5c]">
+            Available under <code class="font-mono bg-white px-1 py-0.5 rounded border border-[#e5e5e5]">supabase/migrations/</code>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Environment Setup Helper -->
+      <div class="pt-2 text-xs space-y-2">
+        <h3 class="font-semibold text-[#0a0a0a] flex items-center gap-1.5">
+          <Key class="w-4 h-4 text-[#888888]" />
+          <span>Environment Variables Reference (.env / .env.example)</span>
+        </h3>
+        <div class="p-3 bg-[#1c1c1e] text-gray-200 font-mono text-[11px] rounded-lg overflow-x-auto">
+          PUBLIC_SUPABASE_URL=https://your-project.supabase.co<br />
+          PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsIn...<br />
+          SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
+        </div>
+      </div>
+    </div>
+
+    <!-- Storage Bucket Configuration -->
+    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
+      <div class="flex items-center gap-2 pb-3 border-b border-[#ededed]">
+        <HardDrive class="w-5 h-5 text-[#3772cf]" />
+        <h2 class="text-sm font-bold text-[#0a0a0a]">Supabase Storage Configuration</h2>
+      </div>
+
+      <p class="text-xs text-[#5a5a5c] leading-relaxed">
+        Configured buckets for binary asset delivery:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        <div class="p-3 bg-[#fafafa] rounded-lg border border-[#ededed]">
+          <span class="font-semibold text-[#0a0a0a] block mb-1">Bucket: <code>resources</code></span>
+          <span class="text-[#5a5a5c] text-[11px]">Public read access for published lesson plans, demo plans, lab manuals (.pdf, .docx, .svg). Max 25MB.</span>
+        </div>
+        <div class="p-3 bg-[#fafafa] rounded-lg border border-[#ededed]">
+          <span class="font-semibold text-[#0a0a0a] block mb-1">Bucket: <code>notices</code></span>
+          <span class="text-[#5a5a5c] text-[11px]">PDF circular attachments from DGT and state training directorates.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backup & Recovery Guidelines -->
+    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
+      <div class="flex items-center gap-2 pb-3 border-b border-[#ededed]">
+        <Shield class="w-5 h-5 text-[#c37d0d]" />
+        <h2 class="text-sm font-bold text-[#0a0a0a]">Backup &amp; Disaster Recovery Procedures</h2>
+      </div>
+
+      <div class="text-xs text-[#5a5a5c] space-y-2 leading-relaxed">
+        <p>
+          1. <strong>Database Snapshot:</strong> Automated daily backups are performed via Supabase PostgreSQL WAL archiving.
+        </p>
+        <p>
+          2. <strong>CLI Dump Command:</strong> To perform an on-demand SQL dump from the terminal:
+        </p>
+        <div class="p-2.5 bg-[#1c1c1e] text-white font-mono text-[11px] rounded-lg">
+          supabase db dump -f supabase_backup.sql
+        </div>
+        <p>
+          3. <strong>Disaster Restoration:</strong>
+        </p>
+        <div class="p-2.5 bg-[#1c1c1e] text-white font-mono text-[11px] rounded-lg">
+          psql -h aws-0-ap-south-1.pooler.supabase.com -U postgres -d postgres -f supabase_backup.sql
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</AdminLayout>

@@ -1,0 +1,192 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import ResourceCard from '../../components/resources/ResourceCard.astro';
+import { getActiveTrades, getTradeBySlug } from '../../lib/data/trades';
+import { getSubjectsByTrade } from '../../lib/data/subjects';
+import { getResourcesByTrade } from '../../lib/data/resources';
+import { Cpu, Zap, Wrench, Terminal, ArrowRight, BookOpen, Layers, Calendar, FileText } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const trades = getActiveTrades();
+  return trades.map((trade) => ({
+    params: { tradeSlug: trade.slug },
+    props: { trade },
+  }));
+}
+
+const { trade } = Astro.props;
+const subjects = getSubjectsByTrade(trade.id);
+const resources = getResourcesByTrade(trade.slug);
+
+// Group subjects by training year
+const year1Subjects = subjects.filter((s) => s.training_year === 1);
+const year2Subjects = subjects.filter((s) => s.training_year === 2);
+
+const iconMap: Record<string, any> = {
+  cpu: Cpu,
+  zap: Zap,
+  wrench: Wrench,
+  terminal: Terminal,
+};
+
+const IconComp = iconMap[trade.icon] || Cpu;
+---
+
+<Layout
+  title={`${trade.name} - Trade Resources & Curriculum`}
+  description={trade.description}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs
+      items={[
+        { label: 'Trades', href: '/trades' },
+        { label: trade.name },
+      ]}
+    />
+
+    <!-- Trade Banner / Header -->
+    <div class="mt-4 mb-10 p-6 sm:p-8 rounded-2xl bg-[#fafafa] border border-[#e5e5e5]">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-[#0a0a0a] text-white flex items-center justify-center flex-shrink-0 border border-[#e5e5e5]">
+            <IconComp class="w-7 h-7 text-[#00d4a4]" />
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="text-xs font-mono font-medium px-2 py-0.5 bg-white border border-[#e5e5e5] rounded text-[#5a5a5c]">
+                {trade.code}
+              </span>
+              <span class="text-xs font-semibold px-2 py-0.5 bg-[#00d4a4]/15 text-[#00b48a] rounded-full">
+                {trade.duration_years} Year Course
+              </span>
+              {trade.slug === 'ictsm' && (
+                <span class="text-xs font-semibold px-2 py-0.5 bg-[#0a0a0a] text-white rounded-full">
+                  Primary Specialization
+                </span>
+              )}
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-bold text-[#0a0a0a] tracking-tight">
+              {trade.name}
+            </h1>
+            <p class="text-sm text-[#5a5a5c] mt-2 max-w-3xl leading-relaxed">
+              {trade.description}
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row md:flex-col gap-2 flex-shrink-0">
+          <a
+            href={`/library?trade=${trade.slug}`}
+            class="px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white text-xs font-medium rounded-full text-center transition-colors flex items-center justify-center gap-2"
+          >
+            <BookOpen class="w-4 h-4 text-[#00d4a4]" />
+            <span>Search Trade Library</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subjects Section (Divided by Year) -->
+    <section class="mb-14">
+      <div class="mb-6">
+        <h2 class="text-xl font-bold text-[#0a0a0a]">Curriculum Subjects &amp; Practical Modules</h2>
+        <p class="text-xs text-[#5a5a5c] mt-0.5">Explore subject-level lesson plans, demonstrations, and question banks.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Year 1 -->
+        {year1Subjects.length > 0 && (
+          <div class="p-6 bg-white rounded-xl border border-[#e5e5e5]">
+            <h3 class="text-sm font-bold text-[#0a0a0a] uppercase tracking-wider mb-4 pb-2 border-b border-[#ededed] flex items-center justify-between">
+              <span>Year 1 Syllabus (Semester 1 &amp; 2)</span>
+              <span class="text-xs font-normal text-[#888888]">{year1Subjects.length} Subjects</span>
+            </h3>
+            <div class="space-y-3">
+              {year1Subjects.map((sub) => (
+                <a
+                  href={`/trades/${trade.slug}/subjects/${sub.slug}`}
+                  class="block p-3 rounded-lg border border-[#f0f0f0] hover:border-[#b3b3b3] hover:bg-[#fafafa] transition-all group"
+                >
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-[#0a0a0a] group-hover:text-[#00b48a] transition-colors">
+                      {sub.name}
+                    </span>
+                    <ArrowRight class="w-4 h-4 text-[#888888] group-hover:text-[#00b48a] group-hover:translate-x-0.5 transition-all" />
+                  </div>
+                  <span class="text-[11px] font-mono text-[#888888] block mt-0.5">
+                    Code: {sub.code} • Sem {sub.semester}
+                  </span>
+                  <p class="text-xs text-[#5a5a5c] mt-1 line-clamp-2">
+                    {sub.description}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Year 2 -->
+        {year2Subjects.length > 0 && (
+          <div class="p-6 bg-white rounded-xl border border-[#e5e5e5]">
+            <h3 class="text-sm font-bold text-[#0a0a0a] uppercase tracking-wider mb-4 pb-2 border-b border-[#ededed] flex items-center justify-between">
+              <span>Year 2 Syllabus (Semester 3 &amp; 4)</span>
+              <span class="text-xs font-normal text-[#888888]">{year2Subjects.length} Subjects</span>
+            </h3>
+            <div class="space-y-3">
+              {year2Subjects.map((sub) => (
+                <a
+                  href={`/trades/${trade.slug}/subjects/${sub.slug}`}
+                  class="block p-3 rounded-lg border border-[#f0f0f0] hover:border-[#b3b3b3] hover:bg-[#fafafa] transition-all group"
+                >
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-[#0a0a0a] group-hover:text-[#00b48a] transition-colors">
+                      {sub.name}
+                    </span>
+                    <ArrowRight class="w-4 h-4 text-[#888888] group-hover:text-[#00b48a] group-hover:translate-x-0.5 transition-all" />
+                  </div>
+                  <span class="text-[11px] font-mono text-[#888888] block mt-0.5">
+                    Code: {sub.code} • Sem {sub.semester}
+                  </span>
+                  <p class="text-xs text-[#5a5a5c] mt-1 line-clamp-2">
+                    {sub.description}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Published Resources for this Trade -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-xl font-bold text-[#0a0a0a]">Published Resources ({resources.length})</h2>
+          <p class="text-xs text-[#5a5a5c] mt-0.5">Lesson plans, practical guides, and documentation for {trade.name}.</p>
+        </div>
+        <a
+          href={`/library?trade=${trade.slug}`}
+          class="text-xs font-semibold text-[#0a0a0a] hover:text-[#00b48a] flex items-center gap-1"
+        >
+          <span>Filter in library</span>
+          <ArrowRight class="w-3.5 h-3.5" />
+        </a>
+      </div>
+
+      {resources.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {resources.map((res) => (
+            <ResourceCard resource={res} />
+          ))}
+        </div>
+      ) : (
+        <div class="p-8 text-center bg-[#fafafa] rounded-xl border border-dashed border-[#e5e5e5] text-xs text-[#5a5a5c]">
+          No published resources currently available for this trade. Check back soon or visit the full catalog.
+        </div>
+      )}
+    </section>
+
+  </div>
+</Layout>

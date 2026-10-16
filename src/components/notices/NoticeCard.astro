@@ -1,0 +1,99 @@
+---
+import type { Notice } from '../../types';
+import Badge from '../ui/Badge.astro';
+import { isNoticeExpired } from '../../lib/data/notices';
+import { Bell, Calendar, Download, Building2, Pin } from 'lucide-astro';
+
+export interface Props {
+  notice: Notice;
+  compact?: boolean;
+}
+
+const { notice, compact = false } = Astro.props;
+
+const expired = isNoticeExpired(notice);
+
+const categoryBadgeMap: Record<string, { label: string; variant: 'mint' | 'tag-blue' | 'warn' | 'error' | 'surface' | 'neutral' }> = {
+  curriculum: { label: 'Curriculum', variant: 'mint' },
+  exam: { label: 'Examination', variant: 'tag-blue' },
+  circular: { label: 'Circular', variant: 'surface' },
+  admission: { label: 'Admission', variant: 'warn' },
+  general: { label: 'General', variant: 'neutral' },
+};
+
+const badgeInfo = categoryBadgeMap[notice.category] || { label: notice.category, variant: 'neutral' };
+
+const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+<article class={`rounded-xl border ${notice.is_pinned ? 'border-[#00d4a4] bg-[#00d4a4]/[0.02]' : 'border-[#e5e5e5] bg-white'} p-5 transition-all hover:border-[#b3b3b3]`}>
+  <div class="flex items-center justify-between gap-2 flex-wrap mb-2">
+    <div class="flex items-center gap-2">
+      <Badge variant={badgeInfo.variant} size="sm">
+        {badgeInfo.label}
+      </Badge>
+
+      {notice.is_pinned && (
+        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#00b48a]">
+          <Pin class="w-3 h-3" />
+          Pinned
+        </span>
+      )}
+
+      {expired ? (
+        <span class="px-2 py-0.5 text-[10px] font-medium bg-[#f7f7f7] text-[#888888] rounded border border-[#e5e5e5]">
+          Expired / Archive
+        </span>
+      ) : (
+        <span class="px-2 py-0.5 text-[10px] font-medium bg-[#00d4a4]/10 text-[#00b48a] rounded border border-[#00d4a4]/20">
+          Active
+        </span>
+      )}
+    </div>
+
+    <div class="flex items-center gap-1 text-xs text-[#888888]">
+      <Calendar class="w-3 h-3" />
+      <span>{pubDate}</span>
+    </div>
+  </div>
+
+  <h3 class="text-base font-semibold text-[#0a0a0a] hover:text-[#00b48a] transition-colors leading-snug mb-2">
+    <a href={`/notices/${notice.slug}`} class="focus:outline-none focus:underline">
+      {notice.title}
+    </a>
+  </h3>
+
+  {notice.source_name && (
+    <p class="text-xs text-[#5a5a5c] flex items-center gap-1.5 mb-2">
+      <Building2 class="w-3.5 h-3.5 text-[#888888]" />
+      <span>Issuing Authority: <strong class="text-[#1c1c1e]">{notice.source_name}</strong></span>
+    </p>
+  )}
+
+  {!compact && (
+    <p class="text-xs text-[#5a5a5c] line-clamp-3 leading-relaxed mb-4">
+      {notice.body}
+    </p>
+  )}
+
+  <div class="pt-3 border-t border-[#ededed] flex items-center justify-between gap-2 text-xs">
+    <a href={`/notices/${notice.slug}`} class="text-[#0a0a0a] font-medium hover:text-[#00b48a] transition-colors">
+      Read full circular →
+    </a>
+
+    {notice.attachment_url && (
+      <a
+        href={notice.attachment_url}
+        download={notice.attachment_name || 'Notice_Attachment.pdf'}
+        class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-[#1c1c1e] bg-[#f7f7f7] hover:bg-[#ededed] rounded-full transition-colors"
+      >
+        <Download class="w-3 h-3 text-[#00b48a]" />
+        <span>Attachment</span>
+      </a>
+    )}
+  </div>
+</article>

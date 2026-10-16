@@ -1,0 +1,49 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 1038 >>
+stream
+BT
+/F1 20 Tf
+50 750 Td
+(ITI RESOURCE HUB - DEMONSTRATION PLAN) Tj
+/F1 12 Tf
+0 -30 Td
+(Trade: ICTSM | Topic: Single-Mode Optical Fiber Fusion Splicing) Tj
+0 -30 Td
+/F1 10 Tf
+(1. Objective: Demonstrate precision cleaving and fusion arc splicing with < 0.05dB insertion loss.) Tj 0 -18 Td
+(2. Tools & Equipment Required: Automatic fusion splicer, High-precision fiber cleaver, Miller strippers.) Tj 0 -18 Td
+(3. Step 1: Slide heat-shrink protective sleeve over the primary buffer tube.) Tj 0 -18 Td
+(4. Step 2: Strip outer jacket, Kevlar yarn, and 250-micron acrylate coating using thermal/mechanical stripper.) Tj 0 -18 Td
+(5. Step 3: Clean bare core with 99.9% pure isopropyl alcohol lint-free wipes.) Tj 0 -18 Td
+(6. Step 4: Cleave perpendicular at precisely 90 degrees with zero micro-cracks.) Tj 0 -18 Td
+(7. Step 5: Place fiber in V-grooves, initiate motorized 3-axis alignment, and execute electric arc fusion.) Tj 0 -18 Td
+(8. Step 6: Verify splice loss calculation on digital screen and transfer to heat-shrink oven.) Tj 0 -18 Td
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000244 00000 n 
+0000000300 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+385
+%%EOF

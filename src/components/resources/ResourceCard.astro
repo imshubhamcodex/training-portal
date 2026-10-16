@@ -1,0 +1,131 @@
+---
+import type { Resource } from '../../types';
+import Badge from '../ui/Badge.astro';
+import { FileText, Download, Eye, Calendar, Sparkles, Cpu, Layers } from 'lucide-astro';
+
+export interface Props {
+  resource: Resource;
+  compact?: boolean;
+}
+
+const { resource, compact = false } = Astro.props;
+
+// Type labels and badge colors
+const typeBadgeMap: Record<string, { label: string; variant: 'mint' | 'tag-blue' | 'warn' | 'surface' | 'neutral' }> = {
+  'lesson-plan': { label: 'Lesson Plan', variant: 'mint' },
+  'demonstration-plan': { label: 'Demo Plan', variant: 'tag-blue' },
+  'lab-manual': { label: 'Lab Manual', variant: 'surface' },
+  'notes': { label: 'Subject Notes', variant: 'neutral' },
+  'diagram': { label: 'Technical Diagram', variant: 'warn' },
+  'video': { label: 'Demonstration Video', variant: 'tag-blue' },
+  'question-bank': { label: 'Question Bank', variant: 'neutral' },
+  'reference': { label: 'Reference Guide', variant: 'surface' },
+};
+
+const badgeInfo = typeBadgeMap[resource.resource_type] || { label: resource.resource_type, variant: 'neutral' };
+
+const primaryFile = resource.files.find((f) => f.is_primary) || resource.files[0];
+const fileExt = primaryFile ? primaryFile.original_filename.split('.').pop()?.toUpperCase() : 'PDF';
+const fileSizeKB = primaryFile ? Math.round(primaryFile.file_size_bytes / 1024) : 0;
+
+const formattedDate = new Date(resource.published_at || resource.created_at).toLocaleDateString('en-IN', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+<article class="group relative flex flex-col justify-between bg-white rounded-xl border border-[#e5e5e5] p-5 hover:border-[#b3b3b3] hover:shadow-sm transition-all">
+  <div>
+    <!-- Top Row: Type Badge, Trade & Featured Pill -->
+    <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
+      <div class="flex items-center gap-1.5 flex-wrap">
+        <Badge variant={badgeInfo.variant} size="sm">
+          {badgeInfo.label}
+        </Badge>
+        <span class="inline-flex items-center px-2 py-0.5 text-[11px] font-medium bg-[#f7f7f7] text-[#5a5a5c] rounded border border-[#e5e5e5]">
+          {resource.trade_name}
+        </span>
+        <span class="text-[11px] text-[#888888] font-mono">
+          Yr {resource.training_year}
+        </span>
+      </div>
+
+      {resource.is_featured && (
+        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#00b48a] bg-[#00d4a4]/10 px-2 py-0.5 rounded-full">
+          <Sparkles class="w-3 h-3" />
+          Featured
+        </span>
+      )}
+    </div>
+
+    <!-- Title -->
+    <h3 class="text-[16px] font-semibold text-[#0a0a0a] group-hover:text-[#00b48a] transition-colors leading-snug mb-2 line-clamp-2">
+      <a href={`/resources/${resource.slug}`} class="focus:outline-none focus:underline">
+        {resource.title}
+      </a>
+    </h3>
+
+    <!-- Subject Name -->
+    <p class="text-xs font-medium text-[#5a5a5c] mb-2 flex items-center gap-1">
+      <Layers class="w-3.5 h-3.5 text-[#888888]" />
+      <span>{resource.subject_name}</span>
+    </p>
+
+    <!-- Description Excerpt -->
+    {!compact && (
+      <p class="text-xs text-[#5a5a5c] line-clamp-2 mb-4 leading-relaxed">
+        {resource.description}
+      </p>
+    )}
+
+    <!-- Tags -->
+    {resource.tags && resource.tags.length > 0 && !compact && (
+      <div class="flex items-center gap-1.5 flex-wrap mb-4">
+        {resource.tags.slice(0, 3).map((tag) => (
+          <span class="text-[10px] text-[#5a5a5c] bg-[#fafafa] border border-[#ededed] px-1.5 py-0.5 rounded">
+            #{tag}
+          </span>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <!-- Bottom Row: Metadata & Actions -->
+  <div class="pt-3 border-t border-[#ededed] flex items-center justify-between gap-3 text-xs text-[#888888]">
+    <!-- File Format & Date -->
+    <div class="flex items-center gap-2">
+      <span class="font-mono px-1.5 py-0.5 bg-[#f7f7f7] border border-[#e5e5e5] rounded text-[10px] font-medium text-[#0a0a0a]">
+        {fileExt} {fileSizeKB > 0 ? `(${fileSizeKB} KB)` : ''}
+      </span>
+      <span class="hidden sm:inline flex items-center gap-1 text-[11px]">
+        <Calendar class="w-3 h-3" />
+        {formattedDate}
+      </span>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-1.5">
+      <a
+        href={`/resources/${resource.slug}`}
+        class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-[#1c1c1e] bg-[#f7f7f7] hover:bg-[#ededed] rounded-full transition-colors"
+        title="View details and document preview"
+      >
+        <Eye class="w-3.5 h-3.5" />
+        <span>Preview</span>
+      </a>
+
+      {primaryFile && (
+        <a
+          href={primaryFile.download_url}
+          download={primaryFile.original_filename}
+          class="inline-flex items-center gap-1 px-2.5 py-1 text-xs font-medium text-white bg-[#0a0a0a] hover:bg-[#1c1c1e] rounded-full transition-colors"
+          title="Download original document"
+        >
+          <Download class="w-3.5 h-3.5 text-[#00d4a4]" />
+          <span>Download</span>
+        </a>
+      )}
+    </div>
+  </div>
+</article>

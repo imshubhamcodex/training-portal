@@ -1,0 +1,144 @@
+---
+import '../../styles/global.css';
+import {
+  LayoutDashboard,
+  FileText,
+  PlusCircle,
+  Cpu,
+  Layers,
+  Bell,
+  Settings,
+  LogOut,
+  ExternalLink,
+  ShieldCheck,
+  Menu,
+  X,
+} from 'lucide-astro';
+
+export interface Props {
+  title: string;
+  activeNav: 'dashboard' | 'resources' | 'new-resource' | 'trades' | 'subjects' | 'notices' | 'settings';
+}
+
+const { title, activeNav } = Astro.props;
+
+const navItems = [
+  { key: 'dashboard', label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+  { key: 'resources', label: 'All Resources', href: '/admin/resources', icon: FileText },
+  { key: 'new-resource', label: 'Add Resource', href: '/admin/resources/new', icon: PlusCircle },
+  { key: 'trades', label: 'Trades', href: '/admin/trades', icon: Cpu },
+  { key: 'subjects', label: 'Subjects', href: '/admin/subjects', icon: Layers },
+  { key: 'notices', label: 'Notices', href: '/admin/notices', icon: Bell },
+  { key: 'settings', label: 'Settings', href: '/admin/settings', icon: Settings },
+];
+---
+
+<!doctype html>
+<html lang="en" class="h-full bg-[#f7f7f7]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | Admin Portal - ITI Resource Hub</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex flex-col min-h-screen text-[#1c1c1e] antialiased">
+    
+    <!-- Top Administrative Header -->
+    <header class="bg-[#0a0a0a] text-white border-b border-[#1f1f1f] sticky top-0 z-40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <a href="/admin" class="flex items-center gap-2 text-white font-bold text-sm tracking-tight">
+            <span class="w-6 h-6 rounded bg-[#00d4a4] text-[#0a0a0a] flex items-center justify-center text-xs font-black">
+              ITI
+            </span>
+            <span>Resource Hub Admin</span>
+          </a>
+          <span class="px-2 py-0.5 text-[10px] bg-[#1f1f1f] text-[#00d4a4] rounded font-mono border border-[#333]">
+            Secured Console
+          </span>
+        </div>
+
+        <div class="flex items-center gap-4 text-xs">
+          <a
+            href="/"
+            target="_blank"
+            class="text-[#b3b3b3] hover:text-white transition-colors hidden sm:inline-flex items-center gap-1"
+          >
+            <span>View Public Site</span>
+            <ExternalLink class="w-3.5 h-3.5" />
+          </a>
+
+          <button
+            id="admin-signout-btn"
+            type="button"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#1c1c1e] hover:bg-[#2d2d30] text-white rounded-full transition-colors border border-[#333]"
+          >
+            <LogOut class="w-3.5 h-3.5 text-[#00d4a4]" />
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Admin Main Body with Left Sidebar -->
+    <div class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 md:grid-cols-5 gap-6">
+      
+      <!-- Left Admin Navigation -->
+      <aside class="md:col-span-1">
+        <nav class="bg-white rounded-xl border border-[#e5e5e5] p-3 space-y-1 sticky top-20 shadow-xs">
+          <div class="px-3 py-2 text-[10px] font-semibold text-[#888888] uppercase tracking-wider">
+            Management Console
+          </div>
+          {navItems.map((item) => {
+            const IconComp = item.icon;
+            const isActive = activeNav === item.key;
+            return (
+              <a
+                href={item.href}
+                class={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
+                  isActive
+                    ? 'bg-[#0a0a0a] text-white'
+                    : 'text-[#5a5a5c] hover:bg-[#f7f7f7] hover:text-[#0a0a0a]'
+                }`}
+              >
+                <IconComp class={`w-4 h-4 ${isActive ? 'text-[#00d4a4]' : 'text-[#888888]'}`} />
+                <span>{item.label}</span>
+              </a>
+            );
+          })}
+        </nav>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="md:col-span-4 space-y-6">
+        <slot />
+      </main>
+
+    </div>
+
+    <!-- Client-side session and auth guard script -->
+    <script>
+      // Verify admin session in browser
+      const isAuthenticated = localStorage.getItem('iti_admin_authenticated') === 'true';
+      const isLoginPage = window.location.pathname.includes('/admin/login');
+
+      if (!isAuthenticated && !isLoginPage) {
+        // Redirect to login if unauthenticated
+        window.location.href = '/admin/login';
+      }
+
+      // Sign out handler
+      const signOutBtn = document.getElementById('admin-signout-btn');
+      signOutBtn?.addEventListener('click', () => {
+        localStorage.removeItem('iti_admin_authenticated');
+        localStorage.removeItem('iti_admin_email');
+        window.location.href = '/admin/login';
+      });
+    </script>
+  </body>
+</html>

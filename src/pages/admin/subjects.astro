@@ -1,0 +1,72 @@
+---
+import AdminLayout from '../../components/admin/AdminLayout.astro';
+import { getAllSubjects } from '../../lib/data/subjects';
+import { getSubjectResourceCount } from '../../lib/data/resources';
+import { PlusCircle, Layers, CheckCircle2 } from 'lucide-astro';
+
+const subjects = getAllSubjects();
+---
+
+<AdminLayout title="Subject Management" activeNav="subjects">
+  
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e5e5e5]">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a]">Subject &amp; Curriculum Management</h1>
+      <p class="text-xs text-[#5a5a5c] mt-0.5">Manage syllabus units, trade theory subjects, and practical workshop modules.</p>
+    </div>
+
+    <button
+      type="button"
+      onclick="alert('Add Subject: Inserts a new subject tied to a trade in public.subjects.');"
+      class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors"
+    >
+      <PlusCircle class="w-3.5 h-3.5 text-[#00d4a4]" />
+      <span>Add New Subject</span>
+    </button>
+  </div>
+
+  <div class="bg-white rounded-xl border border-[#e5e5e5] shadow-xs overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="w-full text-left text-xs">
+        <thead class="bg-[#fafafa] border-b border-[#e5e5e5] text-[#5a5a5c] font-semibold uppercase tracking-wider text-[10px]">
+          <tr>
+            <th class="py-3 px-4">Subject Name &amp; Code</th>
+            <th class="py-3 px-4">Trade</th>
+            <th class="py-3 px-4">Training Level</th>
+            <th class="py-3 px-4">Resources</th>
+            <th class="py-3 px-4">Status</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[#ededed] text-[#1c1c1e]">
+          {subjects.map((sub) => {
+            const count = getSubjectResourceCount(sub.id);
+            return (
+              <tr class="hover:bg-[#fafafa] transition-colors">
+                <td class="py-3.5 px-4 max-w-sm">
+                  <div class="font-semibold text-[#0a0a0a]">{sub.name}</div>
+                  <span class="text-[11px] font-mono text-[#888888]">{sub.code} • /{sub.slug}</span>
+                </td>
+                <td class="py-3.5 px-4 font-medium text-[#0a0a0a] whitespace-nowrap">
+                  {sub.trade_name}
+                </td>
+                <td class="py-3.5 px-4 whitespace-nowrap font-mono">
+                  Year {sub.training_year} (Sem {sub.semester})
+                </td>
+                <td class="py-3.5 px-4 font-semibold text-[#0a0a0a] whitespace-nowrap">
+                  {count} Files
+                </td>
+                <td class="py-3.5 px-4 whitespace-nowrap">
+                  <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#00b48a] bg-[#00d4a4]/15 px-2 py-0.5 rounded-full">
+                    <CheckCircle2 class="w-3 h-3" />
+                    Active
+                  </span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</AdminLayout>

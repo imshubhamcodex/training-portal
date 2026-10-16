@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/ui/Breadcrumbs.astro';
+import { ShieldAlert, BookOpen, Scale, FileText } from 'lucide-astro';
+---
+
+<Layout
+  title="Copyright & Content-Use Policy - ITI Resource Hub"
+  description="Terms governing pedagogical material reuse, instructor attribution, and content correction policies."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs items={[{ label: 'Copyright & Content-Use Policy' }]} />
+
+    <div class="mt-4 mb-10">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Intellectual Property &amp; Educational Reuse</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">Copyright &amp; Content-Use Policy</h1>
+      <p class="text-sm text-[#5a5a5c] mt-2">Guidance for Instructors, Trainees, and Institutional Users</p>
+    </div>
+
+    <div class="space-y-8 text-sm text-[#3a3a3c] leading-relaxed">
+      
+      <section class="p-6 rounded-2xl bg-[#fafafa] border border-[#e5e5e5] space-y-3">
+        <h2 class="text-base font-bold text-[#0a0a0a] flex items-center gap-2">
+          <Scale class="w-5 h-5 text-[#00b48a]" />
+          <span>Educational Fair Use Purpose</span>
+        </h2>
+        <p>
+          The materials compiled and hosted on the <strong>ITI Resource Hub</strong> are curated exclusively for non-profit vocational training, instructional demonstration, and skill development of trainees and instructors enrolled under the Craftsmen Training Scheme (CTS).
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">1. Categorization of Hosted Materials</h2>
+        <ul class="list-disc pl-5 space-y-2 text-xs sm:text-sm text-[#5a5a5c]">
+          <li>
+            <strong class="text-[#0a0a0a]">Official Public Circulars &amp; Syllabi:</strong> Public circulars, CTS syllabus structures, and trade test notices issued by the Directorate General of Training (DGT), Ministry of Skill Development and Entrepreneurship (MSDE), or NCVET are official public regulatory documents cited and archived for educational compliance guidance.
+          </li>
+          <li>
+            <strong class="text-[#0a0a0a]">Instructor-Created Instructional Aids:</strong> Lesson plans, demonstration plans, presentation notes, and practical worksheets contributed by technical instructors belong to their respective authors or contributing training institutions.
+          </li>
+          <li>
+            <strong class="text-[#0a0a0a]">Technical Diagrams &amp; Schematics:</strong> Schematics and networking diagrams are created according to open industrial reference patterns for conceptual lab instruction.
+          </li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">2. Permitted Uses</h2>
+        <p>
+          Instructors and trainees are explicitly permitted to:
+        </p>
+        <div class="p-4 rounded-xl bg-white border border-[#e5e5e5] space-y-2 text-xs">
+          <p>✓ Download and print lesson plans for classroom instruction and lab logbooks.</p>
+          <p>✓ Edit downloadable DOCX files to customize lesson timelines or equipment inventories for institutional requirements.</p>
+          <p>✓ Display technical diagrams and demonstration plans on workshop smart boards or projection displays.</p>
+          <p>✓ Share direct links to resource detail pages for trainee study revision.</p>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">3. Prohibited Uses</h2>
+        <p>
+          The following activities are strictly prohibited:
+        </p>
+        <div class="p-4 rounded-xl bg-white border border-[#e5e5e5] space-y-2 text-xs text-[#d45656]">
+          <p>✗ Reselling or packaging hosted resources into commercial paywalled software or paid print compilations.</p>
+          <p>✗ Removing author attribution, source citations, or official issuing authority credits from documents.</p>
+          <p>✗ Falsely claiming that any instructor-created lesson plan carries official government endorsement or statutory authority.</p>
+        </div>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">4. Content Correction &amp; Removal Notice</h2>
+        <p>
+          If you are a copyright holder, instructor, or institutional representative and believe that any material has been uploaded without authorization or contains factual inaccuracies, please contact us immediately through the <a href="/contact" class="text-[#00b48a] font-medium underline">Content Correction Desk</a>. Valid requests are reviewed and acted upon expeditiously.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,28 @@
+---
+export interface Props {
+  variant?: 'mint' | 'tag-blue' | 'warn' | 'error' | 'surface' | 'neutral' | 'outline';
+  class?: string;
+  size?: 'sm' | 'md';
+}
+
+const { variant = 'neutral', class: className = '', size = 'md' } = Astro.props;
+
+const variantStyles: Record<string, string> = {
+  mint: 'bg-[#00d4a4] text-[#0a0a0a] font-semibold',
+  'tag-blue': 'bg-[rgba(55,114,207,0.12)] text-[#3772cf] font-semibold border border-[rgba(55,114,207,0.2)]',
+  warn: 'bg-[rgba(195,125,13,0.12)] text-[#c37d0d] font-semibold border border-[rgba(195,125,13,0.2)]',
+  error: 'bg-[#d45656] text-white font-semibold',
+  surface: 'bg-[#f7f7f7] text-[#5a5a5c] border border-[#e5e5e5] font-mono',
+  neutral: 'bg-[#f7f7f7] text-[#1c1c1e] border border-[#e5e5e5]',
+  outline: 'bg-transparent text-[#5a5a5c] border border-[#e5e5e5]',
+};
+
+const sizeStyles = {
+  sm: 'text-[11px] px-2 py-0.5 rounded',
+  md: 'text-[12px] px-2.5 py-1 rounded-full',
+};
+---
+
+<span class={`inline-flex items-center gap-1.5 transition-colors ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}>
+  <slot />
+</span>

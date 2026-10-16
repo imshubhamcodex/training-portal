@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import { getActiveTrades } from '../../lib/data/trades';
+import { getSubjectsByTrade } from '../../lib/data/subjects';
+import { getTradeResourceCount } from '../../lib/data/resources';
+import { Cpu, Zap, Wrench, Terminal, ArrowRight, BookOpen, Layers } from 'lucide-astro';
+
+const trades = getActiveTrades();
+
+const iconMap: Record<string, any> = {
+  cpu: Cpu,
+  zap: Zap,
+  wrench: Wrench,
+  terminal: Terminal,
+};
+---
+
+<Layout
+  title="Trades Directory - ITI CTS Vocational Courses"
+  description="Explore all active Craftsmen Training Scheme (CTS) vocational trades including ICTSM, Electrician, Fitter, and COPA."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs items={[{ label: 'Trades Directory' }]} />
+
+    <div class="mt-4 mb-10">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Craftsmen Training Scheme</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">ITI Trades Directory</h1>
+      <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+        Select a trade to view its specialized subjects, theoretical curriculum, workshop demonstration guides, and downloadable training resources.
+      </p>
+    </div>
+
+    <!-- Trades Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {trades.map((trade) => {
+        const IconComp = iconMap[trade.icon] || Cpu;
+        const subjects = getSubjectsByTrade(trade.id);
+        const resourceCount = getTradeResourceCount(trade.id);
+        const isPrimary = trade.slug === 'ictsm';
+
+        return (
+          <div class={`rounded-xl border ${isPrimary ? 'border-[#00d4a4] bg-white ring-1 ring-[#00d4a4]/20' : 'border-[#e5e5e5] bg-white'} p-6 sm:p-8 flex flex-col justify-between transition-all hover:border-[#b3b3b3] hover:shadow-sm`}>
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div class={`w-12 h-12 rounded-xl ${isPrimary ? 'bg-[#0a0a0a] text-white' : 'bg-[#f7f7f7] text-[#0a0a0a]'} flex items-center justify-center border border-[#e5e5e5]`}>
+                    <IconComp class={`w-6 h-6 ${isPrimary ? 'text-[#00d4a4]' : 'text-[#5a5a5c]'}`} />
+                  </div>
+                  <div>
+                    <h2 class="text-lg font-bold text-[#0a0a0a] leading-tight">
+                      <a href={`/trades/${trade.slug}`} class="hover:text-[#00b48a] transition-colors focus:outline-none focus:underline">
+                        {trade.name}
+                      </a>
+                    </h2>
+                    <span class="font-mono text-xs text-[#888888]">
+                      Code: {trade.code} • {trade.duration_years} Year Program
+                    </span>
+                  </div>
+                </div>
+
+                {isPrimary && (
+                  <span class="px-2.5 py-1 text-[11px] font-semibold bg-[#00d4a4]/15 text-[#00b48a] rounded-full border border-[#00d4a4]/30 uppercase tracking-wider">
+                    Primary Trade
+                  </span>
+                )}
+              </div>
+
+              <p class="text-sm text-[#5a5a5c] leading-relaxed mb-6">
+                {trade.description}
+              </p>
+
+              <!-- Subjects Preview -->
+              <div class="mb-6">
+                <h3 class="text-xs font-semibold text-[#0a0a0a] uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <Layers class="w-3.5 h-3.5 text-[#888888]" />
+                  <span>Key Subjects &amp; Practical Modules ({subjects.length})</span>
+                </h3>
+                <div class="flex flex-wrap gap-1.5">
+                  {subjects.map((sub) => (
+                    <a
+                      href={`/trades/${trade.slug}/subjects/${sub.slug}`}
+                      class="text-xs px-2.5 py-1 bg-[#f7f7f7] hover:bg-[#ededed] border border-[#e5e5e5] rounded-md text-[#1c1c1e] transition-colors"
+                    >
+                      {sub.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Footer Meta & CTA -->
+            <div class="pt-5 border-t border-[#ededed] flex items-center justify-between">
+              <span class="text-xs font-medium text-[#5a5a5c] flex items-center gap-1.5">
+                <BookOpen class="w-4 h-4 text-[#888888]" />
+                <span>{resourceCount} Published Teaching Resources</span>
+              </span>
+
+              <a
+                href={`/trades/${trade.slug}`}
+                class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors"
+              >
+                <span>View Trade Portal</span>
+                <ArrowRight class="w-3.5 h-3.5 text-[#00d4a4]" />
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</Layout>

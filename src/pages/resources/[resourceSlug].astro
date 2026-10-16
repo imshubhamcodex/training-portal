@@ -1,0 +1,345 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import Badge from '../../components/ui/Badge.astro';
+import ResourceCard from '../../components/resources/ResourceCard.astro';
+import { getAllResources, getResourceBySlug, getRelatedResources } from '../../lib/data/resources';
+import {
+  Download,
+  FileText,
+  Calendar,
+  User,
+  Building2,
+  Sparkles,
+  Layers,
+  Cpu,
+  Share2,
+  ExternalLink,
+  ShieldCheck,
+  Eye,
+  FileCheck,
+  AlertCircle,
+  HelpCircle,
+} from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const resources = getAllResources();
+  return resources.map((resource) => ({
+    params: { resourceSlug: resource.slug },
+    props: { resource },
+  }));
+}
+
+const { resource } = Astro.props;
+const relatedResources = getRelatedResources(resource.id, 3);
+
+const primaryFile = resource.files.find((f) => f.is_primary) || resource.files[0];
+const otherFiles = resource.files.filter((f) => f.id !== primaryFile?.id);
+
+const pubDate = new Date(resource.published_at || resource.created_at).toLocaleDateString('en-IN', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const updDate = new Date(resource.updated_at).toLocaleDateString('en-IN', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const isPdf = primaryFile?.mime_type === 'application/pdf';
+const isSvgOrImage = primaryFile?.mime_type?.startsWith('image/');
+---
+
+<Layout
+  title={`${resource.title} - ${resource.trade_name}`}
+  description={resource.description}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs
+      items={[
+        { label: 'Library', href: '/library' },
+        { label: resource.trade_name, href: `/trades/${resource.trade_slug}` },
+        { label: resource.subject_name, href: `/trades/${resource.trade_slug}/subjects/${resource.subject_slug}` },
+        { label: resource.title },
+      ]}
+    />
+
+    <!-- Main Resource Layout: 2 Columns (Content & Preview on Left, Metadata & Download on Right) -->
+    <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Left Column (Span 2): Header, Document Preview, Description, Topics -->
+      <div class="lg:col-span-2 space-y-6">
+        
+        <!-- Header Info -->
+        <div class="space-y-3 pb-6 border-b border-[#e5e5e5]">
+          <div class="flex items-center gap-2 flex-wrap">
+            <Badge variant="mint" size="md">
+              {resource.resource_type.toUpperCase().replace('-', ' ')}
+            </Badge>
+            <a
+              href={`/trades/${resource.trade_slug}`}
+              class="text-xs font-semibold px-2.5 py-1 bg-[#f7f7f7] hover:bg-[#ededed] border border-[#e5e5e5] rounded-full text-[#1c1c1e] transition-colors"
+            >
+              {resource.trade_name}
+            </a>
+            <span class="text-xs font-mono text-[#5a5a5c] px-2 py-0.5 bg-[#fafafa] rounded border border-[#ededed]">
+              Year {resource.training_year}
+            </span>
+            <span class="text-xs font-mono text-[#888888]">
+              {resource.version_label}
+            </span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0a0a0a] leading-tight">
+            {resource.title}
+          </h1>
+
+          <div class="flex items-center gap-4 text-xs text-[#5a5a5c] flex-wrap pt-1">
+            <span class="flex items-center gap-1.5">
+              <Layers class="w-4 h-4 text-[#888888]" />
+              <a href={`/trades/${resource.trade_slug}/subjects/${resource.subject_slug}`} class="hover:underline text-[#0a0a0a]">
+                {resource.subject_name}
+              </a>
+            </span>
+            <span class="flex items-center gap-1.5">
+              <Calendar class="w-4 h-4 text-[#888888]" />
+              Published: {pubDate}
+            </span>
+            {resource.author_name && (
+              <span class="flex items-center gap-1.5">
+                <User class="w-4 h-4 text-[#888888]" />
+                {resource.author_name}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <!-- Document Preview Window (Mintlify-style Elevation) -->
+        <div class="rounded-xl border border-[#e5e5e5] bg-white overflow-hidden shadow-sm">
+          <div class="px-4 py-3 bg-[#fafafa] border-b border-[#e5e5e5] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <Eye class="w-4 h-4 text-[#00b48a]" />
+              <span class="text-xs font-semibold text-[#0a0a0a]">Document Preview</span>
+              {primaryFile && (
+                <span class="text-[11px] font-mono text-[#888888]">
+                  ({primaryFile.original_filename})
+                </span>
+              )}
+            </div>
+
+            {primaryFile && (
+              <a
+                href={primaryFile.download_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs text-[#0a0a0a] hover:text-[#00b48a] font-medium flex items-center gap-1"
+              >
+                <span>Full screen</span>
+                <ExternalLink class="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
+
+          <div class="p-2 sm:p-4 bg-[#f0f0f0]/50 min-h-[420px] flex items-center justify-center">
+            {isPdf && primaryFile ? (
+              <iframe
+                src={primaryFile.download_url}
+                title={`Preview of ${resource.title}`}
+                class="w-full h-[520px] rounded-lg border border-[#e5e5e5] bg-white shadow-xs"
+              />
+            ) : isSvgOrImage && primaryFile ? (
+              <div class="p-4 bg-white rounded-lg border border-[#e5e5e5] w-full text-center">
+                <img
+                  src={primaryFile.download_url}
+                  alt={`Diagram for ${resource.title}`}
+                  class="max-h-[500px] mx-auto rounded object-contain"
+                />
+              </div>
+            ) : (
+              <div class="text-center p-8 bg-white rounded-lg border border-[#e5e5e5] max-w-md">
+                <FileText class="w-12 h-12 text-[#888888] mx-auto mb-3" />
+                <h3 class="text-sm font-semibold text-[#0a0a0a] mb-1">Standard File Format</h3>
+                <p class="text-xs text-[#5a5a5c] mb-4">
+                  This resource is provided as an editable <strong>DOCX/Office</strong> template. You can download and open it in any word processing suite.
+                </p>
+                {primaryFile && (
+                  <a
+                    href={primaryFile.download_url}
+                    download={primaryFile.original_filename}
+                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0a0a0a] text-white rounded-full text-xs font-medium hover:bg-[#1c1c1e] transition-colors"
+                  >
+                    <Download class="w-4 h-4 text-[#00d4a4]" />
+                    <span>Download {primaryFile.original_filename}</span>
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- Detailed Description -->
+        <div class="p-6 rounded-xl border border-[#e5e5e5] bg-white space-y-4">
+          <h2 class="text-lg font-bold text-[#0a0a0a]">Instructional Objectives &amp; Overview</h2>
+          <div class="text-sm text-[#3a3a3c] leading-relaxed space-y-3">
+            <p>{resource.description}</p>
+            <p class="text-xs text-[#5a5a5c]">
+              This document is prepared to meet the instructional sequence mandated by the NIMI instructional framework for trade testing and formative assessment in industrial training institutes.
+            </p>
+          </div>
+
+          <!-- Tags -->
+          {resource.tags && resource.tags.length > 0 && (
+            <div class="pt-4 border-t border-[#ededed]">
+              <span class="text-xs font-semibold text-[#0a0a0a] block mb-2">Curriculum Topics &amp; Competencies:</span>
+              <div class="flex items-center gap-1.5 flex-wrap">
+                {resource.tags.map((tag) => (
+                  <a
+                    href={`/library?q=${encodeURIComponent(tag)}`}
+                    class="text-xs px-2.5 py-1 bg-[#f7f7f7] hover:bg-[#ededed] border border-[#e5e5e5] rounded text-[#1c1c1e] transition-colors"
+                  >
+                    #{tag}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Download Card, File Attachments, Metadata & Governance -->
+      <aside class="space-y-6">
+        
+        <!-- Primary Action / Download Card -->
+        <div class="p-6 rounded-xl border border-[#00d4a4] bg-white shadow-xs space-y-4">
+          <h2 class="text-base font-bold text-[#0a0a0a] flex items-center justify-between">
+            <span>Download Resource</span>
+            <span class="text-xs font-normal text-[#00b48a]">Free &amp; Open Access</span>
+          </h2>
+
+          <p class="text-xs text-[#5a5a5c]">
+            No registration or login required. Download the verified instructional file directly.
+          </p>
+
+          {primaryFile && (
+            <a
+              href={primaryFile.download_url}
+              download={primaryFile.original_filename}
+              class="w-full py-3 px-4 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-sm font-medium text-center transition-colors flex items-center justify-center gap-2 shadow-sm"
+            >
+              <Download class="w-4 h-4 text-[#00d4a4]" />
+              <span>Download Primary ({primaryFile.original_filename.split('.').pop()?.toUpperCase()})</span>
+            </a>
+          )}
+
+          <!-- Additional Attachments (e.g. DOCX version if PDF is primary) -->
+          {otherFiles.length > 0 && (
+            <div class="pt-3 border-t border-[#ededed] space-y-2">
+              <span class="text-xs font-semibold text-[#0a0a0a] block">Alternative Formats:</span>
+              {otherFiles.map((f) => (
+                <a
+                  href={f.download_url}
+                  download={f.original_filename}
+                  class="w-full py-2 px-3 bg-[#f7f7f7] hover:bg-[#ededed] border border-[#e5e5e5] rounded-lg text-xs font-medium text-[#1c1c1e] transition-colors flex items-center justify-between"
+                >
+                  <span class="truncate">{f.original_filename}</span>
+                  <Download class="w-3.5 h-3.5 text-[#5a5a5c] flex-shrink-0 ml-2" />
+                </a>
+              ))}
+            </div>
+          )}
+
+          <div class="text-[11px] text-[#888888] pt-2 flex items-center gap-1.5">
+            <ShieldCheck class="w-3.5 h-3.5 text-[#00b48a]" />
+            <span>Integrity Verified • Safe Direct Download</span>
+          </div>
+        </div>
+
+        <!-- Technical Metadata Card -->
+        <div class="p-6 rounded-xl border border-[#e5e5e5] bg-white space-y-3 text-xs">
+          <h3 class="text-xs font-bold text-[#0a0a0a] uppercase tracking-wider pb-2 border-b border-[#ededed]">
+            Resource Specifications
+          </h3>
+
+          <div class="space-y-2.5">
+            <div class="flex items-center justify-between">
+              <span class="text-[#888888]">Trade:</span>
+              <a href={`/trades/${resource.trade_slug}`} class="font-medium text-[#0a0a0a] hover:underline">
+                {resource.trade_name}
+              </a>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-[#888888]">Subject:</span>
+              <span class="font-medium text-[#0a0a0a] text-right truncate max-w-[180px]">
+                {resource.subject_name}
+              </span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-[#888888]">Training Level:</span>
+              <span class="font-medium text-[#0a0a0a]">Year {resource.training_year}</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-[#888888]">Language:</span>
+              <span class="font-medium text-[#0a0a0a]">{resource.language}</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-[#888888]">Version:</span>
+              <span class="font-mono text-[#0a0a0a]">{resource.version_label}</span>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-[#888888]">Last Updated:</span>
+              <span class="font-medium text-[#0a0a0a]">{updDate}</span>
+            </div>
+
+            {resource.source_name && (
+              <div class="pt-2 border-t border-[#ededed]">
+                <span class="text-[#888888] block mb-0.5">Issuing / Reference Framework:</span>
+                <span class="font-medium text-[#0a0a0a]">{resource.source_name}</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <!-- Content Correction Notice -->
+        <div class="p-5 rounded-xl border border-[#e5e5e5] bg-[#fafafa] text-xs text-[#5a5a5c] space-y-2">
+          <div class="flex items-center gap-1.5 font-semibold text-[#0a0a0a]">
+            <HelpCircle class="w-4 h-4 text-[#888888]" />
+            <span>Content Correction Procedure</span>
+          </div>
+          <p class="leading-relaxed">
+            Spot a technical error, outdated diagram, or missing step? Instructors are encouraged to submit a correction request.
+          </p>
+          <a href="/contact" class="text-[#00b48a] font-medium hover:underline inline-block pt-1">
+            Submit a correction notice →
+          </a>
+        </div>
+
+      </aside>
+
+    </div>
+
+    <!-- Related Resources -->
+    {relatedResources.length > 0 && (
+      <section class="mt-16 pt-12 border-t border-[#e5e5e5]">
+        <div class="mb-6">
+          <h2 class="text-xl font-bold text-[#0a0a0a]">Related Teaching Resources</h2>
+          <p class="text-xs text-[#5a5a5c] mt-0.5">Explore corresponding practical guides and study notes in {resource.trade_name}.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {relatedResources.map((res) => (
+            <ResourceCard resource={res} />
+          ))}
+        </div>
+      </section>
+    )}
+
+  </div>
+</Layout>

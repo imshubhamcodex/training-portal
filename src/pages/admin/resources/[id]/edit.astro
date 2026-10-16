@@ -1,0 +1,186 @@
+---
+import AdminLayout from '../../../../components/admin/AdminLayout.astro';
+import { getAllResources, getResourceById } from '../../../../lib/data/resources';
+import { getActiveTrades } from '../../../../lib/data/trades';
+import { getAllSubjects } from '../../../../lib/data/subjects';
+import { Save, ArrowLeft, CheckCircle2, Download, Trash2, Replace } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const resources = getAllResources(true);
+  return resources.map((resource) => ({
+    params: { id: resource.id },
+    props: { resource },
+  }));
+}
+
+const { resource } = Astro.props;
+const trades = getActiveTrades();
+const subjects = getAllSubjects();
+const primaryFile = resource.files[0];
+---
+
+<AdminLayout title={`Edit: ${resource.title}`} activeNav="resources">
+  
+  <div class="flex items-center gap-2 mb-4">
+    <a href="/admin/resources" class="text-xs font-medium text-[#5a5a5c] hover:text-[#0a0a0a] flex items-center gap-1">
+      <ArrowLeft class="w-3.5 h-3.5" />
+      <span>Back to resources list</span>
+    </a>
+  </div>
+
+  <div class="pb-4 border-b border-[#e5e5e5] mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a]">Edit Resource</h1>
+      <p class="text-xs text-[#5a5a5c] mt-0.5">Modify instructional metadata, replace attached files, or change publication status.</p>
+    </div>
+
+    <span class="text-xs font-mono text-[#888888]">ID: {resource.id}</span>
+  </div>
+
+  <div id="edit-success" class="hidden mb-6 p-4 rounded-xl bg-[#00d4a4]/10 border border-[#00d4a4]/30 text-[#00b48a] text-xs font-medium flex items-center gap-2">
+    <CheckCircle2 class="w-5 h-5 flex-shrink-0" />
+    <span>Resource changes successfully updated!</span>
+  </div>
+
+  <form id="edit-resource-form" class="space-y-6">
+    
+    <!-- Section 1: Basic Information -->
+    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
+      <h2 class="text-sm font-bold text-[#0a0a0a] pb-2 border-b border-[#ededed]">1. Resource Information</h2>
+
+      <div class="space-y-1">
+        <label for="title" class="text-xs font-semibold text-[#0a0a0a]">Title *</label>
+        <input
+          type="text"
+          id="title"
+          required
+          value={resource.title}
+          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+        />
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="space-y-1">
+          <label for="resource-type" class="text-xs font-semibold text-[#0a0a0a]">Resource Type *</label>
+          <select
+            id="resource-type"
+            required
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          >
+            <option value="lesson-plan" selected={resource.resource_type === 'lesson-plan'}>Lesson Plan</option>
+            <option value="demonstration-plan" selected={resource.resource_type === 'demonstration-plan'}>Demonstration Plan</option>
+            <option value="lab-manual" selected={resource.resource_type === 'lab-manual'}>Lab Manual</option>
+            <option value="notes" selected={resource.resource_type === 'notes'}>Subject Notes</option>
+            <option value="diagram" selected={resource.resource_type === 'diagram'}>Technical Diagram</option>
+          </select>
+        </div>
+
+        <div class="space-y-1">
+          <label for="status" class="text-xs font-semibold text-[#0a0a0a]">Publication Lifecycle Status *</label>
+          <select
+            id="status"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          >
+            <option value="published" selected={resource.status === 'published'}>Published (Visible to public)</option>
+            <option value="draft" selected={resource.status === 'draft'}>Draft (Internal review only)</option>
+            <option value="archived" selected={resource.status === 'archived'}>Archived (Hidden from catalog)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="space-y-1">
+        <label for="description" class="text-xs font-semibold text-[#0a0a0a]">Description *</label>
+        <textarea
+          id="description"
+          rows="3"
+          required
+          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+        >{resource.description}</textarea>
+      </div>
+    </div>
+
+    <!-- Section 2: Attached File & Replacement -->
+    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
+      <h2 class="text-sm font-bold text-[#0a0a0a] pb-2 border-b border-[#ededed]">2. Attached Document &amp; File Replacement</h2>
+
+      {primaryFile ? (
+        <div class="p-4 rounded-lg bg-[#fafafa] border border-[#e5e5e5] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div>
+            <span class="font-semibold text-[#0a0a0a] block">{primaryFile.original_filename}</span>
+            <span class="text-[#5a5a5c] text-[11px] font-mono">
+              {primaryFile.mime_type} • {Math.round(primaryFile.file_size_bytes / 1024)} KB
+            </span>
+          </div>
+
+          <a
+            href={primaryFile.download_url}
+            target="_blank"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#e5e5e5] rounded text-xs font-medium hover:bg-[#ededed] transition-colors"
+          >
+            <Download class="w-3.5 h-3.5 text-[#00b48a]" />
+            <span>Download current file</span>
+          </a>
+        </div>
+      ) : (
+        <div class="text-xs text-[#888888]">No primary file attached yet.</div>
+      )}
+
+      <div class="pt-2">
+        <label class="text-xs font-semibold text-[#0a0a0a] block mb-1">Replace with Updated File (Optional):</label>
+        <input
+          type="file"
+          class="text-xs text-[#5a5a5c]"
+          accept=".pdf,.docx,.doc,.svg,.png,.jpg"
+        />
+        <span class="text-[11px] text-[#888888] block mt-1">
+          Uploading a new document will increment the version label (e.g. {resource.version_label} → vNext).
+        </span>
+      </div>
+    </div>
+
+    <!-- Submit Bar -->
+    <div class="flex items-center justify-between gap-3 pt-4">
+      <button
+        type="button"
+        class="text-xs font-semibold text-red-600 hover:text-red-700 inline-flex items-center gap-1"
+        onclick="if(confirm('Are you sure you want to delete this resource record?')) { alert('Resource archived successfully.'); window.location.href='/admin/resources'; }"
+      >
+        <Trash2 class="w-4 h-4" />
+        <span>Delete / Archive Resource</span>
+      </button>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="/admin/resources"
+          class="px-5 py-2.5 bg-white border border-[#e5e5e5] text-[#1c1c1e] rounded-full text-xs font-medium hover:bg-[#f7f7f7] transition-colors"
+        >
+          Cancel
+        </a>
+        <button
+          type="submit"
+          class="px-6 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex items-center gap-2"
+        >
+          <Save class="w-4 h-4 text-[#00d4a4]" />
+          <span>Save Changes</span>
+        </button>
+      </div>
+    </div>
+
+  </form>
+
+  <script>
+    const form = document.getElementById('edit-resource-form') as HTMLFormElement;
+    const successBox = document.getElementById('edit-success');
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (successBox) {
+        successBox.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          window.location.href = '/admin/resources';
+        }, 1200);
+      }
+    });
+  </script>
+</AdminLayout>

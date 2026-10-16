@@ -1,0 +1,59 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import NoticeCard from '../../components/notices/NoticeCard.astro';
+import { getActiveNotices, getArchivedNotices } from '../../lib/data/notices';
+import { Bell, Archive, CheckCircle } from 'lucide-astro';
+
+const activeNotices = getActiveNotices();
+const archivedNotices = getArchivedNotices();
+---
+
+<Layout
+  title="Notices & Announcements - ITI Training Hub"
+  description="Official circulars, exam schedules, and curriculum updates from DGT, NCVET, and State Directorates."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs items={[{ label: 'Notices & Circulars' }]} />
+
+    <div class="mt-4 mb-10">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#c37d0d]">Regulatory &amp; Institutional Updates</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">Notices &amp; Announcements</h1>
+      <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+        Stay updated with official notifications, All India Trade Test (AITT) circulars, syllabus revisions, and workshop safety guidelines.
+      </p>
+    </div>
+
+    <!-- Active Notices Section -->
+    <section class="mb-14">
+      <div class="flex items-center gap-2 mb-6 pb-2 border-b border-[#ededed]">
+        <CheckCircle class="w-5 h-5 text-[#00b48a]" />
+        <h2 class="text-xl font-bold text-[#0a0a0a]">Current &amp; Active Notices ({activeNotices.length})</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {activeNotices.map((notice) => (
+          <NoticeCard notice={notice} />
+        ))}
+      </div>
+    </section>
+
+    <!-- Archived Notices Section -->
+    {archivedNotices.length > 0 && (
+      <section class="pt-8 border-t border-[#e5e5e5]">
+        <div class="flex items-center gap-2 mb-6 pb-2 border-b border-[#ededed]">
+          <Archive class="w-5 h-5 text-[#888888]" />
+          <h2 class="text-xl font-bold text-[#5a5a5c]">Notice Archive ({archivedNotices.length})</h2>
+          <span class="text-xs text-[#888888] ml-auto">Expired circulars kept for historical reference</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-85">
+          {archivedNotices.map((notice) => (
+            <NoticeCard notice={notice} />
+          ))}
+        </div>
+      </section>
+    )}
+
+  </div>
+</Layout>

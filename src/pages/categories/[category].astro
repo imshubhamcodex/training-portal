@@ -1,0 +1,111 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Breadcrumbs from '../../components/ui/Breadcrumbs.astro';
+import ResourceCard from '../../components/resources/ResourceCard.astro';
+import { getResourcesByCategory } from '../../lib/data/resources';
+import { ArrowRight, BookOpen } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const categories = [
+    {
+      slug: 'lesson-plans',
+      name: 'Lesson Plans',
+      description: 'Standardized 4-step instructional lesson plans conforming to NIMI and CTS frameworks for ITI instructors.',
+      typeParam: 'lesson-plan',
+    },
+    {
+      slug: 'demonstration-plans',
+      name: 'Demonstration Plans',
+      description: 'Step-by-step practical demonstration plans detailing workshop demonstrations, safety measures, and skill assessment.',
+      typeParam: 'demonstration-plan',
+    },
+    {
+      slug: 'lab-manuals',
+      name: 'Lab Manuals & Practical Guides',
+      description: 'Hands-on practical job sheets, cabling procedures, diagnostic exercises, and workshop maintenance guides.',
+      typeParam: 'lab-manual',
+    },
+    {
+      slug: 'notes',
+      name: 'Subject Notes & Handouts',
+      description: 'Comprehensive theoretical notes, formulae reference sheets, and study materials for trade theory.',
+      typeParam: 'notes',
+    },
+    {
+      slug: 'videos-images',
+      name: 'Videos & Technical Diagrams',
+      description: 'High-resolution schematic diagrams, network topologies, wiring schematics, and instructional media.',
+      typeParam: 'diagram',
+    },
+  ];
+
+  return categories.map((cat) => ({
+    params: { category: cat.slug },
+    props: { cat },
+  }));
+}
+
+const { category } = Astro.params;
+const { cat } = Astro.props;
+const resources = getResourcesByCategory(category as string);
+---
+
+<Layout
+  title={`${cat.name} - ITI Educational Resources`}
+  description={cat.description}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-8">
+    <Breadcrumbs
+      items={[
+        { label: 'Categories', href: '/library' },
+        { label: cat.name },
+      ]}
+    />
+
+    <!-- Header Section -->
+    <div class="mt-4 mb-10 p-6 sm:p-8 rounded-2xl bg-[#fafafa] border border-[#e5e5e5]">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Resource Category</span>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0a0a0a] mt-1">
+            {cat.name}
+          </h1>
+          <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+            {cat.description}
+          </p>
+        </div>
+
+        <a
+          href={`/library?type=${cat.typeParam}`}
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex-shrink-0"
+        >
+          <BookOpen class="w-4 h-4 text-[#00d4a4]" />
+          <span>Filter in Library</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Resource Grid -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-lg font-bold text-[#0a0a0a]">
+          Available {cat.name} ({resources.length})
+        </h2>
+        <span class="text-xs text-[#888888]">Showing published resources</span>
+      </div>
+
+      {resources.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {resources.map((res) => (
+            <ResourceCard resource={res} />
+          ))}
+        </div>
+      ) : (
+        <div class="p-12 text-center bg-[#fafafa] rounded-xl border border-dashed border-[#e5e5e5] text-xs text-[#5a5a5c]">
+          No published resources found in this category yet. Check back soon.
+        </div>
+      )}
+    </section>
+
+  </div>
+</Layout>

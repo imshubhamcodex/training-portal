@@ -1,0 +1,48 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 995 >>
+stream
+BT
+/F1 20 Tf
+50 750 Td
+(ITI RESOURCE HUB - LESSON PLAN) Tj
+/F1 12 Tf
+0 -30 Td
+(Trade: ICTSM | Topic: Motherboard Form Factors & POST Diagnostics) Tj
+0 -30 Td
+/F1 10 Tf
+(1. Instructional Objectives: Trainee will be able to identify ATX, Micro-ATX, and Mini-ITX form factors.) Tj 0 -18 Td
+(2. Instructional Aids: Motherboard display unit, POST diagnostic PCI card, Multimeter, Screwdriver set.) Tj 0 -18 Td
+(3. Motivation / Review: Explain common symptoms when a computer powers on without video display.) Tj 0 -18 Td
+(4. Presentation Points: Chipset architecture \(Northbridge / Southbridge or PCH\), bus lanes, BIOS beep codes.) Tj 0 -18 Td
+(5. Practical Application: Trainees insert diagnostic card into PCIe slot and record hexadecimal error codes.) Tj 0 -18 Td
+(6. Safety Precaution: Ground wrist with anti-static ESD strap before handling delicate microchips.) Tj 0 -18 Td
+(7. Evaluation & Assignment: Complete the fault diagnosis questionnaire and test 3 faulty test boards.) Tj 0 -18 Td
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000244 00000 n 
+0000000300 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+385
+%%EOF

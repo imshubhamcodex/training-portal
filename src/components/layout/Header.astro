@@ -1,0 +1,163 @@
+---
+import { Search, Menu, X, BookOpen, Layers, Bell, Info, ShieldAlert, Cpu } from 'lucide-astro';
+
+export interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'Resource Library', href: '/library' },
+  { label: 'Trades', href: '/trades' },
+  { label: 'Notices', href: '/notices' },
+  { label: 'About', href: '/about' },
+];
+
+function isActive(href: string): boolean {
+  if (href === '/' && currentPath === '/') return true;
+  if (href !== '/' && currentPath.startsWith(href)) return true;
+  return false;
+}
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#e5e5e5] transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 gap-4">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#00d4a4] rounded-lg p-1">
+        <div class="w-9 h-9 rounded-lg bg-[#0a0a0a] flex items-center justify-center text-white shadow-sm group-hover:scale-105 transition-transform">
+          <BookOpen class="w-5 h-5 text-[#00d4a4]" />
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-[17px] tracking-tight text-[#0a0a0a]">ITI Resource Hub</span>
+            <span class="hidden md:inline-flex px-1.5 py-0.5 text-[10px] font-semibold bg-[#7cebcb]/25 text-[#00b48a] rounded border border-[#00d4a4]/30 uppercase tracking-wider">CTS Portal</span>
+          </div>
+          <span class="text-[11px] text-[#888888] font-normal leading-none hidden sm:block">Vocational Training Library</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Main Navigation">
+        {navItems.map((item) => {
+          const active = isActive(item.href);
+          return (
+            <a
+              href={item.href}
+              class={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+                active
+                  ? 'text-[#0a0a0a] bg-[#f7f7f7]'
+                  : 'text-[#5a5a5c] hover:text-[#0a0a0a] hover:bg-[#fafafa]'
+              }`}
+              aria-current={active ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Search Trigger and Actions -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Quick Search Pill Bar -->
+        <a
+          href="/library"
+          class="flex items-center gap-2 px-3 py-1.5 bg-[#f7f7f7] hover:bg-[#ededed] border border-[#e5e5e5] rounded-full text-xs sm:text-sm text-[#5a5a5c] hover:text-[#0a0a0a] transition-all group focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          aria-label="Open global search"
+        >
+          <Search class="w-4 h-4 text-[#888888] group-hover:text-[#0a0a0a]" />
+          <span class="hidden md:inline">Search lesson plans, lab manuals...</span>
+          <span class="md:hidden">Search</span>
+          <kbd class="hidden md:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono bg-white border border-[#e5e5e5] rounded text-[#888888]">⌘K</kbd>
+        </a>
+
+        <!-- Admin Portal Access -->
+        <a
+          href="/admin"
+          class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-[#1c1c1e] bg-white border border-[#e5e5e5] hover:border-[#0a0a0a] rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+        >
+          <ShieldAlert class="w-3.5 h-3.5 text-[#5a5a5c]" />
+          <span>Admin</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="lg:hidden p-2 rounded-md text-[#5a5a5c] hover:text-[#0a0a0a] hover:bg-[#f7f7f7] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Toggle Navigation Menu"
+        >
+          <Menu class="w-5 h-5 menu-open-icon" />
+          <X class="w-5 h-5 menu-close-icon hidden" />
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-[#e5e5e5] bg-white px-4 pt-3 pb-6 shadow-xl animate-in slide-in-from-top-2 duration-200">
+    <div class="flex flex-col space-y-1">
+      {navItems.map((item) => {
+        const active = isActive(item.href);
+        return (
+          <a
+            href={item.href}
+            class={`px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
+              active
+                ? 'bg-[#f7f7f7] text-[#0a0a0a] font-semibold'
+                : 'text-[#5a5a5c] hover:bg-[#fafafa] hover:text-[#0a0a0a]'
+            }`}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+      
+      <div class="pt-4 mt-2 border-t border-[#ededed] flex flex-col gap-2">
+        <a
+          href="/library"
+          class="flex items-center justify-center gap-2 w-full py-2.5 bg-[#0a0a0a] text-white rounded-full text-sm font-medium hover:bg-[#1c1c1e] transition-colors"
+        >
+          <Search class="w-4 h-4 text-[#00d4a4]" />
+          <span>Browse Resource Library</span>
+        </a>
+        <a
+          href="/admin"
+          class="flex items-center justify-center gap-2 w-full py-2 bg-[#f7f7f7] text-[#1c1c1e] border border-[#e5e5e5] rounded-full text-sm font-medium hover:bg-[#ededed] transition-colors"
+        >
+          <ShieldAlert class="w-4 h-4 text-[#5a5a5c]" />
+          <span>Instructor / Admin Sign In</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const openIcon = toggleBtn?.querySelector('.menu-open-icon');
+  const closeIcon = toggleBtn?.querySelector('.menu-close-icon');
+
+  toggleBtn?.addEventListener('click', () => {
+    const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
+    mobileMenu?.classList.toggle('hidden');
+    openIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+
+  // Global keyboard shortcut for search (Command/Ctrl + K)
+  window.addEventListener('keydown', (e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      window.location.href = '/library';
+    }
+  });
+</script>
