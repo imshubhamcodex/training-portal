@@ -2,7 +2,7 @@
 import type { Notice } from '../../types';
 import Badge from '../ui/Badge.astro';
 import { isNoticeExpired } from '../../lib/data/notices';
-import { Bell, Calendar, Download, Building2, Pin } from 'lucide-astro';
+import { Bell, Calendar, Download, Building2 } from 'lucide-astro';
 
 export interface Props {
   notice: Notice;
@@ -37,13 +37,6 @@ const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
         {badgeInfo.label}
       </Badge>
 
-      {notice.is_pinned && (
-        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#00b48a]">
-          <Pin class="w-3 h-3" />
-          Pinned
-        </span>
-      )}
-
       {expired ? (
         <span class="px-2 py-0.5 text-[10px] font-medium bg-[#f7f7f7] text-[#888888] rounded border border-[#e5e5e5]">
           Expired / Archive
@@ -75,7 +68,7 @@ const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
   )}
 
   {!compact && (
-    <p class="text-xs text-[#5a5a5c] line-clamp-3 leading-relaxed mb-4">
+    <p class="text-xs text-[#5a5a5c] line-clamp-3 leading-relaxed mb-4 min-h-[72px]">
       {notice.body}
     </p>
   )}

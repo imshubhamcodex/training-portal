@@ -18,7 +18,8 @@ import {
 } from 'lucide-astro';
 
 // Parse Query Parameters from URL
-const searchParams = Astro.url.searchParams;
+const url = new URL(Astro.request.url);
+const searchParams = url.searchParams;
 const query = searchParams.get('q') || '';
 const trade = searchParams.get('trade') || 'all';
 const subject = searchParams.get('subject') || 'all';
@@ -88,7 +89,7 @@ const hasActiveFilters = Boolean(
           <label for="sort-select" class="text-xs font-medium text-[#5a5a5c]">Sort by:</label>
           <select
             id="sort-select"
-            class="text-xs font-medium bg-white border border-[#e5e5e5] rounded-lg px-3 py-1.5 text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="text-xs font-medium bg-white border border-[#e5e5e5] rounded-full px-3 py-1.5 text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
             onchange="window.location.href = this.value"
           >
             <option value={buildUrl({ sort: 'relevance', page: 1 })} selected={sort === 'relevance'}>Relevance / Featured</option>

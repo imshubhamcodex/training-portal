@@ -1,6 +1,6 @@
 ---
 import type { Resource } from '../../types';
-import { Download, Eye, Sparkles, Layers } from 'lucide-astro';
+import { Download, Eye, Clock, Layers, Cpu, Zap, Wrench, Terminal } from 'lucide-astro';
 
 export interface Props {
   resource: Resource;
@@ -50,32 +50,75 @@ const badgeInfo = typeBadgeConfig[resource.resource_type] || {
   badgeClass: 'bg-gray-100 text-gray-800 border-gray-300',
 };
 
+// Distinct color + icon per trade for the trade pill
+const tradeBadgeConfig: Record<string, { label: string; badgeClass: string; icon: any }> = {
+  ictsm: {
+    label: 'ICTSM',
+    badgeClass: 'bg-indigo-50 text-indigo-800 border-indigo-200/80',
+    icon: Cpu,
+  },
+  electrician: {
+    label: 'Electrician',
+    badgeClass: 'bg-amber-50 text-amber-800 border-amber-200/80',
+    icon: Zap,
+  },
+  fitter: {
+    label: 'Fitter',
+    badgeClass: 'bg-rose-50 text-rose-800 border-rose-200/80',
+    icon: Wrench,
+  },
+  copa: {
+    label: 'COPA',
+    badgeClass: 'bg-blue-50 text-blue-800 border-blue-200/80',
+    icon: Terminal,
+  },
+};
+
+const tradeBadge = tradeBadgeConfig[resource.trade_slug] || {
+  label: resource.trade_name,
+  badgeClass: 'bg-gray-100 text-gray-800 border-gray-300',
+  icon: Layers,
+};
+const TradeIcon = tradeBadge.icon;
+
 const primaryFile = resource.files.find((f) => f.is_primary) || resource.files[0];
 const fileExt = primaryFile ? primaryFile.original_filename.split('.').pop()?.toUpperCase() : 'PDF';
 
 // Training year formatted as 1st Year or 2nd Year
 const yearText = resource.training_year === 1 ? '1st Year' : `${resource.training_year}nd Year`;
 const jobNumberText = resource.job_number || `Job #${resource.sort_order || 1}`;
+
+// "This Week" badge for resources published within the last 7 days
+const publishedDate = resource.published_at ? new Date(resource.published_at) : null;
+const now = new Date();
+const isThisWeek = publishedDate ? now.getTime() - publishedDate.getTime() <= 7 * 24 * 60 * 60 * 1000 : false;
+
+// Distinctive colors for 1st Year vs 2nd Year badges
+const yearBadgeClass = resource.training_year === 1
+  ? 'bg-blue-50 text-blue-700 border-blue-200/70'
+  : 'bg-purple-50 text-purple-700 border-purple-200/70';
 ---
 
 <article class="group relative flex flex-col justify-between bg-white rounded-xl border border-[#e5e5e5] p-5 hover:border-[#b3b3b3] hover:shadow-md transition-all">
   <div>
-    <!-- Top Row: Type Badge, Trade & Featured Pill -->
+    <!-- Top Row: Type Badge, Trade & This Week Pill -->
     <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
       <div class="flex items-center gap-1.5 flex-wrap">
         <!-- Badge with distinct color per resource type -->
         <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${badgeInfo.badgeClass}`}>
           {badgeInfo.label}
         </span>
-        <span class="inline-flex items-center px-2 py-0.5 text-[11px] font-medium bg-[#f7f7f7] text-[#5a5a5c] rounded border border-[#e5e5e5]">
-          {resource.trade_name}
+        <!-- Trade pill with distinct color and icon per trade -->
+        <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border flex-wrap">
+          <TradeIcon class="w-3 h-3" />
+          {tradeBadge.label}
         </span>
       </div>
 
-      {resource.is_featured && (
-        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#00b48a] bg-[#00d4a4]/10 px-2 py-0.5 rounded-full">
-          <Sparkles class="w-3 h-3" />
-          Featured
+      {isThisWeek && (
+        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-[#00b48a] bg-[#00d4a4]/10 px-2 py-0.5 rounded-full border border-[#00d4a4]/20">
+          <Clock class="w-3 h-3" />
+          This Week
         </span>
       )}
     </div>
@@ -120,7 +163,7 @@ const jobNumberText = resource.job_number || `Job #${resource.sort_order || 1}`;
       <span class="font-mono px-1.5 py-0.5 bg-[#f7f7f7] border border-[#e5e5e5] rounded text-[10px] font-medium text-[#0a0a0a]">
         {fileExt}
       </span>
-      <span class="px-2 py-0.5 bg-[#f7f7f7] text-[#1c1c1e] border border-[#e5e5e5] rounded text-[11px] font-medium">
+      <span class={`px-2 py-0.5 rounded text-[11px] font-medium border ${yearBadgeClass}`}>
         {yearText}
       </span>
       <span class="px-2 py-0.5 bg-blue-50 text-blue-700 border border-blue-200/70 rounded text-[11px] font-mono font-medium">

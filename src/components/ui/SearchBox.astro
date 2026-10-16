@@ -40,12 +40,12 @@ const noResultsId = `${id}-no-results`;
 const inputClass =
   size === 'large'
     ? 'w-full pl-12 pr-32 py-3.5 sm:py-4 bg-white rounded-full border border-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#00d4a4] focus:border-transparent text-sm sm:text-base text-[#0a0a0a] shadow-sm transition-all'
-    : 'w-full pl-12 pr-28 py-3.5 bg-white rounded-xl border border-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#00d4a4] focus:border-transparent text-sm text-[#0a0a0a] shadow-sm';
+    : 'w-full pl-12 pr-28 py-3.5 bg-white rounded-full border border-[#e5e5e5] focus:outline-none focus:ring-2 focus:ring-[#00d4a4] focus:border-transparent text-sm text-[#0a0a0a] shadow-sm';
 
 const buttonClass =
   size === 'large'
     ? 'absolute right-1.5 sm:right-2 top-1.5 bottom-1.5 px-4 sm:px-6 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs sm:text-sm font-medium transition-colors'
-    : 'absolute right-2 top-2 bottom-2 px-5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-lg text-xs font-medium transition-colors';
+    : 'absolute right-2 top-2 bottom-2 px-5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors';
 ---
 
 <div class="relative w-full" id={id}>
@@ -86,7 +86,7 @@ const buttonClass =
     class="absolute top-full left-0 right-0 mt-1.5 bg-white border border-[#e5e5e5] rounded-xl shadow-xl overflow-hidden z-50 hidden"
     style="max-height: 400px; overflow-y: auto;"
   >
-    <div id={resultsId}></div>
+    <div id={resultsId} class="text-left"></div>
     <div id={noResultsId} class="hidden px-4 py-3 text-xs text-[#888888] text-center">
       No matching resources found. Press Enter to search all.
     </div>
