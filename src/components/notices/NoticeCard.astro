@@ -30,7 +30,7 @@ const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
 });
 ---
 
-<article class={`rounded-xl border ${notice.is_pinned ? 'border-brand-green bg-brand-green-soft/20 dark:bg-brand-green/10' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-canvas-dark'} p-5 transition-all hover:border-steel dark:hover:border-steel`}>
+<article class={`group rounded-xl border ${notice.is_pinned ? 'border-brand-green bg-brand-green-soft/20 dark:bg-brand-green/10' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-canvas-dark'} p-5 transition-all hover:border-brand-green-deep dark:hover:border-brand-green-deep`}>
   <div class="flex items-center justify-between gap-2 flex-wrap mb-2">
     <div class="flex items-center gap-2">
       <Badge variant={badgeInfo.variant} size="sm">
@@ -55,7 +55,7 @@ const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
   </div>
 
   <h3 class="text-base font-semibold text-ink dark:text-on-dark hover:text-brand-green-deep transition-colors leading-snug mb-2">
-    <a href={`/notices/${notice.slug}`} class="focus:outline-none focus:underline">
+    <a href={`/notices/${notice.slug}`} class="group-hover:text-brand-green-deep dark:group-hover:text-brand-green focus:outline-none focus:underline">
       {notice.title}
     </a>
   </h3>

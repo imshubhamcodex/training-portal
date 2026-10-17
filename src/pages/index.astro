@@ -52,7 +52,7 @@ const tradeIconMap: Record<string, any> = {
   description="Find lesson plans, practical guides, laboratory manuals, notes, and technical resources in one place for ITI instructors and trainees."
 >
   <!-- B. HERO SECTION (Atmospheric Sky Gradient Band as specified in DESIGN.md) -->
-  <section class="relative overflow-hidden bg-gradient-to-b from-[#87a8c8]/30 via-[#f5e9d8]/20 to-canvas dark:from-[#1a3d4a]/40 dark:via-[#2d5a4f]/20 dark:to-canvas-dark pt-12 pb-20 md:pt-20 md:pb-28 border-b border-hairline dark:border-hairline-dark transition-colors">
+  <section class="relative z-50 overflow-visible bg-gradient-to-b from-[#87a8c8]/30 via-[#f5e9d8]/20 to-canvas dark:from-[#1a3d4a]/40 dark:via-[#2d5a4f]/20 dark:to-canvas-dark pt-12 pb-20 md:pt-20 md:pb-28 border-b border-hairline dark:border-hairline-dark transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Top Announcement Tag -->
@@ -70,7 +70,7 @@ const tradeIconMap: Record<string, any> = {
       <!-- Main Headline & Subtitle -->
       <div class="text-center max-w-3xl mx-auto space-y-4">
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink dark:text-on-dark leading-[1.1]">
-          Teaching Resources for <span class="bg-gradient-to-r from-ink via-[#1a3d4a] to-brand-green-deep dark:from-white dark:via-[#7cebcb] dark:to-brand-green bg-clip-text text-transparent">ITI Trades</span>
+          Training Resources for <span class="bg-gradient-to-r from-ink via-[#1a3d4a] to-brand-green-deep dark:from-white dark:via-[#7cebcb] dark:to-brand-green bg-clip-text text-transparent">ITI Trades</span>
         </h1>
         <p class="text-base sm:text-lg text-steel dark:text-on-dark-muted max-w-2xl mx-auto leading-relaxed">
           Find lesson plans, practical guides, laboratory manuals, notes, and technical resources in one place. Standardized for instructors and trainees across India.
@@ -147,7 +147,7 @@ const tradeIconMap: Record<string, any> = {
           return (
             <a
               href={`/categories/${cat.slug}`}
-              class="group relative flex flex-col p-6 rounded-xl border border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code hover:border-steel dark:hover:border-steel hover:shadow-sm transition-all"
+              class="group relative flex flex-col p-6 rounded-xl border border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code hover:border-brand-green-deep dark:hover:border-brand-green-deep hover:shadow-sm transition-all"
             >
               <div class="w-10 h-10 rounded-lg bg-surface dark:bg-canvas-dark border border-hairline dark:border-hairline-dark flex items-center justify-center text-ink dark:text-on-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary transition-all mb-4">
                 <IconComp class="w-5 h-5 text-brand-green dark:group-hover:text-primary" />
@@ -210,24 +210,19 @@ const tradeIconMap: Record<string, any> = {
         {activeTrades.map((trade, idx) => {
           const IconComp = tradeIconMap[trade.icon] || Cpu;
           const resourceCount = getTradeCount(trade.id);
-          const isPrimary = trade.slug === 'ictsm';
+          const isPrimary = trade.slug === '';
 
           return (
-            <div class={`rounded-xl border ${isPrimary ? 'border-brand-green bg-canvas dark:bg-surface-code ring-1 ring-brand-green/20' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code'} p-6 flex flex-col justify-between transition-all hover:border-steel dark:hover:border-steel hover:shadow-sm`}>
+            <div class={`group rounded-xl border ${isPrimary ? 'border-brand-green bg-canvas dark:bg-surface-code ring-1 ring-brand-green/20' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code'} p-6 flex flex-col justify-between transition-all hover:border-brand-green-deep dark:hover:border-brand-green-deep hover:shadow-sm`}>
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <div class={`w-10 h-10 rounded-lg ${isPrimary ? 'bg-primary dark:bg-canvas-dark text-on-primary' : 'bg-surface dark:bg-canvas-dark text-ink dark:text-on-dark'} flex items-center justify-center border border-hairline dark:border-hairline-dark`}>
-                    <IconComp class={`w-5 h-5 ${isPrimary ? 'text-brand-green' : 'text-steel dark:text-on-dark-muted'}`} />
+                  <div class={`w-10 h-10 rounded-lg ${isPrimary ? 'bg-primary dark:bg-canvas-dark text-on-primary' : 'bg-surface dark:bg-canvas-dark text-ink dark:text-on-dark'} flex items-center justify-center border border-hairline dark:border-hairline-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary`}>
+                     <IconComp class="w-5 h-5 text-brand-green dark:group-hover:text-primary" />
                   </div>
-                  {isPrimary && (
-                    <span class="px-2 py-0.5 text-[10px] font-semibold bg-brand-green/15 text-brand-green-deep dark:text-brand-green rounded-full border border-brand-green/30 uppercase tracking-wider">
-                      Initial Focus
-                    </span>
-                  )}
                 </div>
 
                 <h3 class="text-base font-semibold text-ink dark:text-on-dark mb-1 leading-snug">
-                  <a href={`/trades/${trade.slug}`} class="hover:text-brand-green-deep dark:hover:text-brand-green transition-colors focus:outline-none focus:underline">
+                  <a href={`/trades/${trade.slug}`} class="group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors focus:outline-none focus:underline">
                     {trade.name}
                   </a>
                 </h3>

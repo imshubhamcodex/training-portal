@@ -20,7 +20,7 @@ All institutions must align their monthly instructional schedules with these dir
     status: 'published',
     published_at: '2026-10-10T09:00:00Z',
     expires_at: '2027-01-10T23:59:59Z',
-    is_pinned: true,
+    is_pinned: false,
     attachment_name: 'DGT_CTS_Curriculum_Guidelines_Official.pdf',
     attachment_url: '/sample-files/sample-notes.pdf',
     created_at: '2026-10-10T09:00:00Z',
