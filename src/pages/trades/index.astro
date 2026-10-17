@@ -37,10 +37,10 @@ const iconMap: Record<string, any> = {
         const IconComp = iconMap[trade.icon] || Cpu;
         const subjects = getSubjectsByTrade(trade.id);
         const resourceCount = getTradeResourceCount(trade.id);
-        const isPrimary = trade.slug === 'ictsm';
+        const isPrimary = trade.slug === '';
 
         return (
-          <div class={`rounded-xl border ${isPrimary ? 'border-brand-green bg-canvas dark:bg-surface-code ring-1 ring-brand-green/20' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code'} p-6 sm:p-8 flex flex-col justify-between transition-all hover:border-steel dark:hover:border-steel hover:shadow-sm`}>
+          <div class="flex flex-col justify-between p-6 sm:p-8 bg-canvas dark:bg-surface-code border border-brand-green/50 dark:border-hairline-dark rounded-xl ring-1 ring-brand-green/20 transition-all hover:border-brand-green-deep hover:shadow-sm">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
