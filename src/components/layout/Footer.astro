@@ -1,31 +1,43 @@
 ---
-import { BookOpen, ExternalLink, Heart, Shield, FileCheck } from 'lucide-astro';
+import { BookOpen, ExternalLink, Heart, Shield, FileCheck } from "lucide-astro";
 
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-canvas-dark border-t border-hairline-dark text-on-dark-muted text-sm mt-auto" role="contentinfo">
+<footer
+  class="bg-canvas-dark border-t border-hairline-dark text-on-dark-muted text-sm mt-auto"
+  role="contentinfo"
+>
   <!-- Main Footer Columns -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
-      
       <!-- Column 1: Brand & Identity -->
       <div class="lg:col-span-2 space-y-4">
         <a href="/" class="flex items-center gap-2.5">
-          <div class="w-8 h-8 rounded-lg bg-canvas-dark flex items-center justify-center text-on-dark">
+          <div
+            class="w-8 h-8 rounded-lg bg-canvas-dark flex items-center justify-center text-on-dark"
+          >
             <BookOpen class="w-4 h-4 text-brand-green" />
           </div>
-          <span class="font-bold text-lg text-on-dark tracking-tight">ITI Resource Hub</span>
+          <span class="font-bold text-lg text-on-dark tracking-tight"
+            >ITI Resource Hub</span
+          >
         </a>
         <p class="text-sm text-on-dark-muted max-w-sm leading-relaxed">
-          A dedicated, open vocational educational portal providing standardized lesson plans, practical demonstration procedures, laboratory manuals, and engineering diagrams for ITI instructors and trainees across India.
+          A dedicated, open vocational educational portal providing standardized
+          lesson plans, practical demonstration procedures, laboratory manuals,
+          and engineering diagrams for ITI instructors and trainees across
+          India.
         </p>
         <div class="flex items-center gap-2 pt-2">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium bg-hairline-dark border border-hairline-dark rounded-full text-on-dark">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand-green"></span>
+          <span
+            class="inline-flex text-[11px] items-center gap-1.5 px-2.5 py-1 text-xs font-medium bg-hairline-dark border border-hairline-dark rounded-full text-on-dark"
+          >
             Craftsmen Training Scheme (CTS)
           </span>
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium bg-hairline-dark border border-hairline-dark rounded-full text-on-dark">
+          <span
+            class="inline-flex text-[11px] items-center gap-1.5 px-2.5 py-1 text-xs font-medium bg-hairline-dark border border-hairline-dark rounded-full text-on-dark"
+          >
             NIMI Framework
           </span>
         </div>
@@ -33,57 +45,166 @@ const currentYear = new Date().getFullYear();
 
       <!-- Column 2: Categories -->
       <div class="space-y-3">
-        <h3 class="text-xs font-semibold text-on-dark uppercase tracking-wider">Resources</h3>
+        <h3 class="text-xs font-semibold text-on-dark uppercase tracking-wider">
+          Resources
+        </h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/categories/lesson-plans" class="text-on-dark-muted hover:text-on-dark transition-colors">Lesson Plans</a></li>
-          <li><a href="/categories/demonstration-plans" class="text-on-dark-muted hover:text-on-dark transition-colors">Demonstration Plans</a></li>
-          <li><a href="/categories/lab-manuals" class="text-on-dark-muted hover:text-on-dark transition-colors">Lab Manuals & Practical</a></li>
-          <li><a href="/categories/notes" class="text-on-dark-muted hover:text-on-dark transition-colors">Subject Notes & Guides</a></li>
-          <li><a href="/categories/videos-images" class="text-on-dark-muted hover:text-on-dark transition-colors">Diagrams & Media</a></li>
-          <li><a href="/library" class="text-on-dark-muted font-medium hover:text-on-dark">Complete Catalog</a></li>
+          <li>
+            <a
+              href="/categories/lesson-plans"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Lesson Plans</a
+            >
+          </li>
+          <li>
+            <a
+              href="/categories/demonstration-plans"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Demonstration Plans</a
+            >
+          </li>
+          <li>
+            <a
+              href="/categories/lab-manuals"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Lab Manuals & Practical</a
+            >
+          </li>
+          <li>
+            <a
+              href="/categories/notes"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Subject Notes & Guides</a
+            >
+          </li>
+          <li>
+            <a
+              href="/categories/videos-images"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Diagrams & Media</a
+            >
+          </li>
+          <li>
+            <a
+              href="/library"
+              class="text-on-dark-muted font-medium hover:text-on-dark"
+              >Complete Catalog</a
+            >
+          </li>
         </ul>
       </div>
 
       <!-- Column 3: Trades -->
       <div class="space-y-3">
-        <h3 class="text-xs font-semibold text-on-dark uppercase tracking-wider">Trades</h3>
+        <h3 class="text-xs font-semibold text-on-dark uppercase tracking-wider">
+          Trades
+        </h3>
         <ul class="space-y-2 text-sm">
           <li>
-            <a href="/trades/ictsm" class="inline-flex items-center gap-1 hover:text-on-dark transition-colors font-medium text-on-dark-muted">
+            <a
+              href="/trades/ictsm"
+              class="inline-flex items-center gap-1 hover:text-on-dark transition-colors font-medium text-on-dark-muted"
+            >
               ICTSM
             </a>
           </li>
-          <li><a href="/trades/electrician" class="text-on-dark-muted hover:text-on-dark transition-colors">Electrician</a></li>
-          <li><a href="/trades/fitter" class="text-on-dark-muted hover:text-on-dark transition-colors">Fitter</a></li>
-          <li><a href="/trades/copa" class="text-on-dark-muted hover:text-on-dark transition-colors">COPA</a></li>
-          <li><a href="/trades" class="text-on-dark-muted hover:text-on-dark transition-colors">All Trades Directory</a></li>
+          <li>
+            <a
+              href="/trades/electrician"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Electrician</a
+            >
+          </li>
+          <li>
+            <a
+              href="/trades/fitter"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Fitter</a
+            >
+          </li>
+          <li>
+            <a
+              href="/trades/copa"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >COPA</a
+            >
+          </li>
+          <li>
+            <a
+              href="/trades"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >All Trades Directory</a
+            >
+          </li>
         </ul>
       </div>
 
       <!-- Column 4: Institutional & Legal -->
       <div class="space-y-3">
-        <h3 class="text-xs font-semibold text-on-dark uppercase tracking-wider">Portal & Policy</h3>
+        <h3 class="text-xs font-semibold text-on-dark uppercase tracking-wider">
+          Portal & Policy
+        </h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/notices" class="text-on-dark-muted hover:text-on-dark transition-colors">Important Notices</a></li>
-          <li><a href="/about" class="text-on-dark-muted hover:text-on-dark transition-colors">About the Portal</a></li>
-          <li><a href="/contact" class="text-on-dark-muted hover:text-on-dark transition-colors">Content Correction Request</a></li>
-          <li><a href="/copyright" class="text-on-dark-muted hover:text-on-dark transition-colors">Copyright & Attribution</a></li>
-          <li><a href="/privacy" class="text-on-dark-muted hover:text-on-dark transition-colors">Privacy Policy</a></li>
-          <li><a href="/admin" class="text-on-dark-muted hover:text-on-dark transition-colors">Administrator Access</a></li>
+          <li>
+            <a
+              href="/notices"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Important Notices</a
+            >
+          </li>
+          <li>
+            <a
+              href="/about"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >About the Portal</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Content Correction Request</a
+            >
+          </li>
+          <li>
+            <a
+              href="/copyright"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Copyright & Attribution</a
+            >
+          </li>
+          <li>
+            <a
+              href="/privacy"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Privacy Policy</a
+            >
+          </li>
+          <li>
+            <a
+              href="/admin"
+              class="text-on-dark-muted hover:text-on-dark transition-colors"
+              >Administrator Access</a
+            >
+          </li>
         </ul>
       </div>
-
     </div>
 
     <!-- Bottom Legal / Attribution Row -->
-    <div class="mt-12 pt-8 border-t border-hairline-dark flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-dark-muted">
+    <div
+      class="mt-12 pt-8 border-t border-hairline-dark flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-on-dark-muted"
+    >
       <p>
-        © {currentYear} ITI Resource Hub. Instructional aids designed for vocational education under CTS/NCVT frameworks.
+        © {currentYear} ITI Resource Hub. Instructional aids designed for vocational
+        education under CTS/NCVT frameworks.
       </p>
       <div class="flex items-center gap-4">
         <span>Attribution: NIMI / DGT Reference Models</span>
         <span class="hidden sm:inline">•</span>
-        <a href="/contact" class="hover:text-on-dark underline">Report Discrepancy</a>
+        <a href="/contact" class="hover:text-on-dark underline"
+          >Report Discrepancy</a
+        >
       </div>
     </div>
   </div>

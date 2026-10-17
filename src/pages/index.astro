@@ -1,11 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import NoticeCard from '../components/notices/NoticeCard.astro';
-import SearchBox from '../components/ui/SearchBox.astro';
-import { getAllResources } from '../lib/data/resources';
-import { getActiveTrades } from '../lib/data/trades';
-import { getActiveNotices } from '../lib/data/notices';
-import { RESOURCE_CATEGORIES } from '../lib/data/categories';
+import Layout from "../layouts/Layout.astro";
+import NoticeCard from "../components/notices/NoticeCard.astro";
+import SearchBox from "../components/ui/SearchBox.astro";
+import { getAllResources } from "../lib/data/resources";
+import { getActiveTrades } from "../lib/data/trades";
+import { getActiveNotices } from "../lib/data/notices";
+import { RESOURCE_CATEGORIES } from "../lib/data/categories";
 import {
   BookOpen,
   ArrowRight,
@@ -18,7 +18,7 @@ import {
   Zap,
   Terminal,
   CheckCircle2,
-} from 'lucide-astro';
+} from "lucide-astro";
 
 const activeTrades = getActiveTrades();
 const activeNotices = getActiveNotices().slice(0, 3);
@@ -31,11 +31,11 @@ function getTradeCount(tradeId: string) {
 
 // Icon mapper for categories
 const categoryIconMap: Record<string, any> = {
-  'file-text': FileText,
-  'presentation': Presentation,
-  'wrench': Wrench,
-  'book-open': BookOpen,
-  'image': Image,
+  "file-text": FileText,
+  presentation: Presentation,
+  wrench: Wrench,
+  "book-open": BookOpen,
+  image: Image,
 };
 
 // Trade icon mapper
@@ -52,28 +52,39 @@ const tradeIconMap: Record<string, any> = {
   description="Find lesson plans, practical guides, laboratory manuals, notes, and technical resources in one place for ITI instructors and trainees."
 >
   <!-- B. HERO SECTION (Atmospheric Sky Gradient Band as specified in DESIGN.md) -->
-  <section class="relative z-50 overflow-visible bg-gradient-to-b from-[#87a8c8]/30 via-[#f5e9d8]/20 to-canvas dark:from-[#1a3d4a]/40 dark:via-[#2d5a4f]/20 dark:to-canvas-dark pt-12 pb-20 md:pt-20 md:pb-28 border-b border-hairline dark:border-hairline-dark transition-colors">
+  <section
+    class="relative z-50 overflow-visible bg-gradient-to-b from-[#87a8c8]/30 via-[#f5e9d8]/20 to-canvas dark:from-[#1a3d4a]/40 dark:via-[#2d5a4f]/20 dark:to-canvas-dark pt-12 pb-20 md:pt-20 md:pb-28 border-b border-hairline dark:border-hairline-dark transition-colors"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
       <!-- Top Announcement Tag -->
       <div class="flex justify-center mb-6">
         <a
           href="/notices/cts-curriculum-guidelines-2026"
           class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-canvas/80 dark:bg-canvas-dark/80 backdrop-blur-sm border border-hairline dark:border-hairline-dark text-xs font-medium text-charcoal dark:text-on-dark hover:border-brand-green hover:shadow-sm transition-all"
         >
-          <span class="flex h-2 w-2 rounded-full bg-brand-green animate-pulse"></span>
-          <span>New 2026-2027 CTS Curriculum Guidelines Released</span>
+          <span class="flex h-2 w-2 rounded-full bg-brand-green animate-pulse"
+          ></span>
+          <span>New 2026-2027 CTS Guidelines Released</span>
           <ArrowRight class="w-3.5 h-3.5 text-steel dark:text-on-dark-muted" />
         </a>
       </div>
 
       <!-- Main Headline & Subtitle -->
       <div class="text-center max-w-3xl mx-auto space-y-4">
-        <h1 class="typing-headline text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink dark:text-on-dark leading-[1.1] overflow-hidden whitespace-nowrap border-r-2 border-brand-green-deep dark:border-brand-green mx-auto w-fit">
-          Training Resources for <span class="bg-gradient-to-r from-ink via-[#1a3d4a] to-brand-green-deep dark:from-white dark:via-[#7cebcb] dark:to-brand-green bg-clip-text text-transparent">ITI Trades</span>
+        <h1
+          class="typing-headline pb-5 text-4lg sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink dark:text-on-dark leading-[1.1] overflow-hidden whitespace-nowrap border-r-2 border-brand-green-deep dark:border-brand-green mx-auto w-fit"
+        >
+          ITI <span
+            class="bg-gradient-to-r from-ink via-[#1a3d4a] to-brand-green-deep dark:from-white dark:via-[#7cebcb] dark:to-brand-green bg-clip-text text-transparent"
+            >Training Resources</span
+          >
         </h1>
-        <p class="text-base sm:text-lg text-steel dark:text-on-dark-muted max-w-2xl mx-auto leading-relaxed">
-          Find lesson plans, practical guides, laboratory manuals, notes, and technical resources in one place. Standardized for instructors and trainees across India.
+        <p
+          class="text-base sm:text-lg text-steel dark:text-on-dark-muted max-w-2xl mx-auto leading-relaxed"
+        >
+          Find lesson plans, practical guides, laboratory manuals, notes, and
+          technical resources in one place. Standardized for instructors and
+          trainees across India.
         </p>
 
         <!-- Prominent Global Search Form with Live Autocomplete -->
@@ -105,164 +116,242 @@ const tradeIconMap: Record<string, any> = {
         </div>
 
         <!-- Trust Signals / Highlights -->
-        <div class="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-steel dark:text-on-dark-muted">
+        <div
+          class="pt-8 flex flex-wrap items-center justify-center gap-6 text-xs text-steel dark:text-on-dark-muted"
+        >
           <span class="inline-flex items-center gap-1.5">
-            <CheckCircle2 class="w-4 h-4 text-brand-green-deep dark:text-brand-green" />
+            <CheckCircle2
+              class="w-4 h-4 text-brand-green-deep dark:text-brand-green"
+            />
             100% Free Public Access
           </span>
           <span class="inline-flex items-center gap-1.5">
-            <CheckCircle2 class="w-4 h-4 text-brand-green-deep dark:text-brand-green" />
+            <CheckCircle2
+              class="w-4 h-4 text-brand-green-deep dark:text-brand-green"
+            />
             PDF &amp; DOCX Downloads
           </span>
           <span class="inline-flex items-center gap-1.5">
-            <CheckCircle2 class="w-4 h-4 text-brand-green-deep dark:text-brand-green" />
+            <CheckCircle2
+              class="w-4 h-4 text-brand-green-deep dark:text-brand-green"
+            />
             NIMI &amp; CTS Aligned
           </span>
         </div>
-
       </div>
-
     </div>
   </section>
 
   <!-- C. RESOURCE CATEGORIES SECTION -->
-  <section class="py-14 sm:py-20 bg-surface/50 dark:bg-canvas-dark border-b border-hairline dark:border-hairline-dark transition-colors">
+  <section
+    class="py-14 sm:py-20 bg-surface/50 dark:bg-canvas-dark border-b border-hairline dark:border-hairline-dark transition-colors"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+      <div
+        class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4"
+      >
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green">Curated Collections</span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-1">Resource Categories</h2>
-          <p class="text-sm text-steel dark:text-on-dark-muted mt-1">Structured instructional modules designed to facilitate theoretical and practical vocational training.</p>
+          <span
+            class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green"
+            >Curated Collections</span
+          >
+          <h2
+            class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-1"
+          >
+            Resource Categories
+          </h2>
+          <p class="text-sm text-steel dark:text-on-dark-muted mt-1">
+            Structured instructional modules designed to facilitate theoretical
+            and practical vocational training.
+          </p>
         </div>
-        <a href="/library" class="text-sm font-medium text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group">
+        <a
+          href="/library"
+          class="text-sm font-medium text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group"
+        >
           <span>View catalog</span>
-          <ArrowRight class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight
+            class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+          />
         </a>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {RESOURCE_CATEGORIES.map((cat) => {
-          const IconComp = categoryIconMap[cat.icon] || FileText;
-          return (
-            <a
-              href={`/categories/${cat.slug}`}
-              class="group relative flex flex-col p-6 rounded-xl border border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code hover:border-brand-green-deep dark:hover:border-brand-green-deep hover:shadow-sm transition-all"
-            >
-              <div class="w-10 h-10 rounded-lg bg-surface dark:bg-canvas-dark border border-hairline dark:border-hairline-dark flex items-center justify-center text-ink dark:text-on-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary transition-all mb-4">
-                <IconComp class="w-5 h-5 text-brand-green dark:group-hover:text-primary" />
-              </div>
-              <h3 class="text-base font-semibold text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors mb-1.5 flex items-center justify-between">
-                <span>{cat.name}</span>
-              </h3>
-              <p class="text-xs text-steel dark:text-on-dark-muted leading-relaxed flex-grow">
-                {cat.description}
-              </p>
-              <div class="mt-4 pt-3 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between text-xs text-stone dark:text-on-dark-muted">
-                <span>Browse Category</span>
-                <span class="font-medium text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green">Explore →</span>
-              </div>
-            </a>
-          );
-        })}
+        {
+          RESOURCE_CATEGORIES.map((cat) => {
+            const IconComp = categoryIconMap[cat.icon] || FileText;
+            return (
+              <a
+                href={`/categories/${cat.slug}`}
+                class="group relative flex flex-col p-6 rounded-xl border border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code hover:border-brand-green-deep dark:hover:border-brand-green-deep hover:shadow-sm transition-all"
+              >
+                <div class="w-10 h-10 rounded-lg bg-surface dark:bg-canvas-dark border border-hairline dark:border-hairline-dark flex items-center justify-center text-ink dark:text-on-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary transition-all mb-4">
+                  <IconComp class="w-5 h-5 text-brand-green dark:group-hover:text-primary" />
+                </div>
+                <h3 class="text-base font-semibold text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors mb-1.5 flex items-center justify-between">
+                  <span>{cat.name}</span>
+                </h3>
+                <p class="text-xs text-steel dark:text-on-dark-muted leading-relaxed flex-grow">
+                  {cat.description}
+                </p>
+                <div class="mt-4 pt-3 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between text-xs text-stone dark:text-on-dark-muted">
+                  <span>Browse Category</span>
+                  <span class="font-medium text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green">
+                    Explore →
+                  </span>
+                </div>
+              </a>
+            );
+          })
+        }
 
         <!-- Notice & Circular Category Card -->
         <a
           href="/notices"
           class="group relative flex flex-col p-6 rounded-xl border border-hairline dark:border-hairline-dark bg-surface-soft dark:bg-surface-code hover:border-steel dark:hover:border-steel hover:shadow-sm transition-all"
         >
-          <div class="w-10 h-10 rounded-lg bg-canvas dark:bg-canvas-dark border border-hairline dark:border-hairline-dark flex items-center justify-center text-ink dark:text-on-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary transition-all mb-4">
+          <div
+            class="w-10 h-10 rounded-lg bg-canvas dark:bg-canvas-dark border border-hairline dark:border-hairline-dark flex items-center justify-center text-ink dark:text-on-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary transition-all mb-4"
+          >
             <Bell class="w-5 h-5 text-brand-warn dark:text-amber-400" />
           </div>
-          <h3 class="text-base font-semibold text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors mb-1.5 flex items-center justify-between">
+          <h3
+            class="text-base font-semibold text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors mb-1.5 flex items-center justify-between"
+          >
             <span>Notices &amp; Announcements</span>
           </h3>
-          <p class="text-xs text-steel dark:text-on-dark-muted leading-relaxed flex-grow">
-            Official DGT, NCVET, and state directorate circulars, exam schedules, and curriculum updates.
+          <p
+            class="text-xs text-steel dark:text-on-dark-muted leading-relaxed flex-grow"
+          >
+            Official DGT, NCVET, and state directorate circulars, exam
+            schedules, and curriculum updates.
           </p>
-          <div class="mt-4 pt-3 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between text-xs text-stone dark:text-on-dark-muted">
+          <div
+            class="mt-4 pt-3 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between text-xs text-stone dark:text-on-dark-muted"
+          >
             <span>Official Circulars</span>
-            <span class="font-medium text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green">Read Notices →</span>
+            <span
+              class="font-medium text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green"
+              >Read Notices →</span
+            >
           </div>
         </a>
       </div>
-
     </div>
   </section>
 
   <!-- D. BROWSE BY TRADE SECTION (ICTSM Displayed First) -->
-  <section class="py-14 sm:py-20 bg-surface dark:bg-canvas-dark/60 border-b border-hairline dark:border-hairline-dark transition-colors">
+  <section
+    class="py-14 sm:py-20 bg-surface dark:bg-canvas-dark/60 border-b border-hairline dark:border-hairline-dark transition-colors"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+      <div
+        class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4"
+      >
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green">Vocational Disciplines</span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-1">Browse by Trade</h2>
-          <p class="text-sm text-steel dark:text-on-dark-muted mt-1">Explore specialized training content organized according to National Occupational Standards (NOS).</p>
+          <span
+            class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green"
+            >Vocational Disciplines</span
+          >
+          <h2
+            class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-1"
+          >
+            Browse by Trade
+          </h2>
+          <p class="text-sm text-steel dark:text-on-dark-muted mt-1">
+            Explore specialized training content organized according to National
+            Occupational Standards (NOS).
+          </p>
         </div>
-        <a href="/trades" class="text-sm font-medium text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group">
+        <a
+          href="/trades"
+          class="text-sm font-medium text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group"
+        >
           <span>All trades directory</span>
-          <ArrowRight class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight
+            class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+          />
         </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-        {activeTrades.map((trade, idx) => {
-          const IconComp = tradeIconMap[trade.icon] || Cpu;
-          const resourceCount = getTradeCount(trade.id);
-          const isPrimary = trade.slug === '';
+        {
+          activeTrades.map((trade, idx) => {
+            const IconComp = tradeIconMap[trade.icon] || Cpu;
+            const resourceCount = getTradeCount(trade.id);
+            const isPrimary = trade.slug === "";
 
-          return (
-            <div class={`group rounded-xl border ${isPrimary ? 'border-brand-green bg-canvas dark:bg-surface-code ring-1 ring-brand-green/20' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code'} p-6 flex flex-col justify-between transition-all hover:border-brand-green-deep dark:hover:border-brand-green-deep hover:shadow-sm`}>
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class={`w-10 h-10 rounded-lg ${isPrimary ? 'bg-primary dark:bg-canvas-dark text-on-primary' : 'bg-surface dark:bg-canvas-dark text-ink dark:text-on-dark'} flex items-center justify-center border border-hairline dark:border-hairline-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary`}>
-                     <IconComp class="w-5 h-5 text-brand-green dark:group-hover:text-primary" />
+            return (
+              <div
+                class={`group rounded-xl border ${isPrimary ? "border-brand-green bg-canvas dark:bg-surface-code ring-1 ring-brand-green/20" : "border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code"} p-6 flex flex-col justify-between transition-all hover:border-brand-green-deep dark:hover:border-brand-green-deep hover:shadow-sm`}
+              >
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <div
+                      class={`w-10 h-10 rounded-lg ${isPrimary ? "bg-primary dark:bg-canvas-dark text-on-primary" : "bg-surface dark:bg-canvas-dark text-ink dark:text-on-dark"} flex items-center justify-center border border-hairline dark:border-hairline-dark group-hover:bg-primary dark:group-hover:bg-brand-green group-hover:text-on-primary dark:group-hover:text-primary`}
+                    >
+                      <IconComp class="w-5 h-5 text-brand-green dark:group-hover:text-primary" />
+                    </div>
                   </div>
+
+                  <h3 class="text-base font-semibold text-ink dark:text-on-dark mb-1 leading-snug">
+                    <a
+                      href={`/trades/${trade.slug}`}
+                      class="group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors focus:outline-none focus:underline"
+                    >
+                      {trade.name}
+                    </a>
+                  </h3>
+
+                  <span class="inline-block font-mono text-[11px] text-stone dark:text-on-dark-muted mb-3">
+                    Code: {trade.code} • {trade.duration_years} Year Course
+                  </span>
+
+                  <p class="text-xs text-steel dark:text-on-dark-muted line-clamp-3 leading-relaxed mb-4">
+                    {trade.description}
+                  </p>
                 </div>
 
-                <h3 class="text-base font-semibold text-ink dark:text-on-dark mb-1 leading-snug">
-                  <a href={`/trades/${trade.slug}`} class="group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors focus:outline-none focus:underline">
-                    {trade.name}
+                <div class="pt-4 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between">
+                  <span class="text-xs font-medium text-charcoal dark:text-on-dark">
+                    {resourceCount}{" "}
+                    {resourceCount === 1 ? "Resource" : "Resources"}
+                  </span>
+                  <a
+                    href={`/trades/${trade.slug}`}
+                    class="text-xs font-semibold text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group"
+                  >
+                    <span>Explore</span>
+                    <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </a>
-                </h3>
-
-                <span class="inline-block font-mono text-[11px] text-stone dark:text-on-dark-muted mb-3">
-                  Code: {trade.code} • {trade.duration_years} Year Course
-                </span>
-
-                <p class="text-xs text-steel dark:text-on-dark-muted line-clamp-3 leading-relaxed mb-4">
-                  {trade.description}
-                </p>
+                </div>
               </div>
-
-              <div class="pt-4 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between">
-                <span class="text-xs font-medium text-charcoal dark:text-on-dark">
-                  {resourceCount} {resourceCount === 1 ? 'Resource' : 'Resources'}
-                </span>
-                <a
-                  href={`/trades/${trade.slug}`}
-                  class="text-xs font-semibold text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group"
-                >
-                  <span>Explore</span>
-                  <ArrowRight class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                </a>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })
+        }
       </div>
-
     </div>
   </section>
 
   <!-- F. CALL TO ACTION: Browse Library -->
-  <section class="py-14 sm:py-20 bg-surface/60 dark:bg-canvas-dark border-b border-hairline dark:border-hairline-dark transition-colors">
+  <section
+    class="py-14 sm:py-20 bg-surface/60 dark:bg-canvas-dark border-b border-hairline dark:border-hairline-dark transition-colors"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <span class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green">Full Collection</span>
-      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-2 mb-3">Browse the Complete Resource Library</h2>
-      <p class="text-sm text-steel dark:text-on-dark-muted mb-8 max-w-lg mx-auto">
-        Access all verified teaching and practical resources. Filter by trade, year, category, and file format.
+      <span
+        class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green"
+        >Full Collection</span
+      >
+      <h2
+        class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-2 mb-3"
+      >
+        Browse the Complete Resource Library
+      </h2>
+      <p
+        class="text-sm text-steel dark:text-on-dark-muted mb-8 max-w-lg mx-auto"
+      >
+        Access all verified teaching and practical resources. Filter by trade,
+        year, category, and file format.
       </p>
       <a
         href="/library"
@@ -275,33 +364,63 @@ const tradeIconMap: Record<string, any> = {
   </section>
 
   <!-- G. IMPORTANT NOTICES SECTION -->
-  <section class="py-14 sm:py-20 bg-canvas dark:bg-surface/20 transition-colors">
+  <section
+    class="py-14 sm:py-20 bg-canvas dark:bg-surface/20 transition-colors"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+      <div
+        class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4"
+      >
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-warn dark:text-amber-400">Regulatory &amp; Academic Updates</span>
-          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-1">Important Notices &amp; Circulars</h2>
-          <p class="text-sm text-steel dark:text-on-dark-muted mt-1">Key institutional announcements from DGT, NCVET, and State Technical Directorates.</p>
+          <span
+            class="text-xs font-semibold uppercase tracking-wider text-brand-warn dark:text-amber-400"
+            >Regulatory &amp; Academic Updates</span
+          >
+          <h2
+            class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-1"
+          >
+            Important Notices &amp; Circulars
+          </h2>
+          <p class="text-sm text-steel dark:text-on-dark-muted mt-1">
+            Key institutional announcements from DGT, NCVET, and State Technical
+            Directorates.
+          </p>
         </div>
-        <a href="/notices" class="text-sm font-medium text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group">
+        <a
+          href="/notices"
+          class="text-sm font-medium text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1 group"
+        >
           <span>All notices archive</span>
-          <ArrowRight class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          <ArrowRight
+            class="w-4 h-4 group-hover:translate-x-0.5 transition-transform"
+          />
         </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {activeNotices.map((notice) => (
-          <NoticeCard notice={notice} />
-        ))}
+        {activeNotices.map((notice) => <NoticeCard notice={notice} />)}
       </div>
-
     </div>
   </section>
 
-<style>
-  .typing-headline { animation: typing 2.5s steps(28, end) 1, blink 0.75s step-end infinite; }
-  @keyframes typing { from { width: 0 } to { width: 100% } }
-  @keyframes blink { 50% { border-color: transparent } }
-</style>
+  <style>
+    .typing-headline {
+      animation:
+        typing 2.5s steps(30, end) 1,
+        blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+  </style>
 </Layout>
