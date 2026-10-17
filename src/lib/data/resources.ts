@@ -550,7 +550,13 @@ export function searchResources(filters: SearchFilters = {}) {
     }
   }
 
-  // 6. Filter by Language
+  // 5b. Filter by Week Number
+  if (filters.week && filters.week !== 'all') {
+    const weekNum = parseInt(filters.week, 10);
+    if (!isNaN(weekNum)) {
+      list = list.filter((r) => (r as any).week_no === weekNum);
+    }
+  }
   if (filters.language && filters.language !== 'all') {
     list = list.filter((r) => r.language.toLowerCase() === filters.language?.toLowerCase());
   }

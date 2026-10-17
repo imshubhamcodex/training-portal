@@ -123,6 +123,7 @@ export interface SearchFilters {
   subject?: string;
   resource_type?: string;
   year?: string;
+  week?: string;
   language?: string;
   format?: string;
   sort?: 'relevance' | 'newest' | 'alphabetical';

@@ -27,6 +27,7 @@ const trade = searchParams.get('trade') || 'all';
 const subject = searchParams.get('subject') || 'all';
 const resourceType = searchParams.get('type') || 'all';
 const year = searchParams.get('year') || 'all';
+const week = searchParams.get('week') || 'all';
 const format = searchParams.get('format') || 'all';
 const sort = (searchParams.get('sort') as 'relevance' | 'newest' | 'alphabetical') || 'relevance';
 const page = parseInt(searchParams.get('page') || '1', 10);
@@ -39,6 +40,7 @@ const searchResult = searchResources({
   subject,
   resource_type: resourceType,
   year,
+  week,
   format,
   sort,
   page,
@@ -306,6 +308,22 @@ const hasActiveFilters = Boolean(
                 Year 2
               </a>
             </div>
+          </div>
+
+          <!-- Filter: Week Number -->
+          <div class="space-y-2 pt-2 border-t border-hairline-soft dark:border-hairline-dark">
+            <label class="text-xs font-semibold text-ink dark:text-on-dark uppercase tracking-wider block">Week Number: <span id="week-label">{week === 'all' ? 'All' : week}</span></label>
+            <input
+              id="week-slider"
+              type="range"
+              min="1"
+              max="52"
+              value={week === 'all' ? 1 : week}
+              class="w-full h-2 rounded-full bg-surface dark:bg-canvas-dark accent-brand-green cursor-pointer"
+              oninput="document.getElementById('week-label').textContent = this.value;"
+              onchange="const p=new URLSearchParams(window.location.search); p.set('week', this.value); p.set('page','1'); window.location.href='/library?'+p.toString();"
+            />
+            <a href={buildUrl({ week: 'all', page: 1 })} class="text-xs text-stone hover:underline">Clear week</a>
           </div>
 
           <!-- Filter: File Format -->
