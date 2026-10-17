@@ -30,6 +30,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-01T14:30:00Z',
     view_count: 842,
     download_count: 318,
+    week_no: 1,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000001',
@@ -83,6 +84,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-04T09:15:00Z',
     view_count: 615,
     download_count: 247,
+    week_no: 2,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000003',
@@ -125,6 +127,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-08T16:00:00Z',
     view_count: 1120,
     download_count: 532,
+    week_no: 3,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000004',
@@ -167,6 +170,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-10T11:20:00Z',
     view_count: 730,
     download_count: 289,
+    week_no: 3,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000005',
@@ -209,6 +213,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-12T15:45:00Z',
     view_count: 980,
     download_count: 412,
+    week_no: 4,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000006',
@@ -251,6 +256,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-14T10:00:00Z',
     view_count: 512,
     download_count: 198,
+    week_no: 2,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000007',
@@ -293,6 +299,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-15T09:00:00Z',
     view_count: 420,
     download_count: 165,
+    week_no: 6,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000008',
@@ -335,6 +342,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-11T13:00:00Z',
     view_count: 580,
     download_count: 210,
+    week_no: 5,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000009',
@@ -377,6 +385,7 @@ export const RESOURCES_DATA: Resource[] = [
     published_at: '2026-10-13T11:00:00Z',
     view_count: 670,
     download_count: 295,
+    week_no: 5,
     files: [
       {
         id: 'd0000000-0000-0000-0000-000000000010',
@@ -417,6 +426,7 @@ export const RESOURCES_DATA: Resource[] = [
     created_at: '2026-10-15T10:00:00Z',
     updated_at: '2026-10-15T10:00:00Z',
     files: [],
+    week_no: 0,
   },
 ];
 

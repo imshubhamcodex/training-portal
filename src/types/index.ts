@@ -86,6 +86,7 @@ export interface Resource {
   files: ResourceFile[];
   view_count?: number;
   download_count?: number;
+  week_no?: number;
 }
 
 export interface Notice {

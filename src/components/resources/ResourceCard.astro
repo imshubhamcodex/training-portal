@@ -13,7 +13,7 @@ const { resource, compact = false } = Astro.props;
 const typeBadgeConfig: Record<string, { label: string; badgeClass: string }> = {
   'lesson-plan': {
     label: 'Lesson Plan',
-    badgeClass: 'bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 border-emerald-200/80 dark:border-emerald-800/60',
+    badgeClass: 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border-rose-200/80 dark:border-rose-800/60',
   },
   'demonstration-plan': {
     label: 'Demonstration Plan',
@@ -25,11 +25,12 @@ const typeBadgeConfig: Record<string, { label: string; badgeClass: string }> = {
   },
   'notes': {
     label: 'Subject Notes',
-    badgeClass: 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200/80 dark:border-amber-800/60',
+    badgeClass: 'bg-fuchsia-50 dark:bg-fuchsia-950/40 text-fuchsia-800 dark:text-fuchsia-300 border-fuchsia-200/80 dark:border-fuchsia-800/60',
   },
   'diagram': {
     label: 'Technical Diagram',
-    badgeClass: 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border-rose-200/80 dark:border-rose-800/60',
+    badgeClass: 'bg-sky-50 dark:bg-sky-950/40 text-sky-800 dark:text-sky-300 border-sky-200/80 dark:border-sky-800/60',
+
   },
   'video': {
     label: 'Demonstration Video',
@@ -54,7 +55,7 @@ const badgeInfo = typeBadgeConfig[resource.resource_type] || {
 const tradeBadgeConfig: Record<string, { label: string; badgeClass: string; icon: any }> = {
   ictsm: {
     label: 'ICTSM',
-    badgeClass: 'bg-indigo-50 dark:bg-indigo-950/40 text-indigo-800 dark:text-indigo-300 border-indigo-200/80 dark:border-indigo-800/60',
+    badgeClass: 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200/80 dark:border-amber-800/60',
     icon: Cpu,
   },
   electrician: {
@@ -64,12 +65,12 @@ const tradeBadgeConfig: Record<string, { label: string; badgeClass: string; icon
   },
   fitter: {
     label: 'Fitter',
-    badgeClass: 'bg-rose-50 dark:bg-rose-950/40 text-rose-800 dark:text-rose-300 border-rose-200/80 dark:border-rose-800/60',
+    badgeClass: 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200/80 dark:border-amber-800/60',
     icon: Wrench,
   },
   copa: {
     label: 'COPA',
-    badgeClass: 'bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 border-blue-200/80 dark:border-blue-800/60',
+    badgeClass: 'bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border-amber-200/80 dark:border-amber-800/60',
     icon: Terminal,
   },
 };
@@ -88,11 +89,6 @@ const fileExt = primaryFile ? primaryFile.original_filename.split('.').pop()?.to
 const yearText = resource.training_year === 1 ? '1st Year' : `${resource.training_year}nd Year`;
 const jobNumberText = resource.job_number || `Job #${resource.sort_order || 1}`;
 
-// "This Week" badge for resources published within the last 7 days
-const publishedDate = resource.published_at ? new Date(resource.published_at) : null;
-const now = new Date();
-const isThisWeek = publishedDate ? now.getTime() - publishedDate.getTime() <= 7 * 24 * 60 * 60 * 1000 : false;
-
 // Distinctive colors for 1st Year vs 2nd Year badges
 const yearBadgeClass = resource.training_year === 1
   ? 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border-blue-200/70 dark:border-blue-800/60'
@@ -103,24 +99,21 @@ const yearBadgeClass = resource.training_year === 1
   <div>
     <!-- Top Row: Type Badge, Trade & This Week Pill -->
     <div class="flex items-center justify-between gap-2 flex-wrap mb-3">
-      <div class="flex items-center gap-1.5 flex-wrap">
-        <!-- Badge with distinct color per resource type -->
-        <span class={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold border ${badgeInfo.badgeClass}`}>
-          {badgeInfo.label}
-        </span>
-        <!-- Trade pill with distinct color and icon per trade -->
-        <span class={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold border flex-wrap ${tradeBadge.badgeClass}`}>
+      <span class={`inline-flex items-center gap-2 px-2.5 py-1 rounded w-full text-xs font-semibold border flex-wrap ${tradeBadge.badgeClass}`}>
           <TradeIcon class="w-3 h-3" />
           {tradeBadge.label}
+      </span>
+     <div class="flex items-center justify-between flex-wrap mb-3 w-full">
+        <!-- Left Side: Trade pill -->
+        <span class="inline-flex items-center gap-1 py-1 text-xs font-semibold text-brand-green-deep dark:text-brand-green bg-brand-green-soft/10 dark:bg-brand-green/15 px-2 rounded-full border border-brand-green/30">
+          <Clock class="w-3 h-3" />
+          WEEK - {resource.week_no}
+        </span>
+        <!-- Right Side: Resource type badge -->
+        <span class={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold border ${badgeInfo.badgeClass}`}>
+          {badgeInfo.label}
         </span>
       </div>
-
-      {isThisWeek && (
-        <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-brand-green-deep dark:text-brand-green bg-brand-green-soft/60 dark:bg-brand-green/15 px-2 py-0.5 rounded-full border border-brand-green/30">
-          <Clock class="w-3 h-3" />
-          This Week
-        </span>
-      )}
     </div>
 
     <!-- Title -->
