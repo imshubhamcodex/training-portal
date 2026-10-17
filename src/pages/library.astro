@@ -17,6 +17,8 @@ import {
   FileQuestion,
 } from 'lucide-astro';
 
+export const prerender = false;
+
 // Parse Query Parameters from URL
 const url = new URL(Astro.request.url);
 const searchParams = url.searchParams;
