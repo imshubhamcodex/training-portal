@@ -30,7 +30,7 @@ const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
 });
 ---
 
-<article class={`group rounded-xl border ${notice.is_pinned ? 'border-brand-green bg-brand-green-soft/20 dark:bg-brand-green/10' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-canvas-dark'} p-5 transition-all hover:border-brand-green-deep dark:hover:border-brand-green-deep`}>
+<article class={`group flex flex-col rounded-xl border ${notice.is_pinned ? 'border-brand-green bg-brand-green-soft/20 dark:bg-brand-green/10' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-canvas-dark'} p-5 transition-all hover:border-brand-green-deep dark:hover:border-brand-green-deep`}>
   <div class="flex items-center justify-between gap-2 flex-wrap mb-2">
     <div class="flex items-center gap-2">
       <Badge variant={badgeInfo.variant} size="sm">
@@ -68,12 +68,12 @@ const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
   )}
 
   {!compact && (
-    <p class="text-xs text-steel dark:text-on-dark-muted line-clamp-3 leading-relaxed mb-4 min-h-[72px]">
+    <p class="text-xs text-steel dark:text-on-dark-muted line-clamp-3 leading-relaxed mb-4 min-h-[72px] flex-grow">
       {notice.body}
     </p>
   )}
 
-  <div class="pt-3 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between gap-2 text-xs">
+  <div class="mt-auto pt-3 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between gap-2 text-xs">
     <a href={`/notices/${notice.slug}`} class="text-ink dark:text-on-dark font-medium hover:text-brand-green-deep transition-colors">
       Read full circular →
     </a>

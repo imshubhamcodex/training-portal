@@ -1,0 +1,80 @@
+
+> build
+> astro build
+
+[2m13:29:40[22m [34m[@astrojs/node][39m Enabling sessions with filesystem storage
+[2m13:29:41[22m [34m[types][39m Generated [2m386ms[22m
+[2m13:29:41[22m [34m[build][39m output: [34m"static"[39m
+[2m13:29:41[22m [34m[build][39m mode: [34m"server"[39m
+[2m13:29:41[22m [34m[build][39m directory: [34mC:\Users\edwss\Desktop\training-docs\dist\[39m
+[2m13:29:41[22m [34m[build][39m adapter: [32m@astrojs/node[39m
+[2m13:29:41[22m [34m[build][39m Collecting build info...
+[2m13:29:41[22m [34m[build][39m [32m✓ Completed in 627ms.[39m
+[2m13:29:41[22m [34m[build][39m Building server entrypoints...
+[2m13:29:47[22m [34m[vite][39m [32m✓ built in 5.90s[39m
+[2m13:29:52[22m [34m[vite][39m [32m✓ built in 5.55s[39m
+[2m13:29:52[22m [34m[vite][39m [32m✓ built in 101ms[39m
+
+[42m[30m prerendering static routes [39m[49m
+[2m13:29:53[22m   [34m├─[39m [2m/about/index.html[22m [2m(+107ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/categories/index.html[22m [2m(+28ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/login/index.html[22m [2m(+21ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/notices/index.html[22m [2m(+22ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/new/index.html[22m [2m(+25ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000001/edit/index.html[22m [2m(+16ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000002/edit/index.html[22m [2m(+13ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000003/edit/index.html[22m [2m(+10ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000004/edit/index.html[22m [2m(+13ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000005/edit/index.html[22m [2m(+12ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000006/edit/index.html[22m [2m(+7ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000007/edit/index.html[22m [2m(+12ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000008/edit/index.html[22m [2m(+10ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000009/edit/index.html[22m [2m(+7ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/c0000000-0000-0000-0000-000000000010/edit/index.html[22m [2m(+9ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/resources/index.html[22m [2m(+20ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/settings/index.html[22m [2m(+380ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/subjects/index.html[22m [2m(+29ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/trades/index.html[22m [2m(+24ms)[22m 
+[2m13:29:53[22m   [34m├─[39m [2m/admin/index.html[22m [2m(+40ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/categories/lesson-plans/index.html[22m [2m(+19ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/categories/demonstration-plans/index.html[22m [2m(+10ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/categories/lab-manuals/index.html[22m [2m(+12ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/categories/notes/index.html[22m [2m(+9ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/categories/videos-images/index.html[22m [2m(+13ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/contact/index.html[22m [2m(+17ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/copyright/index.html[22m [2m(+15ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/notices/cts-curriculum-guidelines-2026/index.html[22m [2m(+20ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/notices/aitt-practical-records-submission/index.html[22m [2m(+15ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/notices/annual-workshop-safety-calibration/index.html[22m [2m(+15ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/notices/archive-marksheet-verification-2025/index.html[22m [2m(+11ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/notices/index.html[22m [2m(+27ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/privacy/index.html[22m [2m(+16ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/lp-motherboard-troubleshooting/index.html[22m [2m(+20ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/dp-fusion-splicing-fiber-optics/index.html[22m [2m(+12ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/lab-manual-structured-cabling/index.html[22m [2m(+14ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/notes-tcpip-subnetting-cidr/index.html[22m [2m(+9ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/diagram-enterprise-network-topology/index.html[22m [2m(+12ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/lab-manual-ad-gpo-configuration/index.html[22m [2m(+14ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/lp-linux-file-permissions/index.html[22m [2m(+14ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/notes-electrical-safety-earthing/index.html[22m [2m(+9ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/resources/lab-manual-sql-constraints/index.html[22m [2m(+10ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/ictsm/subjects/hardware-maintenance/index.html[22m [2m(+16ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/ictsm/subjects/networking-basics/index.html[22m [2m(+16ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/ictsm/subjects/os-configuration/index.html[22m [2m(+19ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/ictsm/subjects/routing-switching/index.html[22m [2m(+17ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/ictsm/subjects/fiber-optics/index.html[22m [2m(+15ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/ictsm/subjects/server-admin/index.html[22m [2m(+7ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/electrician/subjects/electrical-theory/index.html[22m [2m(+24ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/copa/subjects/dbms-sql/index.html[22m [2m(+9ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/ictsm/index.html[22m [2m(+29ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/electrician/index.html[22m [2m(+11ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/fitter/index.html[22m [2m(+7ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/copa/index.html[22m [2m(+11ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/trades/index.html[22m [2m(+19ms)[22m 
+[2m13:29:54[22m   [34m├─[39m [2m/index.html[22m [2m(+36ms)[22m 
+[2m13:29:54[22m [32m✓ Completed in 1.57s.
+[39m
+[2m13:29:54[22m [34m[build][39m Rearranging server assets...
+[2m13:29:54[22m [34m[build][39m [32m✓ Completed in 13.44s.[39m
+[2m13:29:54[22m [34m[build][39m Server built in [1m14.18s[22m
+[2m13:29:54[22m [34m[build][39m [1mComplete![22m

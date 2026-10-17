@@ -69,7 +69,7 @@ const tradeIconMap: Record<string, any> = {
 
       <!-- Main Headline & Subtitle -->
       <div class="text-center max-w-3xl mx-auto space-y-4">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink dark:text-on-dark leading-[1.1]">
+        <h1 class="typing-headline text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink dark:text-on-dark leading-[1.1] overflow-hidden whitespace-nowrap border-r-2 border-brand-green-deep dark:border-brand-green mx-auto w-fit">
           Training Resources for <span class="bg-gradient-to-r from-ink via-[#1a3d4a] to-brand-green-deep dark:from-white dark:via-[#7cebcb] dark:to-brand-green bg-clip-text text-transparent">ITI Trades</span>
         </h1>
         <p class="text-base sm:text-lg text-steel dark:text-on-dark-muted max-w-2xl mx-auto leading-relaxed">
@@ -298,4 +298,10 @@ const tradeIconMap: Record<string, any> = {
 
     </div>
   </section>
+
+<style>
+  .typing-headline { animation: typing 2.5s steps(28, end) 1, blink 0.75s step-end infinite; }
+  @keyframes typing { from { width: 0 } to { width: 100% } }
+  @keyframes blink { 50% { border-color: transparent } }
+</style>
 </Layout>
