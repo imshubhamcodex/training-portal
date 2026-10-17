@@ -58,12 +58,27 @@ const siteTitle = title.includes('ITI Resource Hub') ? title : `${title} | ITI R
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Theme Initialization Script (Synchronous to prevent FOUC) -->
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (_) {}
+      })();
+    </script>
   </head>
-  <body class="flex flex-col min-h-screen bg-white text-[#1c1c1e] selection:bg-[#7cebcb]/30 selection:text-[#0a0a0a]">
+  <body class="flex flex-col min-h-screen bg-canvas dark:bg-canvas-dark text-charcoal dark:text-ink selection:bg-brand-green-soft dark:selection:bg-brand-green/30 selection:text-primary dark:selection:text-white transition-colors duration-200">
     <!-- Accessibility Skip Link -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-[#0a0a0a] text-white rounded-md text-sm shadow-lg font-medium"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary dark:bg-canvas-dark text-on-primary rounded-md text-sm shadow-lg font-medium border border-hairline dark:border-hairline-dark"
     >
       Skip to main content
     </a>

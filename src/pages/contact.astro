@@ -12,9 +12,9 @@ import { Mail, MessageSquare, AlertTriangle, Send, CheckCircle2 } from 'lucide-a
     <Breadcrumbs items={[{ label: 'Contact & Corrections' }]} />
 
     <div class="mt-4 mb-10">
-      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Feedback &amp; Quality Assurance</span>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">Contact &amp; Content Correction</h1>
-      <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a] dark:text-brand-green">Feedback &amp; Quality Assurance</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] dark:text-ink mt-1">Contact &amp; Content Correction</h1>
+      <p class="text-sm text-[#5a5a5c] dark:text-steel mt-2 max-w-2xl leading-relaxed">
         We strive for technical and pedagogical accuracy. If you notice an error in a lesson plan, an outdated diagram, or wish to contribute vocational resources, please reach out below.
       </p>
     </div>
@@ -23,25 +23,25 @@ import { Mail, MessageSquare, AlertTriangle, Send, CheckCircle2 } from 'lucide-a
       
       <!-- Contact Information Cards -->
       <div class="space-y-4">
-        <div class="p-5 rounded-xl border border-[#e5e5e5] bg-white space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] flex items-center justify-center text-[#0a0a0a]">
-            <AlertTriangle class="w-4 h-4 text-[#c37d0d]" />
+        <div class="p-5 rounded-xl border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface-code space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] dark:bg-surface flex items-center justify-center text-[#0a0a0a] dark:text-ink">
+            <AlertTriangle class="w-4 h-4 text-[#c37d0d] dark:text-brand-warn" />
           </div>
-          <h3 class="text-sm font-semibold text-[#0a0a0a]">Content Correction Procedure</h3>
-          <p class="text-xs text-[#5a5a5c] leading-relaxed">
+          <h3 class="text-sm font-semibold text-[#0a0a0a] dark:text-ink">Content Correction Procedure</h3>
+          <p class="text-xs text-[#5a5a5c] dark:text-steel leading-relaxed">
             Please include the <strong>Resource Title</strong> or <strong>URL</strong>, the specific paragraph or diagram step, and the recommended factual correction.
           </p>
         </div>
 
-        <div class="p-5 rounded-xl border border-[#e5e5e5] bg-[#fafafa] space-y-2">
-          <div class="w-8 h-8 rounded-lg bg-white flex items-center justify-center text-[#0a0a0a] border border-[#e5e5e5]">
-            <Mail class="w-4 h-4 text-[#00b48a]" />
+        <div class="p-5 rounded-xl border border-[#e5e5e5] dark:border-hairline-dark bg-[#fafafa] dark:bg-surface-code space-y-2">
+          <div class="w-8 h-8 rounded-lg bg-white dark:bg-surface flex items-center justify-center text-[#0a0a0a] dark:text-ink border border-[#e5e5e5] dark:border-hairline-dark">
+            <Mail class="w-4 h-4 text-[#00b48a] dark:text-brand-green" />
           </div>
-          <h3 class="text-sm font-semibold text-[#0a0a0a]">Direct Inquiries</h3>
-          <p class="text-xs text-[#5a5a5c]">
+          <h3 class="text-sm font-semibold text-[#0a0a0a] dark:text-ink">Direct Inquiries</h3>
+          <p class="text-xs text-[#5a5a5c] dark:text-steel">
             Editorial desk review time: typically 1-2 working days for published resource corrections.
           </p>
-          <span class="text-xs font-mono text-[#0a0a0a] block pt-1">
+          <span class="text-xs font-mono text-[#0a0a0a] dark:text-ink block pt-1">
             editorial@iti-resource-hub.local
           </span>
         </div>
@@ -51,41 +51,41 @@ import { Mail, MessageSquare, AlertTriangle, Send, CheckCircle2 } from 'lucide-a
       <div class="md:col-span-2">
         <form
           id="contact-form"
-          class="p-6 sm:p-8 rounded-2xl bg-white border border-[#e5e5e5] space-y-4 shadow-xs"
+          class="p-6 sm:p-8 rounded-2xl bg-white dark:bg-surface-code border border-[#e5e5e5] dark:border-hairline-dark space-y-4 shadow-xs"
         >
-          <div id="form-success" class="hidden p-4 rounded-xl bg-[#00d4a4]/10 border border-[#00d4a4]/30 text-[#00b48a] text-xs font-medium flex items-center gap-2">
+          <div id="form-success" class="hidden p-4 rounded-xl bg-[#00d4a4]/10 border border-[#00d4a4]/30 text-[#00b48a] dark:text-brand-green text-xs font-medium flex items-center gap-2">
             <CheckCircle2 class="w-5 h-5 flex-shrink-0" />
             <span>Thank you. Your request has been recorded and submitted for technical review.</span>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div class="space-y-1">
-              <label for="name" class="text-xs font-semibold text-[#0a0a0a]">Your Full Name *</label>
+              <label for="name" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Your Full Name *</label>
               <input
                 type="text"
                 id="name"
                 required
                 placeholder="e.g. R. K. Sharma (Instructor)"
-                class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface text-xs text-[#0a0a0a] dark:text-ink placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
               />
             </div>
             <div class="space-y-1">
-              <label for="email" class="text-xs font-semibold text-[#0a0a0a]">Email Address *</label>
+              <label for="email" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Email Address *</label>
               <input
                 type="email"
                 id="email"
                 required
                 placeholder="your.email@institution.in"
-                class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+                class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface text-xs text-[#0a0a0a] dark:text-ink placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
               />
             </div>
           </div>
 
           <div class="space-y-1">
-            <label for="request-type" class="text-xs font-semibold text-[#0a0a0a]">Subject / Request Category *</label>
+            <label for="request-type" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Subject / Request Category *</label>
             <select
               id="request-type"
-              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
             >
               <option value="correction">Report Error in Lesson / Demonstration Plan</option>
               <option value="diagram">Discrepancy in Technical Schematic / Wiring Diagram</option>
@@ -95,31 +95,31 @@ import { Mail, MessageSquare, AlertTriangle, Send, CheckCircle2 } from 'lucide-a
           </div>
 
           <div class="space-y-1">
-            <label for="resource-url" class="text-xs font-semibold text-[#0a0a0a]">Resource Slug or URL (if applicable)</label>
+            <label for="resource-url" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Resource Slug or URL (if applicable)</label>
             <input
               type="text"
               id="resource-url"
               placeholder="e.g. /resources/lp-motherboard-troubleshooting"
-              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface text-xs text-[#0a0a0a] dark:text-ink placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
             />
           </div>
 
           <div class="space-y-1">
-            <label for="message" class="text-xs font-semibold text-[#0a0a0a]">Description of Discrepancy or Feedback *</label>
+            <label for="message" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Description of Discrepancy or Feedback *</label>
             <textarea
               id="message"
               rows="4"
               required
               placeholder="Explain the technical discrepancy, page number, and correct reference standard..."
-              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface text-xs text-[#0a0a0a] dark:text-ink placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
             ></textarea>
           </div>
 
           <button
             type="submit"
-            class="w-full sm:w-auto px-6 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex items-center justify-center gap-2"
+            class="w-full sm:w-auto px-6 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white dark:bg-white dark:text-[#0a0a0a] dark:hover:bg-slate-200 rounded-full text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
-            <Send class="w-3.5 h-3.5 text-[#00d4a4]" />
+            <Send class="w-3.5 h-3.5 text-[#00d4a4] dark:text-brand-green-deep" />
             <span>Submit Correction Request</span>
           </button>
         </form>

@@ -43,12 +43,12 @@ const expDate = notice.expires_at
       ]}
     />
 
-    <article class="mt-4 bg-white rounded-2xl border border-[#e5e5e5] p-6 sm:p-10 shadow-xs">
+    <article class="mt-4 bg-white dark:bg-surface-code rounded-2xl border border-[#e5e5e5] dark:border-hairline-dark p-6 sm:p-10 shadow-xs">
       
       <!-- Back Link -->
       <a
         href="/notices"
-        class="inline-flex items-center gap-1.5 text-xs font-medium text-[#5a5a5c] hover:text-[#0a0a0a] mb-6 transition-colors"
+        class="inline-flex items-center gap-1.5 text-xs font-medium text-[#5a5a5c] dark:text-steel hover:text-[#0a0a0a] dark:hover:text-ink mb-6 transition-colors"
       >
         <ArrowLeft class="w-3.5 h-3.5" />
         <span>Back to all notices</span>
@@ -61,69 +61,69 @@ const expDate = notice.expires_at
         </Badge>
 
         {expired ? (
-          <span class="px-2.5 py-0.5 text-xs font-medium bg-[#f7f7f7] text-[#888888] rounded-full border border-[#e5e5e5]">
+          <span class="px-2.5 py-0.5 text-xs font-medium bg-[#f7f7f7] dark:bg-surface text-[#888888] dark:text-muted rounded-full border border-[#e5e5e5] dark:border-hairline-dark">
             Archive / Expired
           </span>
         ) : (
-          <span class="px-2.5 py-0.5 text-xs font-semibold bg-[#00d4a4]/15 text-[#00b48a] rounded-full border border-[#00d4a4]/30">
+          <span class="px-2.5 py-0.5 text-xs font-semibold bg-[#00d4a4]/15 text-[#00b48a] dark:text-brand-green rounded-full border border-[#00d4a4]/30">
             Active Notice
           </span>
         )}
       </div>
 
       <!-- Title -->
-      <h1 class="text-2xl sm:text-3xl font-bold text-[#0a0a0a] tracking-tight leading-tight mb-4">
+      <h1 class="text-2xl sm:text-3xl font-bold text-[#0a0a0a] dark:text-ink tracking-tight leading-tight mb-4">
         {notice.title}
       </h1>
 
       <!-- Meta Bar -->
-      <div class="p-4 rounded-xl bg-[#fafafa] border border-[#ededed] mb-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[#5a5a5c]">
+      <div class="p-4 rounded-xl bg-[#fafafa] dark:bg-surface border border-[#ededed] dark:border-hairline-dark mb-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-[#5a5a5c] dark:text-steel">
         {notice.source_name && (
           <div class="flex items-center gap-2">
-            <Building2 class="w-4 h-4 text-[#888888]" />
+            <Building2 class="w-4 h-4 text-[#888888] dark:text-stone" />
             <div>
-              <span class="text-[#888888] block text-[10px] uppercase font-semibold">Issuing Authority</span>
-              <span class="font-medium text-[#0a0a0a]">{notice.source_name}</span>
+              <span class="text-[#888888] dark:text-stone block text-[10px] uppercase font-semibold">Issuing Authority</span>
+              <span class="font-medium text-[#0a0a0a] dark:text-ink">{notice.source_name}</span>
             </div>
           </div>
         )}
 
         <div class="flex items-center gap-2">
-          <Calendar class="w-4 h-4 text-[#888888]" />
+          <Calendar class="w-4 h-4 text-[#888888] dark:text-stone" />
           <div>
-            <span class="text-[#888888] block text-[10px] uppercase font-semibold">Published Date</span>
-            <span class="font-medium text-[#0a0a0a]">{pubDate}</span>
+            <span class="text-[#888888] dark:text-stone block text-[10px] uppercase font-semibold">Published Date</span>
+            <span class="font-medium text-[#0a0a0a] dark:text-ink">{pubDate}</span>
           </div>
         </div>
 
         {expDate && (
           <div class="flex items-center gap-2">
-            <Calendar class="w-4 h-4 text-[#888888]" />
+            <Calendar class="w-4 h-4 text-[#888888] dark:text-stone" />
             <div>
-              <span class="text-[#888888] block text-[10px] uppercase font-semibold">Validity / Expiry</span>
-              <span class="font-medium text-[#0a0a0a]">{expDate}</span>
+              <span class="text-[#888888] dark:text-stone block text-[10px] uppercase font-semibold">Validity / Expiry</span>
+              <span class="font-medium text-[#0a0a0a] dark:text-ink">{expDate}</span>
             </div>
           </div>
         )}
       </div>
 
       <!-- Notice Body Text -->
-      <div class="prose prose-sm max-w-none text-sm text-[#1c1c1e] leading-relaxed whitespace-pre-line space-y-4 mb-8">
+      <div class="prose prose-sm max-w-none text-sm text-[#1c1c1e] dark:text-charcoal leading-relaxed whitespace-pre-line space-y-4 mb-8">
         {notice.body}
       </div>
 
       <!-- Attachment Card (if present) -->
       {notice.attachment_url && (
-        <div class="p-5 rounded-xl border border-[#00d4a4] bg-[#00d4a4]/[0.03] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="p-5 rounded-xl border border-[#00d4a4]/40 bg-[#00d4a4]/[0.04] dark:bg-[#00d4a4]/[0.08] flex flex-col sm:row sm:items-center justify-between gap-4">
           <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-lg bg-white border border-[#e5e5e5] flex items-center justify-center text-[#0a0a0a]">
-              <FileText class="w-5 h-5 text-[#00b48a]" />
+            <div class="w-10 h-10 rounded-lg bg-white dark:bg-surface-code border border-[#e5e5e5] dark:border-hairline-dark flex items-center justify-center text-[#0a0a0a] dark:text-ink">
+              <FileText class="w-5 h-5 text-[#00b48a] dark:text-brand-green" />
             </div>
             <div>
-              <span class="text-xs font-semibold text-[#0a0a0a] block">
+              <span class="text-xs font-semibold text-[#0a0a0a] dark:text-ink block">
                 {notice.attachment_name || 'Official Circular Attachment.pdf'}
               </span>
-              <span class="text-[11px] text-[#5a5a5c]">
+              <span class="text-[11px] text-[#5a5a5c] dark:text-steel">
                 Official PDF Document from Issuing Directorate
               </span>
             </div>
@@ -132,17 +132,17 @@ const expDate = notice.expires_at
           <a
             href={notice.attachment_url}
             download={notice.attachment_name || 'Circular_Attachment.pdf'}
-            class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex-shrink-0"
+            class="inline-flex items-center justify-center gap-1.5 px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white dark:bg-white dark:text-[#0a0a0a] dark:hover:bg-slate-200 rounded-full text-xs font-medium transition-colors flex-shrink-0"
           >
-            <Download class="w-4 h-4 text-[#00d4a4]" />
+            <Download class="w-4 h-4 text-[#00d4a4] dark:text-brand-green-deep" />
             <span>Download Attachment</span>
           </a>
         </div>
       )}
 
       <!-- Disclaimer Footer -->
-      <div class="mt-10 pt-6 border-t border-[#ededed] text-xs text-[#888888] flex items-start gap-2">
-        <AlertCircle class="w-4 h-4 text-[#888888] flex-shrink-0 mt-0.5" />
+      <div class="mt-10 pt-6 border-t border-[#ededed] dark:border-hairline-dark text-xs text-[#888888] dark:text-muted flex items-start gap-2">
+        <AlertCircle class="w-4 h-4 text-[#888888] dark:text-muted flex-shrink-0 mt-0.5" />
         <p>
           This notice is republished for educational guidance of trainees and instructors. Please cross-verify with official state directorate gazettes for legal or compliance matters.
         </p>

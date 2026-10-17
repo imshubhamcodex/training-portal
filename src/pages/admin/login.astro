@@ -4,7 +4,7 @@ import { Lock, Shield, ArrowRight, AlertCircle, CheckCircle2, BookOpen } from 'l
 ---
 
 <!doctype html>
-<html lang="en" class="h-full bg-[#f7f7f7]">
+<html lang="en" class="h-full bg-[#f7f7f7] dark:bg-canvas-dark text-[#1c1c1e] dark:text-ink">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,48 +15,59 @@ import { Lock, Shield, ArrowRight, AlertCircle, CheckCircle2, BookOpen } from 'l
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      (function() {
+        const storedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (storedTheme === 'dark' || (!storedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
   </head>
-  <body class="flex flex-col min-h-screen text-[#1c1c1e] antialiased items-center justify-center p-4">
+  <body class="flex flex-col min-h-screen bg-[#f7f7f7] dark:bg-canvas-dark text-[#1c1c1e] dark:text-ink antialiased items-center justify-center p-4">
     
     <div class="w-full max-w-md">
       
       <!-- Logo Branding -->
       <div class="text-center mb-8">
         <a href="/" class="inline-flex items-center gap-2 mb-3">
-          <div class="w-10 h-10 rounded-xl bg-[#0a0a0a] flex items-center justify-center text-white shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-[#0a0a0a] dark:bg-surface-code flex items-center justify-center text-white border border-transparent dark:border-hairline-dark shadow-sm">
             <BookOpen class="w-5 h-5 text-[#00d4a4]" />
           </div>
-          <span class="font-bold text-xl text-[#0a0a0a] tracking-tight">ITI Resource Hub</span>
+          <span class="font-bold text-xl text-[#0a0a0a] dark:text-ink tracking-tight">ITI Resource Hub</span>
         </a>
-        <h1 class="text-xl font-bold text-[#0a0a0a]">Administrator Access</h1>
-        <p class="text-xs text-[#5a5a5c] mt-1">Authorized instructional coordinators and portal administrators only.</p>
+        <h1 class="text-xl font-bold text-[#0a0a0a] dark:text-ink">Administrator Access</h1>
+        <p class="text-xs text-[#5a5a5c] dark:text-steel mt-1">Authorized instructional coordinators and portal administrators only.</p>
       </div>
 
       <!-- Login Card -->
-      <div class="bg-white rounded-2xl border border-[#e5e5e5] p-6 sm:p-8 shadow-sm">
+      <div class="bg-white dark:bg-surface-code rounded-2xl border border-[#e5e5e5] dark:border-hairline-dark p-6 sm:p-8 shadow-sm">
         
         <!-- Error Alert Container -->
-        <div id="login-error" class="hidden mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-xs rounded-xl flex items-center gap-2">
+        <div id="login-error" class="hidden mb-4 p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-300 text-xs rounded-xl flex items-center gap-2">
           <AlertCircle class="w-4 h-4 flex-shrink-0" />
           <span id="login-error-text">Invalid administrator credentials.</span>
         </div>
 
         <form id="admin-login-form" class="space-y-4">
           <div class="space-y-1">
-            <label for="admin-email" class="text-xs font-semibold text-[#0a0a0a] block">Administrator Email</label>
+            <label for="admin-email" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink block">Administrator Email</label>
             <input
               type="email"
               id="admin-email"
               required
               value="admin@iti-hub.gov.in"
               placeholder="admin@iti-hub.gov.in"
-              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface text-xs text-[#0a0a0a] dark:text-ink placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
             />
           </div>
 
           <div class="space-y-1">
             <div class="flex items-center justify-between">
-              <label for="admin-password" class="text-xs font-semibold text-[#0a0a0a]">Password</label>
+              <label for="admin-password" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Password</label>
             </div>
             <input
               type="password"
@@ -64,34 +75,34 @@ import { Lock, Shield, ArrowRight, AlertCircle, CheckCircle2, BookOpen } from 'l
               required
               value="AdminPass2026!"
               placeholder="••••••••••••"
-              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+              class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface text-xs text-[#0a0a0a] dark:text-ink placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
             />
           </div>
 
           <!-- Demo Credentials Banner -->
-          <div class="p-3 bg-[#fafafa] rounded-lg border border-[#ededed] text-[11px] text-[#5a5a5c] space-y-1">
-            <div class="font-semibold text-[#0a0a0a] flex items-center gap-1">
-              <Shield class="w-3.5 h-3.5 text-[#00b48a]" />
+          <div class="p-3 bg-[#fafafa] dark:bg-surface rounded-lg border border-[#ededed] dark:border-hairline-dark text-[11px] text-[#5a5a5c] dark:text-steel space-y-1">
+            <div class="font-semibold text-[#0a0a0a] dark:text-ink flex items-center gap-1">
+              <Shield class="w-3.5 h-3.5 text-[#00b48a] dark:text-brand-green" />
               <span>Development Provisioned Credentials:</span>
             </div>
-            <div>Email: <code class="font-mono bg-white px-1 py-0.5 rounded border border-[#e5e5e5]">admin@iti-hub.gov.in</code></div>
-            <div>Password: <code class="font-mono bg-white px-1 py-0.5 rounded border border-[#e5e5e5]">AdminPass2026!</code></div>
+            <div>Email: <code class="font-mono bg-white dark:bg-surface-code px-1 py-0.5 rounded border border-[#e5e5e5] dark:border-hairline-dark text-[#0a0a0a] dark:text-ink">admin@iti-hub.gov.in</code></div>
+            <div>Password: <code class="font-mono bg-white dark:bg-surface-code px-1 py-0.5 rounded border border-[#e5e5e5] dark:border-hairline-dark text-[#0a0a0a] dark:text-ink">AdminPass2026!</code></div>
           </div>
 
           <button
             type="submit"
             id="login-submit-btn"
-            class="w-full py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex items-center justify-center gap-2"
+            class="w-full py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white dark:bg-white dark:text-[#0a0a0a] dark:hover:bg-slate-200 rounded-full text-xs font-medium transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
-            <Lock class="w-3.5 h-3.5 text-[#00d4a4]" />
+            <Lock class="w-3.5 h-3.5 text-[#00d4a4] dark:text-brand-green-deep" />
             <span>Sign In to Admin Console</span>
           </button>
         </form>
 
       </div>
 
-      <div class="text-center mt-6 text-xs text-[#888888]">
-        <a href="/" class="hover:text-[#0a0a0a] transition-colors underline">
+      <div class="text-center mt-6 text-xs text-[#888888] dark:text-stone">
+        <a href="/" class="hover:text-[#0a0a0a] dark:hover:text-ink transition-colors underline">
           ← Return to Public Portal
         </a>
       </div>

@@ -17,18 +17,18 @@ const archivedNotices = getArchivedNotices();
     <Breadcrumbs items={[{ label: 'Notices & Circulars' }]} />
 
     <div class="mt-4 mb-10">
-      <span class="text-xs font-semibold uppercase tracking-wider text-[#c37d0d]">Regulatory &amp; Institutional Updates</span>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">Notices &amp; Announcements</h1>
-      <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#c37d0d] dark:text-brand-warn">Regulatory &amp; Institutional Updates</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] dark:text-ink mt-1">Notices &amp; Announcements</h1>
+      <p class="text-sm text-[#5a5a5c] dark:text-steel mt-2 max-w-2xl leading-relaxed">
         Stay updated with official notifications, All India Trade Test (AITT) circulars, syllabus revisions, and workshop safety guidelines.
       </p>
     </div>
 
     <!-- Active Notices Section -->
     <section class="mb-14">
-      <div class="flex items-center gap-2 mb-6 pb-2 border-b border-[#ededed]">
-        <CheckCircle class="w-5 h-5 text-[#00b48a]" />
-        <h2 class="text-xl font-bold text-[#0a0a0a]">Current &amp; Active Notices ({activeNotices.length})</h2>
+      <div class="flex items-center gap-2 mb-6 pb-2 border-b border-[#ededed] dark:border-hairline-dark">
+        <CheckCircle class="w-5 h-5 text-[#00b48a] dark:text-brand-green" />
+        <h2 class="text-xl font-bold text-[#0a0a0a] dark:text-ink">Current &amp; Active Notices ({activeNotices.length})</h2>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -40,11 +40,11 @@ const archivedNotices = getArchivedNotices();
 
     <!-- Archived Notices Section -->
     {archivedNotices.length > 0 && (
-      <section class="pt-8 border-t border-[#e5e5e5]">
-        <div class="flex items-center gap-2 mb-6 pb-2 border-b border-[#ededed]">
-          <Archive class="w-5 h-5 text-[#888888]" />
-          <h2 class="text-xl font-bold text-[#5a5a5c]">Notice Archive ({archivedNotices.length})</h2>
-          <span class="text-xs text-[#888888] ml-auto">Expired circulars kept for historical reference</span>
+      <section class="pt-8 border-t border-[#e5e5e5] dark:border-hairline-dark">
+        <div class="flex items-center gap-2 mb-6 pb-2 border-b border-[#ededed] dark:border-hairline-dark">
+          <Archive class="w-5 h-5 text-[#888888] dark:text-stone" />
+          <h2 class="text-xl font-bold text-[#5a5a5c] dark:text-slate">Notice Archive ({archivedNotices.length})</h2>
+          <span class="text-xs text-[#888888] dark:text-stone ml-auto">Expired circulars kept for historical reference</span>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 opacity-85">

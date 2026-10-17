@@ -8,13 +8,13 @@ export interface Props {
 const { variant = 'neutral', class: className = '', size = 'md' } = Astro.props;
 
 const variantStyles: Record<string, string> = {
-  mint: 'bg-[#00d4a4] text-[#0a0a0a] font-semibold',
-  'tag-blue': 'bg-[rgba(55,114,207,0.12)] text-[#3772cf] font-semibold border border-[rgba(55,114,207,0.2)]',
-  warn: 'bg-[rgba(195,125,13,0.12)] text-[#c37d0d] font-semibold border border-[rgba(195,125,13,0.2)]',
-  error: 'bg-[#d45656] text-white font-semibold',
-  surface: 'bg-[#f7f7f7] text-[#5a5a5c] border border-[#e5e5e5] font-mono',
-  neutral: 'bg-[#f7f7f7] text-[#1c1c1e] border border-[#e5e5e5]',
-  outline: 'bg-transparent text-[#5a5a5c] border border-[#e5e5e5]',
+  mint: 'bg-brand-green text-primary font-semibold',
+  'tag-blue': 'bg-[rgba(55,114,207,0.12)] dark:bg-[rgba(55,114,207,0.25)] text-brand-tag font-semibold border border-[rgba(55,114,207,0.2)]',
+  warn: 'bg-[rgba(195,125,13,0.12)] dark:bg-[rgba(195,125,13,0.25)] text-brand-warn font-semibold border border-[rgba(195,125,13,0.2)]',
+  error: 'bg-brand-error text-on-dark font-semibold',
+  surface: 'bg-surface dark:bg-surface-code text-steel dark:text-on-dark-muted border border-hairline dark:border-hairline-dark font-mono',
+  neutral: 'bg-surface dark:bg-surface-code text-charcoal dark:text-on-dark border border-hairline dark:border-hairline-dark',
+  outline: 'bg-transparent text-steel dark:text-on-dark-muted border border-hairline dark:border-hairline-dark',
 };
 
 const sizeStyles = {

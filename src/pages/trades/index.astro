@@ -24,9 +24,9 @@ const iconMap: Record<string, any> = {
     <Breadcrumbs items={[{ label: 'Trades Directory' }]} />
 
     <div class="mt-4 mb-10">
-      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Craftsmen Training Scheme</span>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">ITI Trades Directory</h1>
-      <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+      <span class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green">Craftsmen Training Scheme</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-ink dark:text-on-dark mt-1">ITI Trades Directory</h1>
+      <p class="text-sm text-steel dark:text-on-dark-muted mt-2 max-w-2xl leading-relaxed">
         Select a trade to view its specialized subjects, theoretical curriculum, workshop demonstration guides, and downloadable training resources.
       </p>
     </div>
@@ -40,47 +40,47 @@ const iconMap: Record<string, any> = {
         const isPrimary = trade.slug === 'ictsm';
 
         return (
-          <div class={`rounded-xl border ${isPrimary ? 'border-[#00d4a4] bg-white ring-1 ring-[#00d4a4]/20' : 'border-[#e5e5e5] bg-white'} p-6 sm:p-8 flex flex-col justify-between transition-all hover:border-[#b3b3b3] hover:shadow-sm`}>
+          <div class={`rounded-xl border ${isPrimary ? 'border-brand-green bg-canvas dark:bg-surface-code ring-1 ring-brand-green/20' : 'border-hairline dark:border-hairline-dark bg-canvas dark:bg-surface-code'} p-6 sm:p-8 flex flex-col justify-between transition-all hover:border-steel dark:hover:border-steel hover:shadow-sm`}>
             <div>
               <div class="flex items-center justify-between mb-4">
                 <div class="flex items-center gap-3">
-                  <div class={`w-12 h-12 rounded-xl ${isPrimary ? 'bg-[#0a0a0a] text-white' : 'bg-[#f7f7f7] text-[#0a0a0a]'} flex items-center justify-center border border-[#e5e5e5]`}>
-                    <IconComp class={`w-6 h-6 ${isPrimary ? 'text-[#00d4a4]' : 'text-[#5a5a5c]'}`} />
+                  <div class={`w-12 h-12 rounded-xl ${isPrimary ? 'bg-primary dark:bg-canvas-dark text-on-primary' : 'bg-surface dark:bg-canvas-dark text-ink dark:text-on-dark'} flex items-center justify-center border border-hairline dark:border-hairline-dark`}>
+                    <IconComp class={`w-6 h-6 ${isPrimary ? 'text-brand-green' : 'text-steel dark:text-on-dark-muted'}`} />
                   </div>
                   <div>
-                    <h2 class="text-lg font-bold text-[#0a0a0a] leading-tight">
-                      <a href={`/trades/${trade.slug}`} class="hover:text-[#00b48a] transition-colors focus:outline-none focus:underline">
+                    <h2 class="text-lg font-bold text-ink dark:text-on-dark leading-tight">
+                      <a href={`/trades/${trade.slug}`} class="hover:text-brand-green-deep dark:hover:text-brand-green transition-colors focus:outline-none focus:underline">
                         {trade.name}
                       </a>
                     </h2>
-                    <span class="font-mono text-xs text-[#888888]">
+                    <span class="font-mono text-xs text-stone dark:text-on-dark-muted">
                       Code: {trade.code} • {trade.duration_years} Year Program
                     </span>
                   </div>
                 </div>
 
                 {isPrimary && (
-                  <span class="px-2.5 py-1 text-[11px] font-semibold bg-[#00d4a4]/15 text-[#00b48a] rounded-full border border-[#00d4a4]/30 uppercase tracking-wider">
+                  <span class="px-2.5 py-1 text-[11px] font-semibold bg-brand-green/15 text-brand-green-deep dark:text-brand-green rounded-full border border-brand-green/30 uppercase tracking-wider">
                     Primary Trade
                   </span>
                 )}
               </div>
 
-              <p class="text-sm text-[#5a5a5c] leading-relaxed mb-6">
+              <p class="text-sm text-steel dark:text-on-dark-muted leading-relaxed mb-6">
                 {trade.description}
               </p>
 
               <!-- Subjects Preview -->
               <div class="mb-6">
-                <h3 class="text-xs font-semibold text-[#0a0a0a] uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <Layers class="w-3.5 h-3.5 text-[#888888]" />
+                <h3 class="text-xs font-semibold text-ink dark:text-on-dark uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <Layers class="w-3.5 h-3.5 text-stone dark:text-on-dark-muted" />
                   <span>Key Subjects &amp; Practical Modules ({subjects.length})</span>
                 </h3>
                 <div class="flex flex-wrap gap-1.5">
                   {subjects.map((sub) => (
                     <a
                       href={`/trades/${trade.slug}/subjects/${sub.slug}`}
-                      class="text-xs px-2.5 py-1 bg-[#f7f7f7] hover:bg-[#ededed] border border-[#e5e5e5] rounded-md text-[#1c1c1e] transition-colors"
+                      class="text-xs px-2.5 py-1 bg-surface dark:bg-canvas-dark hover:bg-hairline-soft dark:hover:bg-surface border border-hairline dark:border-hairline-dark rounded-md text-charcoal dark:text-on-dark transition-colors"
                     >
                       {sub.name}
                     </a>
@@ -90,18 +90,18 @@ const iconMap: Record<string, any> = {
             </div>
 
             <!-- Footer Meta & CTA -->
-            <div class="pt-5 border-t border-[#ededed] flex items-center justify-between">
-              <span class="text-xs font-medium text-[#5a5a5c] flex items-center gap-1.5">
-                <BookOpen class="w-4 h-4 text-[#888888]" />
+            <div class="pt-5 border-t border-hairline-soft dark:border-hairline-dark flex items-center justify-between">
+              <span class="text-xs font-medium text-steel dark:text-on-dark-muted flex items-center gap-1.5">
+                <BookOpen class="w-4 h-4 text-stone dark:text-on-dark-muted" />
                 <span>{resourceCount} Published Teaching Resources</span>
               </span>
 
               <a
                 href={`/trades/${trade.slug}`}
-                class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors"
+                class="inline-flex items-center gap-1.5 px-4 py-2 bg-primary dark:bg-brand-green hover:bg-charcoal dark:hover:bg-brand-green-deep text-on-primary dark:text-primary rounded-full text-xs font-semibold transition-colors"
               >
                 <span>View Trade Portal</span>
-                <ArrowRight class="w-3.5 h-3.5 text-[#00d4a4]" />
+                <ArrowRight class="w-3.5 h-3.5 text-brand-green dark:text-primary" />
               </a>
             </div>
           </div>

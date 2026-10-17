@@ -38,11 +38,11 @@ const resources = getResourcesBySubject(tradeSlug as string, subjectSlug as stri
     />
 
     <!-- Subject Header -->
-    <div class="mt-4 mb-10 p-6 sm:p-8 rounded-2xl bg-white border border-[#e5e5e5] shadow-xs">
+    <div class="mt-4 mb-10 p-6 sm:p-8 rounded-2xl bg-canvas dark:bg-surface-code border border-hairline dark:border-hairline-dark shadow-xs">
       <div class="flex items-center gap-2 mb-2">
         <a
           href={`/trades/${tradeSlug}`}
-          class="text-xs text-[#5a5a5c] hover:text-[#0a0a0a] inline-flex items-center gap-1 font-medium"
+          class="text-xs text-steel dark:text-on-dark-muted hover:text-ink dark:hover:text-on-dark inline-flex items-center gap-1 font-medium"
         >
           <ArrowLeft class="w-3.5 h-3.5" />
           <span>Back to {trade?.name || 'Trade'}</span>
@@ -50,19 +50,19 @@ const resources = getResourcesBySubject(tradeSlug as string, subjectSlug as stri
       </div>
 
       <div class="flex items-center gap-2 flex-wrap mb-2">
-        <span class="text-xs font-mono font-medium px-2 py-0.5 bg-[#f7f7f7] border border-[#e5e5e5] rounded text-[#5a5a5c]">
+        <span class="text-xs font-mono font-medium px-2 py-0.5 bg-surface dark:bg-canvas-dark border border-hairline dark:border-hairline-dark rounded text-steel dark:text-on-dark-muted">
           {subject.code}
         </span>
-        <span class="text-xs font-semibold px-2 py-0.5 bg-[#00d4a4]/15 text-[#00b48a] rounded-full">
+        <span class="text-xs font-semibold px-2 py-0.5 bg-brand-green/15 text-brand-green-deep dark:text-brand-green rounded-full border border-brand-green/30">
           Year {subject.training_year} (Semester {subject.semester})
         </span>
       </div>
 
-      <h1 class="text-2xl sm:text-3xl font-bold text-[#0a0a0a] tracking-tight">
+      <h1 class="text-2xl sm:text-3xl font-bold text-ink dark:text-on-dark tracking-tight">
         {subject.name}
       </h1>
 
-      <p class="text-sm text-[#5a5a5c] mt-2 max-w-3xl leading-relaxed">
+      <p class="text-sm text-steel dark:text-on-dark-muted mt-2 max-w-3xl leading-relaxed">
         {subject.description}
       </p>
     </div>
@@ -71,12 +71,12 @@ const resources = getResourcesBySubject(tradeSlug as string, subjectSlug as stri
     <section>
       <div class="flex items-center justify-between mb-6">
         <div>
-          <h2 class="text-xl font-bold text-[#0a0a0a]">Subject Resources ({resources.length})</h2>
-          <p class="text-xs text-[#5a5a5c] mt-0.5">Lesson plans, practical job sheets, and study materials for this curriculum unit.</p>
+          <h2 class="text-xl font-bold text-ink dark:text-on-dark">Subject Resources ({resources.length})</h2>
+          <p class="text-xs text-steel dark:text-on-dark-muted mt-0.5">Lesson plans, practical job sheets, and study materials for this curriculum unit.</p>
         </div>
         <a
           href={`/library?trade=${tradeSlug}&subject=${subjectSlug}`}
-          class="text-xs font-semibold text-[#0a0a0a] hover:text-[#00b48a] flex items-center gap-1"
+          class="text-xs font-semibold text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1"
         >
           <span>Search with filters</span>
           <ArrowRight class="w-3.5 h-3.5" />
@@ -90,15 +90,15 @@ const resources = getResourcesBySubject(tradeSlug as string, subjectSlug as stri
           ))}
         </div>
       ) : (
-        <div class="p-12 text-center bg-[#fafafa] rounded-xl border border-dashed border-[#e5e5e5]">
-          <BookOpen class="w-8 h-8 text-[#888888] mx-auto mb-3" />
-          <h3 class="text-sm font-semibold text-[#0a0a0a] mb-1">No resources found for this specific subject yet</h3>
-          <p class="text-xs text-[#5a5a5c] max-w-sm mx-auto mb-4">
+        <div class="p-12 text-center bg-surface-soft dark:bg-surface-code/50 rounded-xl border border-dashed border-hairline dark:border-hairline-dark">
+          <BookOpen class="w-8 h-8 text-stone dark:text-on-dark-muted mx-auto mb-3" />
+          <h3 class="text-sm font-semibold text-ink dark:text-on-dark mb-1">No resources found for this specific subject yet</h3>
+          <p class="text-xs text-steel dark:text-on-dark-muted max-w-sm mx-auto mb-4">
             Instructors are currently preparing lesson plans for this module. You can check the complete trade library.
           </p>
           <a
             href={`/trades/${tradeSlug}`}
-            class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0a0a0a] text-white text-xs font-medium rounded-full hover:bg-[#1c1c1e] transition-colors"
+            class="inline-flex items-center gap-1.5 px-4 py-2 bg-primary dark:bg-brand-green text-on-primary dark:text-primary text-xs font-semibold rounded-full hover:bg-charcoal dark:hover:bg-brand-green-deep transition-colors"
           >
             <span>View other subjects in {trade?.name}</span>
           </a>

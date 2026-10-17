@@ -12,18 +12,18 @@ const subjects = getAllSubjects();
 <AdminLayout title="Add New Resource" activeNav="new-resource">
   
   <div class="flex items-center gap-2 mb-4">
-    <a href="/admin/resources" class="text-xs font-medium text-[#5a5a5c] hover:text-[#0a0a0a] flex items-center gap-1">
+    <a href="/admin/resources" class="text-xs font-medium text-[#5a5a5c] dark:text-steel hover:text-[#0a0a0a] dark:hover:text-ink flex items-center gap-1 transition-colors">
       <ArrowLeft class="w-3.5 h-3.5" />
       <span>Back to resources list</span>
     </a>
   </div>
 
-  <div class="pb-4 border-b border-[#e5e5e5] mb-6">
-    <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a]">Add New Instructional Resource</h1>
-    <p class="text-xs text-[#5a5a5c] mt-0.5">Upload a verified lesson plan, practical demonstration plan, or lab guide.</p>
+  <div class="pb-4 border-b border-[#e5e5e5] dark:border-hairline-dark mb-6">
+    <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a] dark:text-ink">Add New Instructional Resource</h1>
+    <p class="text-xs text-[#5a5a5c] dark:text-steel mt-0.5">Upload a verified lesson plan, practical demonstration plan, or lab guide.</p>
   </div>
 
-  <div id="create-success" class="hidden mb-6 p-4 rounded-xl bg-[#00d4a4]/10 border border-[#00d4a4]/30 text-[#00b48a] text-xs font-medium flex items-center gap-2">
+  <div id="create-success" class="hidden mb-6 p-4 rounded-xl bg-[#00d4a4]/10 border border-[#00d4a4]/30 text-[#00b48a] dark:text-brand-green text-xs font-medium flex items-center gap-2">
     <CheckCircle2 class="w-5 h-5 flex-shrink-0" />
     <span>Resource successfully saved and added to the educational library!</span>
   </div>
@@ -31,27 +31,27 @@ const subjects = getAllSubjects();
   <form id="create-resource-form" class="space-y-6">
     
     <!-- Section 1: Basic Information -->
-    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
-      <h2 class="text-sm font-bold text-[#0a0a0a] pb-2 border-b border-[#ededed]">1. Resource Information</h2>
+    <div class="bg-white dark:bg-surface-code rounded-xl border border-[#e5e5e5] dark:border-hairline-dark p-6 space-y-4 shadow-xs">
+      <h2 class="text-sm font-bold text-[#0a0a0a] dark:text-ink pb-2 border-b border-[#ededed] dark:border-hairline-dark">1. Resource Information</h2>
 
       <div class="space-y-1">
-        <label for="title" class="text-xs font-semibold text-[#0a0a0a]">Resource Title *</label>
+        <label for="title" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Resource Title *</label>
         <input
           type="text"
           id="title"
           required
           placeholder="e.g. Lesson Plan 04: Structured Cabling and Cable Testing"
-          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
         />
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="space-y-1">
-          <label for="resource-type" class="text-xs font-semibold text-[#0a0a0a]">Resource Type *</label>
+          <label for="resource-type" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Resource Type *</label>
           <select
             id="resource-type"
             required
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           >
             <option value="lesson-plan">Lesson Plan (Theory)</option>
             <option value="demonstration-plan">Demonstration Plan (Practical)</option>
@@ -62,10 +62,10 @@ const subjects = getAllSubjects();
         </div>
 
         <div class="space-y-1">
-          <label for="language" class="text-xs font-semibold text-[#0a0a0a]">Language *</label>
+          <label for="language" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Language *</label>
           <select
             id="language"
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           >
             <option value="English">English</option>
             <option value="Hindi">Hindi</option>
@@ -75,28 +75,28 @@ const subjects = getAllSubjects();
       </div>
 
       <div class="space-y-1">
-        <label for="description" class="text-xs font-semibold text-[#0a0a0a]">Instructional Objectives &amp; Description *</label>
+        <label for="description" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Instructional Objectives &amp; Description *</label>
         <textarea
           id="description"
           rows="3"
           required
           placeholder="Summarize instructional goals, required workshop tools, and evaluation criteria..."
-          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
         ></textarea>
       </div>
     </div>
 
     <!-- Section 2: Curriculum Association -->
-    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
-      <h2 class="text-sm font-bold text-[#0a0a0a] pb-2 border-b border-[#ededed]">2. Curriculum Alignment</h2>
+    <div class="bg-white dark:bg-surface-code rounded-xl border border-[#e5e5e5] dark:border-hairline-dark p-6 space-y-4 shadow-xs">
+      <h2 class="text-sm font-bold text-[#0a0a0a] dark:text-ink pb-2 border-b border-[#ededed] dark:border-hairline-dark">2. Curriculum Alignment</h2>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="space-y-1">
-          <label for="trade-select" class="text-xs font-semibold text-[#0a0a0a]">Trade *</label>
+          <label for="trade-select" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Trade *</label>
           <select
             id="trade-select"
             required
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           >
             {trades.map((t) => (
               <option value={t.id}>{t.name}</option>
@@ -105,11 +105,11 @@ const subjects = getAllSubjects();
         </div>
 
         <div class="space-y-1">
-          <label for="subject-select" class="text-xs font-semibold text-[#0a0a0a]">Subject *</label>
+          <label for="subject-select" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Subject *</label>
           <select
             id="subject-select"
             required
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           >
             {subjects.map((s) => (
               <option value={s.id}>{s.name} (Yr {s.training_year})</option>
@@ -118,10 +118,10 @@ const subjects = getAllSubjects();
         </div>
 
         <div class="space-y-1">
-          <label for="training-year" class="text-xs font-semibold text-[#0a0a0a]">Training Year *</label>
+          <label for="training-year" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Training Year *</label>
           <select
             id="training-year"
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           >
             <option value="1">Year 1</option>
             <option value="2">Year 2</option>
@@ -131,59 +131,59 @@ const subjects = getAllSubjects();
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div class="space-y-1">
-          <label for="author-name" class="text-xs font-semibold text-[#0a0a0a]">Author / Senior Instructor</label>
+          <label for="author-name" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Author / Senior Instructor</label>
           <input
             type="text"
             id="author-name"
             placeholder="e.g. Senior Technical Instructor, ITI"
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           />
         </div>
 
         <div class="space-y-1">
-          <label for="source-name" class="text-xs font-semibold text-[#0a0a0a]">Issuing / Reference Framework</label>
+          <label for="source-name" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Issuing / Reference Framework</label>
           <input
             type="text"
             id="source-name"
             placeholder="e.g. NIMI Instructional Framework"
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           />
         </div>
       </div>
 
       <div class="space-y-1">
-        <label for="tags" class="text-xs font-semibold text-[#0a0a0a]">Curriculum Topic Tags (comma separated)</label>
+        <label for="tags" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Curriculum Topic Tags (comma separated)</label>
         <input
           type="text"
           id="tags"
           placeholder="e.g. Cat6, Punch Down, Keystone Jack, Continuity Test"
-          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
         />
       </div>
     </div>
 
     <!-- Section 3: File Attachment & Publishing Status -->
-    <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 space-y-4 shadow-xs">
-      <h2 class="text-sm font-bold text-[#0a0a0a] pb-2 border-b border-[#ededed]">3. File Attachment &amp; Status</h2>
+    <div class="bg-white dark:bg-surface-code rounded-xl border border-[#e5e5e5] dark:border-hairline-dark p-6 space-y-4 shadow-xs">
+      <h2 class="text-sm font-bold text-[#0a0a0a] dark:text-ink pb-2 border-b border-[#ededed] dark:border-hairline-dark">3. File Attachment &amp; Status</h2>
 
-      <div class="border-2 border-dashed border-[#e5e5e5] rounded-xl p-6 text-center hover:border-[#00d4a4] transition-colors bg-[#fafafa]">
-        <Upload class="w-8 h-8 text-[#888888] mx-auto mb-2" />
-        <span class="text-xs font-semibold text-[#0a0a0a] block">Select PDF or DOCX file to attach</span>
-        <span class="text-[11px] text-[#5a5a5c] block mt-0.5">Permitted formats: .pdf, .docx, .svg, .png (Max 25MB)</span>
+      <div class="border-2 border-dashed border-[#e5e5e5] dark:border-hairline-dark rounded-xl p-6 text-center hover:border-[#00d4a4] transition-colors bg-[#fafafa] dark:bg-surface">
+        <Upload class="w-8 h-8 text-[#888888] dark:text-stone mx-auto mb-2" />
+        <span class="text-xs font-semibold text-[#0a0a0a] dark:text-ink block">Select PDF or DOCX file to attach</span>
+        <span class="text-[11px] text-[#5a5a5c] dark:text-steel block mt-0.5">Permitted formats: .pdf, .docx, .svg, .png (Max 25MB)</span>
         <input
           type="file"
           id="file-upload"
-          class="mt-3 text-xs text-[#5a5a5c]"
+          class="mt-3 text-xs text-[#5a5a5c] dark:text-steel"
           accept=".pdf,.docx,.doc,.svg,.png,.jpg"
         />
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
         <div class="space-y-1">
-          <label for="status" class="text-xs font-semibold text-[#0a0a0a]">Publication Status *</label>
+          <label for="status" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Publication Status *</label>
           <select
             id="status"
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           >
             <option value="published">Published (Visible immediately)</option>
             <option value="draft">Draft (Save for review)</option>
@@ -194,9 +194,9 @@ const subjects = getAllSubjects();
           <input
             type="checkbox"
             id="is-featured"
-            class="rounded border-[#e5e5e5] text-[#00d4a4] focus:ring-[#00d4a4]"
+            class="rounded border-[#e5e5e5] dark:border-hairline-dark text-[#00d4a4] focus:ring-[#00d4a4]"
           />
-          <label for="is-featured" class="text-xs font-semibold text-[#0a0a0a]">
+          <label for="is-featured" class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">
             Mark as Featured Resource on Homepage
           </label>
         </div>
@@ -207,15 +207,15 @@ const subjects = getAllSubjects();
     <div class="flex items-center justify-end gap-3 pt-4">
       <a
         href="/admin/resources"
-        class="px-5 py-2.5 bg-white border border-[#e5e5e5] text-[#1c1c1e] rounded-full text-xs font-medium hover:bg-[#f7f7f7] transition-colors"
+        class="px-5 py-2.5 bg-white dark:bg-surface border border-[#e5e5e5] dark:border-hairline-dark text-[#1c1c1e] dark:text-ink rounded-full text-xs font-medium hover:bg-[#f7f7f7] dark:hover:bg-surface-soft transition-colors cursor-pointer"
       >
         Cancel
       </a>
       <button
         type="submit"
-        class="px-6 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex items-center gap-2"
+        class="px-6 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white dark:bg-white dark:text-[#0a0a0a] dark:hover:bg-slate-200 rounded-full text-xs font-medium transition-colors flex items-center gap-2 cursor-pointer"
       >
-        <Save class="w-4 h-4 text-[#00d4a4]" />
+        <Save class="w-4 h-4 text-[#00d4a4] dark:text-brand-green-deep" />
         <span>Save &amp; Publish Resource</span>
       </button>
     </div>

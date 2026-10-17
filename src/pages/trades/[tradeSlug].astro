@@ -49,27 +49,27 @@ const IconComp = iconMap[trade.icon] || Cpu;
     <div class="mt-4 mb-10 p-6 sm:p-8 rounded-2xl bg-[#fafafa] border border-[#e5e5e5]">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div class="flex items-start gap-4">
-          <div class="w-14 h-14 rounded-2xl bg-[#0a0a0a] text-white flex items-center justify-center flex-shrink-0 border border-[#e5e5e5]">
-            <IconComp class="w-7 h-7 text-[#00d4a4]" />
+          <div class="w-14 h-14 rounded-2xl bg-primary dark:bg-canvas-dark text-on-primary flex items-center justify-center flex-shrink-0 border border-hairline dark:border-hairline-dark">
+            <IconComp class="w-7 h-7 text-brand-green" />
           </div>
           <div>
             <div class="flex items-center gap-2 flex-wrap mb-1">
-              <span class="text-xs font-mono font-medium px-2 py-0.5 bg-white border border-[#e5e5e5] rounded text-[#5a5a5c]">
+              <span class="text-xs font-mono font-medium px-2 py-0.5 bg-canvas dark:bg-surface-code border border-hairline dark:border-hairline-dark rounded text-steel dark:text-on-dark-muted">
                 {trade.code}
               </span>
-              <span class="text-xs font-semibold px-2 py-0.5 bg-[#00d4a4]/15 text-[#00b48a] rounded-full">
+              <span class="text-xs font-semibold px-2 py-0.5 bg-brand-green/15 text-brand-green-deep dark:text-brand-green rounded-full border border-brand-green/30">
                 {trade.duration_years} Year Course
               </span>
               {trade.slug === 'ictsm' && (
-                <span class="text-xs font-semibold px-2 py-0.5 bg-[#0a0a0a] text-white rounded-full">
+                <span class="text-xs font-semibold px-2 py-0.5 bg-primary dark:bg-brand-green text-on-primary dark:text-primary rounded-full">
                   Primary Specialization
                 </span>
               )}
             </div>
-            <h1 class="text-2xl sm:text-3xl font-bold text-[#0a0a0a] tracking-tight">
+            <h1 class="text-2xl sm:text-3xl font-bold text-ink dark:text-on-dark tracking-tight">
               {trade.name}
             </h1>
-            <p class="text-sm text-[#5a5a5c] mt-2 max-w-3xl leading-relaxed">
+            <p class="text-sm text-steel dark:text-on-dark-muted mt-2 max-w-3xl leading-relaxed">
               {trade.description}
             </p>
           </div>
@@ -78,9 +78,9 @@ const IconComp = iconMap[trade.icon] || Cpu;
         <div class="flex flex-col sm:flex-row md:flex-col gap-2 flex-shrink-0">
           <a
             href={`/library?trade=${trade.slug}`}
-            class="px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white text-xs font-medium rounded-full text-center transition-colors flex items-center justify-center gap-2"
+            class="px-5 py-2.5 bg-primary dark:bg-brand-green hover:bg-charcoal dark:hover:bg-brand-green-deep text-on-primary dark:text-primary text-xs font-semibold rounded-full text-center transition-colors flex items-center justify-center gap-2 shadow-xs"
           >
-            <BookOpen class="w-4 h-4 text-[#00d4a4]" />
+            <BookOpen class="w-4 h-4 text-brand-green dark:text-primary" />
             <span>Search Trade Library</span>
           </a>
         </div>
@@ -90,34 +90,34 @@ const IconComp = iconMap[trade.icon] || Cpu;
     <!-- Subjects Section (Divided by Year) -->
     <section class="mb-14">
       <div class="mb-6">
-        <h2 class="text-xl font-bold text-[#0a0a0a]">Curriculum Subjects &amp; Practical Modules</h2>
-        <p class="text-xs text-[#5a5a5c] mt-0.5">Explore subject-level lesson plans, demonstrations, and question banks.</p>
+        <h2 class="text-xl font-bold text-ink dark:text-on-dark">Curriculum Subjects &amp; Practical Modules</h2>
+        <p class="text-xs text-steel dark:text-on-dark-muted mt-0.5">Explore subject-level lesson plans, demonstrations, and question banks.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <!-- Year 1 -->
         {year1Subjects.length > 0 && (
-          <div class="p-6 bg-white rounded-xl border border-[#e5e5e5]">
-            <h3 class="text-sm font-bold text-[#0a0a0a] uppercase tracking-wider mb-4 pb-2 border-b border-[#ededed] flex items-center justify-between">
+          <div class="p-6 bg-canvas dark:bg-surface-code rounded-xl border border-hairline dark:border-hairline-dark">
+            <h3 class="text-sm font-bold text-ink dark:text-on-dark uppercase tracking-wider mb-4 pb-2 border-b border-hairline-soft dark:border-hairline-dark flex items-center justify-between">
               <span>Year 1 Syllabus (Semester 1 &amp; 2)</span>
-              <span class="text-xs font-normal text-[#888888]">{year1Subjects.length} Subjects</span>
+              <span class="text-xs font-normal text-stone dark:text-on-dark-muted">{year1Subjects.length} Subjects</span>
             </h3>
             <div class="space-y-3">
               {year1Subjects.map((sub) => (
                 <a
                   href={`/trades/${trade.slug}/subjects/${sub.slug}`}
-                  class="block p-3 rounded-lg border border-[#f0f0f0] hover:border-[#b3b3b3] hover:bg-[#fafafa] transition-all group"
+                  class="block p-3 rounded-lg border border-hairline-soft dark:border-hairline-dark hover:border-steel dark:hover:border-steel hover:bg-surface-soft dark:hover:bg-surface transition-all group"
                 >
                   <div class="flex items-center justify-between">
-                    <span class="text-sm font-semibold text-[#0a0a0a] group-hover:text-[#00b48a] transition-colors">
+                    <span class="text-sm font-semibold text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors">
                       {sub.name}
                     </span>
-                    <ArrowRight class="w-4 h-4 text-[#888888] group-hover:text-[#00b48a] group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight class="w-4 h-4 text-stone dark:text-on-dark-muted group-hover:text-brand-green-deep dark:group-hover:text-brand-green group-hover:translate-x-0.5 transition-all" />
                   </div>
-                  <span class="text-[11px] font-mono text-[#888888] block mt-0.5">
+                  <span class="text-[11px] font-mono text-stone dark:text-on-dark-muted block mt-0.5">
                     Code: {sub.code} • Sem {sub.semester}
                   </span>
-                  <p class="text-xs text-[#5a5a5c] mt-1 line-clamp-2">
+                  <p class="text-xs text-steel dark:text-on-dark-muted mt-1 line-clamp-2">
                     {sub.description}
                   </p>
                 </a>
@@ -128,27 +128,27 @@ const IconComp = iconMap[trade.icon] || Cpu;
 
         <!-- Year 2 -->
         {year2Subjects.length > 0 && (
-          <div class="p-6 bg-white rounded-xl border border-[#e5e5e5]">
-            <h3 class="text-sm font-bold text-[#0a0a0a] uppercase tracking-wider mb-4 pb-2 border-b border-[#ededed] flex items-center justify-between">
+          <div class="p-6 bg-canvas dark:bg-surface-code rounded-xl border border-hairline dark:border-hairline-dark">
+            <h3 class="text-sm font-bold text-ink dark:text-on-dark uppercase tracking-wider mb-4 pb-2 border-b border-hairline-soft dark:border-hairline-dark flex items-center justify-between">
               <span>Year 2 Syllabus (Semester 3 &amp; 4)</span>
-              <span class="text-xs font-normal text-[#888888]">{year2Subjects.length} Subjects</span>
+              <span class="text-xs font-normal text-stone dark:text-on-dark-muted">{year2Subjects.length} Subjects</span>
             </h3>
             <div class="space-y-3">
               {year2Subjects.map((sub) => (
                 <a
                   href={`/trades/${trade.slug}/subjects/${sub.slug}`}
-                  class="block p-3 rounded-lg border border-[#f0f0f0] hover:border-[#b3b3b3] hover:bg-[#fafafa] transition-all group"
+                  class="block p-3 rounded-lg border border-hairline-soft dark:border-hairline-dark hover:border-steel dark:hover:border-steel hover:bg-surface-soft dark:hover:bg-surface transition-all group"
                 >
                   <div class="flex items-center justify-between">
-                    <span class="text-sm font-semibold text-[#0a0a0a] group-hover:text-[#00b48a] transition-colors">
+                    <span class="text-sm font-semibold text-ink dark:text-on-dark group-hover:text-brand-green-deep dark:group-hover:text-brand-green transition-colors">
                       {sub.name}
                     </span>
-                    <ArrowRight class="w-4 h-4 text-[#888888] group-hover:text-[#00b48a] group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight class="w-4 h-4 text-stone dark:text-on-dark-muted group-hover:text-brand-green-deep dark:group-hover:text-brand-green group-hover:translate-x-0.5 transition-all" />
                   </div>
-                  <span class="text-[11px] font-mono text-[#888888] block mt-0.5">
+                  <span class="text-[11px] font-mono text-stone dark:text-on-dark-muted block mt-0.5">
                     Code: {sub.code} • Sem {sub.semester}
                   </span>
-                  <p class="text-xs text-[#5a5a5c] mt-1 line-clamp-2">
+                  <p class="text-xs text-steel dark:text-on-dark-muted mt-1 line-clamp-2">
                     {sub.description}
                   </p>
                 </a>
@@ -163,12 +163,12 @@ const IconComp = iconMap[trade.icon] || Cpu;
     <section>
       <div class="flex items-center justify-between mb-6">
         <div>
-          <h2 class="text-xl font-bold text-[#0a0a0a]">Published Resources ({resources.length})</h2>
-          <p class="text-xs text-[#5a5a5c] mt-0.5">Lesson plans, practical guides, and documentation for {trade.name}.</p>
+          <h2 class="text-xl font-bold text-ink dark:text-on-dark">Published Resources ({resources.length})</h2>
+          <p class="text-xs text-steel dark:text-on-dark-muted mt-0.5">Lesson plans, practical guides, and documentation for {trade.name}.</p>
         </div>
         <a
           href={`/library?trade=${trade.slug}`}
-          class="text-xs font-semibold text-[#0a0a0a] hover:text-[#00b48a] flex items-center gap-1"
+          class="text-xs font-semibold text-ink dark:text-on-dark hover:text-brand-green-deep dark:hover:text-brand-green flex items-center gap-1"
         >
           <span>Filter in library</span>
           <ArrowRight class="w-3.5 h-3.5" />
@@ -182,7 +182,7 @@ const IconComp = iconMap[trade.icon] || Cpu;
           ))}
         </div>
       ) : (
-        <div class="p-8 text-center bg-[#fafafa] rounded-xl border border-dashed border-[#e5e5e5] text-xs text-[#5a5a5c]">
+        <div class="p-8 text-center bg-surface-soft dark:bg-surface-code/50 rounded-xl border border-dashed border-hairline dark:border-hairline-dark text-xs text-steel dark:text-on-dark-muted">
           No published resources currently available for this trade. Check back soon or visit the full catalog.
         </div>
       )}

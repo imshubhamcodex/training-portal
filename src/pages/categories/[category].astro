@@ -63,23 +63,23 @@ const resources = getResourcesByCategory(category as string);
     />
 
     <!-- Header Section -->
-    <div class="mt-4 mb-10 p-6 sm:p-8 rounded-2xl bg-[#fafafa] border border-[#e5e5e5]">
+    <div class="mt-4 mb-10 p-6 sm:p-8 rounded-2xl bg-surface-soft dark:bg-surface-code border border-hairline dark:border-hairline-dark">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Resource Category</span>
-          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#0a0a0a] mt-1">
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-green-deep dark:text-brand-green">Resource Category</span>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink dark:text-on-dark mt-1">
             {cat.name}
           </h1>
-          <p class="text-sm text-[#5a5a5c] mt-2 max-w-2xl leading-relaxed">
+          <p class="text-sm text-steel dark:text-on-dark-muted mt-2 max-w-2xl leading-relaxed">
             {cat.description}
           </p>
         </div>
 
         <a
           href={`/library?type=${cat.typeParam}`}
-          class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors flex-shrink-0"
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-primary dark:bg-brand-green hover:bg-charcoal dark:hover:bg-brand-green-deep text-on-primary dark:text-primary rounded-full text-xs font-semibold transition-colors flex-shrink-0"
         >
-          <BookOpen class="w-4 h-4 text-[#00d4a4]" />
+          <BookOpen class="w-4 h-4 text-brand-green dark:text-primary" />
           <span>Filter in Library</span>
         </a>
       </div>
@@ -88,10 +88,10 @@ const resources = getResourcesByCategory(category as string);
     <!-- Category Resource Grid -->
     <section>
       <div class="flex items-center justify-between mb-6">
-        <h2 class="text-lg font-bold text-[#0a0a0a]">
+        <h2 class="text-lg font-bold text-ink dark:text-on-dark">
           Available {cat.name} ({resources.length})
         </h2>
-        <span class="text-xs text-[#888888]">Showing published resources</span>
+        <span class="text-xs text-stone dark:text-on-dark-muted">Showing published resources</span>
       </div>
 
       {resources.length > 0 ? (
@@ -101,7 +101,7 @@ const resources = getResourcesByCategory(category as string);
           ))}
         </div>
       ) : (
-        <div class="p-12 text-center bg-[#fafafa] rounded-xl border border-dashed border-[#e5e5e5] text-xs text-[#5a5a5c]">
+        <div class="p-12 text-center bg-surface-soft dark:bg-surface-code/50 rounded-xl border border-dashed border-hairline dark:border-hairline-dark text-xs text-steel dark:text-on-dark-muted">
           No published resources found in this category yet. Check back soon.
         </div>
       )}

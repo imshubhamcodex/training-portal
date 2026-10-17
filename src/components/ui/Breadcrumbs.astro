@@ -13,10 +13,10 @@ export interface Props {
 const { items } = Astro.props;
 ---
 
-<nav aria-label="Breadcrumb" class="py-3 text-xs md:text-sm text-[#5a5a5c]">
+<nav aria-label="Breadcrumb" class="py-3 text-xs md:text-sm text-steel dark:text-on-dark-muted">
   <ol class="flex items-center flex-wrap gap-1.5">
     <li class="inline-flex items-center">
-      <a href="/" class="hover:text-[#0a0a0a] transition-colors inline-flex items-center gap-1">
+      <a href="/" class="hover:text-ink dark:hover:text-on-dark transition-colors inline-flex items-center gap-1">
         <Home class="w-3.5 h-3.5" />
         <span class="sr-only md:not-sr-only">Home</span>
       </a>
@@ -25,13 +25,13 @@ const { items } = Astro.props;
       const isLast = index === items.length - 1;
       return (
         <li class="inline-flex items-center gap-1.5">
-          <ChevronRight class="w-3.5 h-3.5 text-[#a8a8aa]" />
+          <ChevronRight class="w-3.5 h-3.5 text-muted dark:text-on-dark-muted" />
           {item.href && !isLast ? (
-            <a href={item.href} class="hover:text-[#0a0a0a] transition-colors">
+            <a href={item.href} class="hover:text-ink dark:hover:text-on-dark transition-colors">
               {item.label}
             </a>
           ) : (
-            <span class="text-[#0a0a0a] font-medium" aria-current={isLast ? 'page' : undefined}>
+            <span class="text-ink dark:text-on-dark font-medium" aria-current={isLast ? 'page' : undefined}>
               {item.label}
             </span>
           )}

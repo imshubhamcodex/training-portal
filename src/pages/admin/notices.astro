@@ -8,44 +8,44 @@ const notices = getAllNotices(true);
 
 <AdminLayout title="Notice Management" activeNav="notices">
   
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e5e5e5]">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e5e5e5] dark:border-hairline-dark">
     <div>
-      <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a]">Notices &amp; Circular Management</h1>
-      <p class="text-xs text-[#5a5a5c] mt-0.5">Publish regulatory notifications, trade test schedules, and safety directives.</p>
+      <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a] dark:text-ink">Notices &amp; Circular Management</h1>
+      <p class="text-xs text-[#5a5a5c] dark:text-steel mt-0.5">Publish regulatory notifications, trade test schedules, and safety directives.</p>
     </div>
 
     <button
       type="button"
       id="open-notice-modal-btn"
-      class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors"
+      class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white dark:bg-white dark:text-[#0a0a0a] dark:hover:bg-slate-200 rounded-full text-xs font-medium transition-colors cursor-pointer"
     >
-      <PlusCircle class="w-3.5 h-3.5 text-[#00d4a4]" />
+      <PlusCircle class="w-3.5 h-3.5 text-[#00d4a4] dark:text-brand-green-deep" />
       <span>Create New Notice</span>
     </button>
   </div>
 
   <!-- Notice Creation Card (Collapsible) -->
-  <div id="new-notice-panel" class="hidden bg-white rounded-xl border border-[#00d4a4] p-6 shadow-sm space-y-4">
-    <div class="flex items-center justify-between pb-3 border-b border-[#ededed]">
-      <h2 class="text-sm font-bold text-[#0a0a0a]">Draft New Official Notice</h2>
-      <button type="button" id="close-notice-panel" class="text-xs text-[#888888] hover:text-[#0a0a0a]">Close ✕</button>
+  <div id="new-notice-panel" class="hidden bg-white dark:bg-surface-code rounded-xl border border-[#00d4a4]/40 p-6 shadow-sm space-y-4">
+    <div class="flex items-center justify-between pb-3 border-b border-[#ededed] dark:border-hairline-dark">
+      <h2 class="text-sm font-bold text-[#0a0a0a] dark:text-ink">Draft New Official Notice</h2>
+      <button type="button" id="close-notice-panel" class="text-xs text-[#888888] dark:text-stone hover:text-[#0a0a0a] dark:hover:text-ink cursor-pointer">Close ✕</button>
     </div>
 
     <form id="create-notice-form" class="space-y-4">
       <div class="space-y-1">
-        <label class="text-xs font-semibold text-[#0a0a0a]">Notice Title *</label>
+        <label class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Notice Title *</label>
         <input
           type="text"
           required
           placeholder="e.g. Schedule of Practical Examinations for All India Trade Test (AITT)"
-          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
         />
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-[#0a0a0a]">Category *</label>
-          <select class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]">
+          <label class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Category *</label>
+          <select class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]">
             <option value="curriculum">Curriculum</option>
             <option value="exam">Examination</option>
             <option value="circular">Circular</option>
@@ -54,38 +54,38 @@ const notices = getAllNotices(true);
         </div>
 
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-[#0a0a0a]">Issuing Authority *</label>
+          <label class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Issuing Authority *</label>
           <input
             type="text"
             required
             placeholder="e.g. DGT / NCVET"
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           />
         </div>
 
         <div class="space-y-1">
-          <label class="text-xs font-semibold text-[#0a0a0a]">Validity / Expiry Date</label>
+          <label class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Validity / Expiry Date</label>
           <input
             type="date"
-            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] bg-white focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+            class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
           />
         </div>
       </div>
 
       <div class="space-y-1">
-        <label class="text-xs font-semibold text-[#0a0a0a]">Notice Body Text *</label>
+        <label class="text-xs font-semibold text-[#0a0a0a] dark:text-ink">Notice Body Text *</label>
         <textarea
           rows="4"
           required
           placeholder="Enter full announcement text, instructions, and deadlines..."
-          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] text-xs text-[#0a0a0a] focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
+          class="w-full px-3.5 py-2.5 rounded-lg border border-[#e5e5e5] dark:border-hairline-dark text-xs text-[#0a0a0a] dark:text-ink bg-white dark:bg-surface placeholder-[#888888] dark:placeholder-stone focus:outline-none focus:ring-2 focus:ring-[#00d4a4]"
         ></textarea>
       </div>
 
       <div class="flex items-center justify-end gap-3 pt-2">
         <button
           type="submit"
-          class="px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white rounded-full text-xs font-medium transition-colors"
+          class="px-5 py-2.5 bg-[#0a0a0a] hover:bg-[#1c1c1e] text-white dark:bg-white dark:text-[#0a0a0a] dark:hover:bg-slate-200 rounded-full text-xs font-medium transition-colors cursor-pointer"
         >
           Publish Notice
         </button>
@@ -94,10 +94,10 @@ const notices = getAllNotices(true);
   </div>
 
   <!-- Notices Table -->
-  <div class="bg-white rounded-xl border border-[#e5e5e5] shadow-xs overflow-hidden">
+  <div class="bg-white dark:bg-surface-code rounded-xl border border-[#e5e5e5] dark:border-hairline-dark shadow-xs overflow-hidden">
     <div class="overflow-x-auto">
       <table class="w-full text-left text-xs">
-        <thead class="bg-[#fafafa] border-b border-[#e5e5e5] text-[#5a5a5c] font-semibold uppercase tracking-wider text-[10px]">
+        <thead class="bg-[#fafafa] dark:bg-surface border-b border-[#e5e5e5] dark:border-hairline-dark text-[#5a5a5c] dark:text-steel font-semibold uppercase tracking-wider text-[10px]">
           <tr>
             <th class="py-3 px-4">Notice Title</th>
             <th class="py-3 px-4">Authority</th>
@@ -107,7 +107,7 @@ const notices = getAllNotices(true);
             <th class="py-3 px-4 text-right">View</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-[#ededed] text-[#1c1c1e]">
+        <tbody class="divide-y divide-[#ededed] dark:divide-hairline-dark text-[#1c1c1e] dark:text-charcoal">
           {notices.map((notice) => {
             const expired = isNoticeExpired(notice);
             const pubDate = new Date(notice.published_at).toLocaleDateString('en-IN', {
@@ -116,27 +116,27 @@ const notices = getAllNotices(true);
               year: 'numeric',
             });
             return (
-              <tr class="hover:bg-[#fafafa] transition-colors">
+              <tr class="hover:bg-[#fafafa] dark:hover:bg-surface/50 transition-colors">
                 <td class="py-3.5 px-4 max-w-sm">
-                  <div class="font-semibold text-[#0a0a0a] line-clamp-1">{notice.title}</div>
-                  <span class="text-[10px] text-[#888888]">/{notice.slug}</span>
+                  <div class="font-semibold text-[#0a0a0a] dark:text-ink line-clamp-1">{notice.title}</div>
+                  <span class="text-[10px] text-[#888888] dark:text-stone font-mono">/{notice.slug}</span>
                 </td>
-                <td class="py-3.5 px-4 whitespace-nowrap font-medium text-[#0a0a0a]">
+                <td class="py-3.5 px-4 whitespace-nowrap font-medium text-[#0a0a0a] dark:text-ink">
                   {notice.source_name || 'Portal Desk'}
                 </td>
-                <td class="py-3.5 px-4 whitespace-nowrap uppercase text-[10px] font-mono">
+                <td class="py-3.5 px-4 whitespace-nowrap uppercase text-[10px] font-mono text-[#5a5a5c] dark:text-steel">
                   {notice.category}
                 </td>
-                <td class="py-3.5 px-4 whitespace-nowrap text-[#5a5a5c]">
+                <td class="py-3.5 px-4 whitespace-nowrap text-[#5a5a5c] dark:text-steel">
                   {pubDate}
                 </td>
                 <td class="py-3.5 px-4 whitespace-nowrap">
                   {expired ? (
-                    <span class="px-2 py-0.5 rounded text-[10px] font-medium bg-[#f7f7f7] text-[#888888] border border-[#e5e5e5]">
+                    <span class="px-2 py-0.5 rounded text-[10px] font-medium bg-[#f7f7f7] dark:bg-surface text-[#888888] dark:text-muted border border-[#e5e5e5] dark:border-hairline-dark">
                       Expired
                     </span>
                   ) : (
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-[#00d4a4]/15 text-[#00b48a]">
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-[#00d4a4]/15 text-[#00b48a] dark:text-brand-green">
                       <CheckCircle2 class="w-3 h-3" />
                       Active
                     </span>
@@ -146,7 +146,7 @@ const notices = getAllNotices(true);
                   <a
                     href={`/notices/${notice.slug}`}
                     target="_blank"
-                    class="p-1 text-[#888888] hover:text-[#0a0a0a] inline-flex items-center gap-1"
+                    class="p-1 text-[#888888] dark:text-stone hover:text-[#0a0a0a] dark:hover:text-ink inline-flex items-center gap-1 transition-colors"
                   >
                     <span>Preview</span>
                     <ExternalLink class="w-3.5 h-3.5" />

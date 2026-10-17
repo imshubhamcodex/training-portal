@@ -12,19 +12,19 @@ import { BookOpen, Cpu, ShieldCheck, Download, Award, Users, FileCheck } from 'l
     <Breadcrumbs items={[{ label: 'About the Portal' }]} />
 
     <div class="mt-4 mb-10">
-      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a]">Institutional Educational Platform</span>
-      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] mt-1">About ITI Resource Hub</h1>
-      <p class="text-base text-[#5a5a5c] mt-2 leading-relaxed">
+      <span class="text-xs font-semibold uppercase tracking-wider text-[#00b48a] dark:text-brand-green">Institutional Educational Platform</span>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#0a0a0a] dark:text-ink mt-1">About ITI Resource Hub</h1>
+      <p class="text-base text-[#5a5a5c] dark:text-steel mt-2 leading-relaxed">
         A fast, centralized, public digital library built to empower vocational instructors and trainees in Industrial Training Institutes (ITIs) across India.
       </p>
     </div>
 
-    <div class="space-y-10 text-sm text-[#3a3a3c] leading-relaxed">
+    <div class="space-y-10 text-sm text-[#3a3a3c] dark:text-charcoal leading-relaxed">
       
       <!-- Mission Card -->
-      <section class="p-6 sm:p-8 rounded-2xl bg-[#fafafa] border border-[#e5e5e5] space-y-4">
-        <h2 class="text-xl font-bold text-[#0a0a0a] flex items-center gap-2">
-          <Award class="w-5 h-5 text-[#00b48a]" />
+      <section class="p-6 sm:p-8 rounded-2xl bg-[#fafafa] dark:bg-surface-code border border-[#e5e5e5] dark:border-hairline-dark space-y-4">
+        <h2 class="text-xl font-bold text-[#0a0a0a] dark:text-ink flex items-center gap-2">
+          <Award class="w-5 h-5 text-[#00b48a] dark:text-brand-green" />
           <span>Our Vision &amp; Mission</span>
         </h2>
         <p>
@@ -37,45 +37,45 @@ import { BookOpen, Cpu, ShieldCheck, Download, Award, Users, FileCheck } from 'l
 
       <!-- Key Pillars -->
       <section class="space-y-4">
-        <h2 class="text-xl font-bold text-[#0a0a0a]">Core Operational Principles</h2>
+        <h2 class="text-xl font-bold text-[#0a0a0a] dark:text-ink">Core Operational Principles</h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="p-5 rounded-xl border border-[#e5e5e5] bg-white space-y-2">
-            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] flex items-center justify-center text-[#0a0a0a]">
-              <ShieldCheck class="w-4 h-4 text-[#00b48a]" />
+          <div class="p-5 rounded-xl border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface-code space-y-2">
+            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] dark:bg-surface flex items-center justify-center text-[#0a0a0a] dark:text-ink">
+              <ShieldCheck class="w-4 h-4 text-[#00b48a] dark:text-brand-green" />
             </div>
-            <h3 class="font-semibold text-[#0a0a0a]">100% Free Public Access</h3>
-            <p class="text-xs text-[#5a5a5c] leading-relaxed">
+            <h3 class="font-semibold text-[#0a0a0a] dark:text-ink">100% Free Public Access</h3>
+            <p class="text-xs text-[#5a5a5c] dark:text-steel leading-relaxed">
               Trainees and instructors can browse, search, preview, and download all published instructional materials without registration or subscription barriers.
             </p>
           </div>
 
-          <div class="p-5 rounded-xl border border-[#e5e5e5] bg-white space-y-2">
-            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] flex items-center justify-center text-[#0a0a0a]">
-              <Cpu class="w-4 h-4 text-[#3772cf]" />
+          <div class="p-5 rounded-xl border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface-code space-y-2">
+            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] dark:bg-surface flex items-center justify-center text-[#0a0a0a] dark:text-ink">
+              <Cpu class="w-4 h-4 text-[#3772cf] dark:text-brand-tag" />
             </div>
-            <h3 class="font-semibold text-[#0a0a0a]">ICTSM Initial Specialization</h3>
-            <p class="text-xs text-[#5a5a5c] leading-relaxed">
+            <h3 class="font-semibold text-[#0a0a0a] dark:text-ink">ICTSM Initial Specialization</h3>
+            <p class="text-xs text-[#5a5a5c] dark:text-steel leading-relaxed">
               Prioritizing Information &amp; Communication Technology System Maintenance with rich hardware, networking, fiber optics, and server administration guides, expandable to all CTS trades.
             </p>
           </div>
 
-          <div class="p-5 rounded-xl border border-[#e5e5e5] bg-white space-y-2">
-            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] flex items-center justify-center text-[#0a0a0a]">
-              <Download class="w-4 h-4 text-[#c37d0d]" />
+          <div class="p-5 rounded-xl border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface-code space-y-2">
+            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] dark:bg-surface flex items-center justify-center text-[#0a0a0a] dark:text-ink">
+              <Download class="w-4 h-4 text-[#c37d0d] dark:text-brand-warn" />
             </div>
-            <h3 class="font-semibold text-[#0a0a0a]">Standard Formats (PDF &amp; DOCX)</h3>
-            <p class="text-xs text-[#5a5a5c] leading-relaxed">
+            <h3 class="font-semibold text-[#0a0a0a] dark:text-ink">Standard Formats (PDF &amp; DOCX)</h3>
+            <p class="text-xs text-[#5a5a5c] dark:text-steel leading-relaxed">
               All lesson plans are provided in portable PDF format for mobile review and editable DOCX format for instructors adapting lesson plans to their local institutional requirements.
             </p>
           </div>
 
-          <div class="p-5 rounded-xl border border-[#e5e5e5] bg-white space-y-2">
-            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] flex items-center justify-center text-[#0a0a0a]">
-              <FileCheck class="w-4 h-4 text-[#00b48a]" />
+          <div class="p-5 rounded-xl border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface-code space-y-2">
+            <div class="w-8 h-8 rounded-lg bg-[#f7f7f7] dark:bg-surface flex items-center justify-center text-[#0a0a0a] dark:text-ink">
+              <FileCheck class="w-4 h-4 text-[#00b48a] dark:text-brand-green" />
             </div>
-            <h3 class="font-semibold text-[#0a0a0a]">NIMI 4-Step Methodology</h3>
-            <p class="text-xs text-[#5a5a5c] leading-relaxed">
+            <h3 class="font-semibold text-[#0a0a0a] dark:text-ink">NIMI 4-Step Methodology</h3>
+            <p class="text-xs text-[#5a5a5c] dark:text-steel leading-relaxed">
               Lesson plans conform to the proven 4-step instructional cycle: Preparation (Motivation), Presentation, Application, and Testing/Evaluation.
             </p>
           </div>
@@ -83,9 +83,9 @@ import { BookOpen, Cpu, ShieldCheck, Download, Award, Users, FileCheck } from 'l
       </section>
 
       <!-- Institutional Reference Statement -->
-      <section class="p-6 rounded-xl border border-[#e5e5e5] bg-white space-y-3">
-        <h2 class="text-base font-bold text-[#0a0a0a]">Institutional Framework Alignment</h2>
-        <p class="text-xs text-[#5a5a5c] leading-relaxed">
+      <section class="p-6 rounded-xl border border-[#e5e5e5] dark:border-hairline-dark bg-white dark:bg-surface-code space-y-3">
+        <h2 class="text-base font-bold text-[#0a0a0a] dark:text-ink">Institutional Framework Alignment</h2>
+        <p class="text-xs text-[#5a5a5c] dark:text-steel leading-relaxed">
           The curriculum structures, trade codes, and subject topics referenced on this platform correspond to the Craftsmen Training Scheme (CTS) syllabi published by the Directorate General of Training (DGT), Ministry of Skill Development and Entrepreneurship (MSDE), Government of India, and instructional patterns formulated by the National Instructional Media Institute (NIMI), Chennai.
         </p>
       </section>

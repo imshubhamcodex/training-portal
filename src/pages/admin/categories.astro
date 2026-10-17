@@ -9,10 +9,10 @@ const allResources = getAllResources();
 
 <AdminLayout title="Resource Categories" activeNav="resources">
   
-  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e5e5e5]">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#e5e5e5] dark:border-hairline-dark">
     <div>
-      <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a]">Resource Categories</h1>
-      <p class="text-xs text-[#5a5a5c] mt-0.5">Taxonomy configuration for instructional materials.</p>
+      <h1 class="text-2xl font-bold tracking-tight text-[#0a0a0a] dark:text-ink">Resource Categories</h1>
+      <p class="text-xs text-[#5a5a5c] dark:text-steel mt-0.5">Taxonomy configuration for instructional materials.</p>
     </div>
   </div>
 
@@ -20,19 +20,19 @@ const allResources = getAllResources();
     {RESOURCE_CATEGORIES.map((cat) => {
       const count = allResources.filter((r) => r.resource_type === cat.resource_type).length;
       return (
-        <div class="bg-white rounded-xl border border-[#e5e5e5] p-6 flex flex-col justify-between shadow-xs">
+        <div class="bg-white dark:bg-surface-code rounded-xl border border-[#e5e5e5] dark:border-hairline-dark p-6 flex flex-col justify-between shadow-xs">
           <div>
-            <span class="text-[10px] font-mono text-[#888888] uppercase block mb-1">/{cat.slug}</span>
-            <h2 class="text-base font-bold text-[#0a0a0a] mb-2">{cat.name}</h2>
-            <p class="text-xs text-[#5a5a5c] leading-relaxed mb-4">{cat.description}</p>
+            <span class="text-[10px] font-mono text-[#888888] dark:text-stone uppercase block mb-1">/{cat.slug}</span>
+            <h2 class="text-base font-bold text-[#0a0a0a] dark:text-ink mb-2">{cat.name}</h2>
+            <p class="text-xs text-[#5a5a5c] dark:text-steel leading-relaxed mb-4">{cat.description}</p>
           </div>
 
-          <div class="pt-4 border-t border-[#ededed] flex items-center justify-between text-xs">
-            <span class="font-semibold text-[#0a0a0a]">{count} Published Items</span>
+          <div class="pt-4 border-t border-[#ededed] dark:border-hairline-dark flex items-center justify-between text-xs">
+            <span class="font-semibold text-[#0a0a0a] dark:text-ink">{count} Published Items</span>
             <a
               href={`/categories/${cat.slug}`}
               target="_blank"
-              class="text-[#00b48a] font-medium hover:underline flex items-center gap-1"
+              class="text-[#00b48a] dark:text-brand-green font-medium hover:underline flex items-center gap-1"
             >
               <span>View Landing</span>
               <ArrowRight class="w-3.5 h-3.5" />
